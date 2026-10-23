@@ -1,0 +1,44 @@
+{
+  "kit_version": "2026-10-22",
+  "generated_utc": "2026-10-23 22:41:23",
+  "asof_month": "2025-10",
+  "inputs": {
+    "schedule": {
+      "file": "schedule.csv",
+      "sha256": "65e36e4953776f101abd853a6bc3c707fe0e58834f6089ebf1ffe894f22f71d9",
+      "rows": 521,
+      "columns": [
+        "customer_id",
+        "customer_name",
+        "snapshot_date",
+        "mrr",
+        "start_date",
+        "end_date",
+        "status"
+      ]
+    },
+    "invoices": {
+      "file": "invoices.csv",
+      "sha256": "0c50583d1cf5c1c0982022b688f098f9756f3e9a70aba9d1405e104a5ffb5b4a",
+      "rows": 511,
+      "columns": [
+        "invoice_id",
+        "customer_id",
+        "customer_name",
+        "invoice_date",
+        "service_start",
+        "service_end",
+        "amount",
+        "line_type",
+        "description"
+      ]
+    },
+    "mapping": {
+      "file": "mapping.json",
+      "sha256": "c41ab087dd0f4ebdb829e51695efe4cec67672cc27af9523d3d1ae1ee07967c7"
+    }
+  },
+  "mapping_warnings": [
+    "invoices: 1 exact duplicate rows kept; a repeated invoice is a finding, not an artefact, and shows as duplicate_invoice"
+  ]
+}

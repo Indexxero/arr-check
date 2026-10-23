@@ -1,0 +1,44 @@
+sched_key,inv_key,method,confidence,sched_name,inv_name
+F-001,F-001,exact_id,high,Blue Harbor Analytics,Blue Harbor Analytics
+F-002,F-002,exact_id,high,Granite Peak Software,Granite Peak Software
+F-003,F-003,exact_id,high,Cedar Loop Systems,Cedar Loop Systems
+F-004,F-004,exact_id,high,Northwind Dynamics,Northwind Dynamics
+F-005,F-005,exact_id,high,Juniper Ridge Labs,Juniper Ridge Labs
+F-007,,unmatched_schedule_only,review,Silent Partner Inc,
+F-008,F-008,exact_id,high,Maple Street Health,Maple Street Health
+F-009,F-009,exact_id,high,Lantern Field Co,Lantern Field Co
+F-010,F-010,exact_id,high,Copperline Freight,Copperline Freight
+F-011,F-011,exact_id,high,Harbor Light Media,Harbor Light Media
+F-012,F-012,exact_id,high,Quiet Creek Software,Quiet Creek Software
+F-013,F-013,exact_id,high,Fictional Co 13,Fictional Co 13
+F-014,F-014,exact_id,high,Fictional Co 14,Fictional Co 14
+F-015,F-015,exact_id,high,Fictional Co 15,Fictional Co 15
+F-016,F-016,exact_id,high,Fictional Co 16,Fictional Co 16
+F-017,F-017,exact_id,high,Fictional Co 17,Fictional Co 17
+F-018,F-018,exact_id,high,Fictional Co 18,Fictional Co 18
+F-019,F-019,exact_id,high,Fictional Co 19,Fictional Co 19
+F-020,F-020,exact_id,high,Fictional Co 20,Fictional Co 20
+F-021,F-021,exact_id,high,Fictional Co 21,Fictional Co 21
+F-022,F-022,exact_id,high,Fictional Co 22,Fictional Co 22
+F-023,F-023,exact_id,high,Fictional Co 23,Fictional Co 23
+F-024,F-024,exact_id,high,Fictional Co 24,Fictional Co 24
+F-025,F-025,exact_id,high,Fictional Co 25,Fictional Co 25
+F-026,F-026,exact_id,high,Fictional Co 26,Fictional Co 26
+F-027,F-027,exact_id,high,Fictional Co 27,Fictional Co 27
+F-028,F-028,exact_id,high,Fictional Co 28,Fictional Co 28
+F-029,F-029,exact_id,high,Fictional Co 29,Fictional Co 29
+F-030,F-030,exact_id,high,Fictional Co 30,Fictional Co 30
+F-031,F-031,exact_id,high,Fictional Co 31,Fictional Co 31
+F-032,F-032,exact_id,high,Fictional Co 32,Fictional Co 32
+F-033,F-033,exact_id,high,Fictional Co 33,Fictional Co 33
+F-034,F-034,exact_id,high,Fictional Co 34,Fictional Co 34
+F-035,F-035,exact_id,high,Fictional Co 35,Fictional Co 35
+F-036,F-036,exact_id,high,Fictional Co 36,Fictional Co 36
+F-037,F-037,exact_id,high,Fictional Co 37,Fictional Co 37
+F-038,F-038,exact_id,high,Fictional Co 38,Fictional Co 38
+F-039,F-039,exact_id,high,Fictional Co 39,Fictional Co 39
+F-040,F-040,exact_id,high,Fictional Co 40,Fictional Co 40
+F-041,F-041,exact_id,high,Fictional Co 41,Fictional Co 41
+F-042,F-042,exact_id,high,Fictional Co 42,Fictional Co 42
+NAME:acme,NAME:acme,normalised_name,medium,Acme Corp,ACME Corporation
+,INV-ONLY-1,unmatched_invoice_only,review,,Orphan Billing LLC

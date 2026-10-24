@@ -1,0 +1,8 @@
+{
+  "answers": [
+    {"customer_key": "F-002", "month": "2025-10", "decision": "accepted", "reason": "schedule_error", "note": "Schedule should be corrected to the billed amount.", "by": "LP", "date": "2025-11-02"},
+    {"customer_key": "F-003", "month": "2025-06", "decision": "explained", "reason": "credit_memo", "note": "Credit and rebill were documented for the same service period.", "by": "LP", "date": "2025-11-02"},
+    {"customer_key": "F-008", "month": "2025-03", "decision": "explained", "reason": "other", "note": "Usage classification was reviewed and does not change recurring support.", "by": "LP", "date": "2025-11-02"},
+    {"customer_key": "F-007", "month": "2025-10", "decision": "disputed", "reason": "other", "note": "Finance disputes the missing-invoice finding pending source-system review.", "by": "LP", "date": "2025-11-02"}
+  ]
+}

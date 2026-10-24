@@ -40,6 +40,39 @@ def sha256(path):
     return h.hexdigest()
 
 
+ANSWER_DECISIONS = {"accepted", "explained", "disputed"}
+ANSWER_REASONS = {"contract_amendment", "credit_memo", "billing_error", "schedule_error", "reseller_child", "test_account", "other"}
+
+
+def load_answers(path):
+    """Load the small finance-lead decision file; reject ambiguity before changing a result."""
+    try:
+        payload = json.load(open(path))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise ValueError(f"could not read answers file: {exc}") from exc
+    rows = payload.get("answers") if isinstance(payload, dict) else None
+    if not isinstance(rows, list):
+        raise ValueError("answers file must contain an 'answers' array")
+    clean, seen = [], set()
+    required = ("customer_key", "month", "decision", "reason", "note", "by", "date")
+    for number, row in enumerate(rows, 1):
+        if not isinstance(row, dict) or any(field not in row for field in required):
+            raise ValueError(f"answer {number} must include: {', '.join(required)}")
+        answer = {field: str(row[field]).strip() for field in required}
+        if not answer["customer_key"] or not re.fullmatch(r"\d{4}-\d{2}", answer["month"]):
+            raise ValueError(f"answer {number} needs a customer_key and YYYY-MM month")
+        if answer["decision"] not in ANSWER_DECISIONS:
+            raise ValueError(f"answer {number} has invalid decision '{answer['decision']}'")
+        if answer["reason"] not in ANSWER_REASONS:
+            raise ValueError(f"answer {number} has invalid reason '{answer['reason']}'")
+        key = (answer["customer_key"], answer["month"])
+        if key in seen:
+            raise ValueError(f"duplicate answer for {answer['customer_key']} {answer['month']}")
+        seen.add(key)
+        clean.append(answer)
+    return clean
+
+
 def to_amount(s):
     if pd.isna(s):
         return float("nan")
@@ -169,7 +202,7 @@ def melt_wide(raw, mapping):
 
 
 # ---------- 1 manifest ----------
-def step_manifest(args, sched_raw, inv_raw, missing):
+def step_manifest(args, sched_raw, inv_raw, missing, answers_path=None):
     m = {
         "kit_version": KIT_VERSION,
         "generated_utc": datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"),
@@ -181,6 +214,8 @@ def step_manifest(args, sched_raw, inv_raw, missing):
         },
         "mapping_warnings": missing,
     }
+    if answers_path:
+        m["answers"] = {"file": os.path.basename(answers_path), "sha256": sha256(answers_path)}
     return m
 
 
@@ -454,6 +489,42 @@ def accounts_view(cmp, asof, months_back):
     return acc
 
 
+def apply_answers(cmp, answers):
+    """Apply disclosed finance decisions after the kit has produced its unassisted result."""
+    out = cmp.copy()
+    out["answer_decision"] = ""
+    out["answer_reason"] = ""
+    out["answer_note"] = ""
+    out["answer_by"] = ""
+    out["answer_date"] = ""
+    out["answer_prior_bucket"] = ""
+    out["answer_override_mrr"] = 0.0
+    answered = []
+    for answer in answers:
+        mask = (out["key"] == answer["customer_key"]) & (out["month"] == answer["month"])
+        if not mask.any():
+            answered.append({**answer, "status": "not_found", "prior_bucket": "", "result_bucket": "", "override_mrr": 0.0})
+            continue
+        index = out.index[mask][0]
+        prior_bucket = out.at[index, "bucket"]
+        override = 0.0
+        if answer["decision"] == "explained":
+            override = float(out.at[index, "sched_mrr"] - out.at[index, "supported_mrr"])
+            out.at[index, "supported_mrr"] = out.at[index, "sched_mrr"]
+            out.at[index, "bucket"] = f"explained_{answer['reason']}"
+        elif answer["decision"] == "accepted":
+            out.at[index, "bucket"] = f"{prior_bucket}_accepted"
+        out.at[index, "answer_decision"] = answer["decision"]
+        out.at[index, "answer_reason"] = answer["reason"]
+        out.at[index, "answer_note"] = answer["note"]
+        out.at[index, "answer_by"] = answer["by"]
+        out.at[index, "answer_date"] = answer["date"]
+        out.at[index, "answer_prior_bucket"] = prior_bucket
+        out.at[index, "answer_override_mrr"] = override
+        answered.append({**answer, "status": "applied", "prior_bucket": prior_bucket, "result_bucket": out.at[index, "bucket"], "override_mrr": override})
+    return out, answered
+
+
 # ---------- 7 retention ----------
 def retention(cmp, asof, months_back):
     """GRR and NRR over the window ending at asof, on three bases: schedule, invoice, supported."""
@@ -497,7 +568,7 @@ def money(x):
     return f"{x:,.0f}"
 
 
-def write_report(out, man, cmp, acc, ret, coh, match, lines_df, asof, rules):
+def write_report(out, man, cmp, acc, ret, coh, match, lines_df, asof, rules, answered=None):
     cur = cmp[cmp["month"] == asof]
     reported = float(cur["sched_mrr"].sum()) * 12
     supported = float(cur["supported_mrr"].sum()) * 12
@@ -526,6 +597,13 @@ def write_report(out, man, cmp, acc, ret, coh, match, lines_df, asof, rules):
     for _, r in bad.head(25).iterrows():
         nm = r["customer_name"] or r["customer_id"] or r["key"]
         L.append(f"| {nm} | {money(r['asof_schedule_mrr'])} | {money(r['asof_invoice_mrr'])} | {money(r['asof_unresolved_mrr'])} | {r['dominant_cause']} | {r['months_not_supported']} |")
+    if answered is not None:
+        overridden = [r for r in answered if r["status"] == "applied" and r["decision"] == "explained"]
+        override_mrr = sum(r["override_mrr"] for r in overridden)
+        L += ["", "## Answered exceptions", "", "| customer key | month | decision | reason | prior bucket | result bucket | note | by | date | status |", "|---|---|---|---|---|---|---|---|---|---|"]
+        for r in answered:
+            L.append(f"| {r['customer_key']} | {r['month']} | {r['decision']} | {r['reason']} | {r['prior_bucket']} | {r['result_bucket']} | {r['note']} | {r['by']} | {r['date']} | {r['status']} |")
+        L += ["", f"Overridden by answers: {len(overridden)} customer months, {money(override_mrr)} MRR", ""]
     L += ["", "## Matching", "", f"Exact id: {int((match['method'] == 'exact_id').sum())}. Normalised name: {int((match['method'] == 'normalised_name').sum())}. Ambiguous: {int((match['method'] == 'ambiguous_name').sum())}. Schedule only: {int((match['method'] == 'unmatched_schedule_only').sum())}. Invoices only: {int((match['method'] == 'unmatched_invoice_only').sum())}. Full table in match_table.csv.", ""]
     L += ["## What the files cannot support", "", f"Invoice lines with no type the kit could classify: {unknown}. Lines with no service period (spread to the invoice month instead): {nop}. Mapping warnings: {len(man['mapping_warnings'])}.", "", "The kit does not read contracts, order forms, the general ledger or bank records. Where the schedule and the invoices disagree, the kit shows the disagreement and the lines behind it. Which figure is right is a question for the company's finance lead, and in a transaction for the diligence team. Nothing here is an accounting opinion.", ""]
     L += ["## Questions for finance", ""]
@@ -546,6 +624,8 @@ def write_report(out, man, cmp, acc, ret, coh, match, lines_df, asof, rules):
         coh.to_excel(xw, sheet_name="Cohorts", index=False)
         match.to_excel(xw, sheet_name="Match", index=False)
         cmp.drop(columns=[c for c in ["start", "end"] if c in cmp.columns]).to_excel(xw, sheet_name="Customer month", index=False)
+        if answered is not None:
+            pd.DataFrame(answered).to_excel(xw, sheet_name="Answered exceptions", index=False)
 
 
 # ---------- 9 supported export ----------
@@ -582,13 +662,15 @@ def main():
     ap.add_argument("--schedule", required=True); ap.add_argument("--invoices", required=True); ap.add_argument("--map", required=True)
     ap.add_argument("--asof", required=True, help="YYYY-MM, the month the figures are stated as of"); ap.add_argument("--out", required=True)
     ap.add_argument("--profile", action="store_true", help="stop after the manifest and the profile; no numbers computed")
+    ap.add_argument("--answers", help="optional finance-lead answers JSON")
     args = ap.parse_args()
     os.makedirs(args.out, exist_ok=True)
+    answers = load_answers(args.answers) if args.answers else None
     mapping = json.load(open(args.map))
     rules = mapping["rules"]
     sched_raw, sched, miss1 = load_mapped(args.schedule, "schedule", mapping["schedule"])
     inv_raw, inv, miss2 = load_mapped(args.invoices, "invoices", mapping["invoices"])
-    man = step_manifest(args, sched_raw, inv_raw, miss1 + miss2)
+    man = step_manifest(args, sched_raw, inv_raw, miss1 + miss2, args.answers)
     json.dump(man, open(os.path.join(args.out, "manifest.json"), "w"), indent=2)
     open(os.path.join(args.out, "profile.md"), "w").write(step_profile(sched, inv, man))
     if args.profile:
@@ -604,6 +686,9 @@ def main():
     match = match_customers(sched_names, inv_names)
     match.to_csv(os.path.join(args.out, "match_table.csv"), index=False)
     cmp = compare(sched_m, inv_m, match, rules, args.asof, rules["ramp_months"], inv_names)
+    answered = None
+    if answers is not None:
+        cmp, answered = apply_answers(cmp, answers)
     cmp.to_csv(os.path.join(args.out, "compare_customer_month.csv"), index=False)
     cmp[~cmp["bucket"].isin(["supported", "no_activity"])].to_csv(os.path.join(args.out, "exceptions.csv"), index=False)
     acc = accounts_view(cmp, args.asof, rules["months_for_retention"])
@@ -612,7 +697,7 @@ def main():
     ret.to_csv(os.path.join(args.out, "retention.csv"), index=False)
     coh = cohorts(cmp, args.asof)
     coh.to_csv(os.path.join(args.out, "cohorts.csv"), index=False)
-    write_report(args.out, man, cmp, acc, ret, coh, match, lines_df, args.asof, rules)
+    write_report(args.out, man, cmp, acc, ret, coh, match, lines_df, args.asof, rules, answered)
     supported_export(cmp, args.out, args.asof)
     write_receipt(args)
     print("done:", ", ".join(sorted(os.listdir(args.out))))

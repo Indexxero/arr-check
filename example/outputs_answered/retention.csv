@@ -1,0 +1,4 @@
+basis,period_from,period_to,starting_book_mrr,starting_accounts,ending_mrr_same_accounts,churned_accounts,GRR,NRR
+schedule,2024-10,2025-10,75800.0,41,64400.0,5,84.2,85.0
+invoices,2024-10,2025-10,69400.0,38,58800.0,4,84.7,84.7
+supported,2024-10,2025-10,69100.0,38,57100.0,5,82.6,82.6

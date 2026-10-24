@@ -25,6 +25,14 @@ python3 pilot.py --schedule schedule.csv --invoices invoices.csv --map mapping.j
 
 `--asof` is the month the figures are stated as of. Add `--profile` to stop after the profile and see what the files can support before any number is computed.
 
+## Finance answers
+
+Add `--answers answers.json` to disclose per-customer-month finance decisions on a rerun.
+```json
+{"answers": [{"customer_key": "...", "month": "2025-10", "decision": "accepted|explained|disputed", "reason": "contract_amendment|credit_memo|billing_error|schedule_error|reseller_child|test_account|other", "note": "free text", "by": "initials", "date": "2025-11-02"}]}
+```
+`explained` keeps schedule MRR and labels the exception; `accepted` labels the kit result; `disputed` changes nothing.
+
 To see it work in a minute on the fictional set:
 
 ```

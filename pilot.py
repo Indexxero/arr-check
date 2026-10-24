@@ -18,9 +18,17 @@ Nothing is sent anywhere. No network calls. Pandas and openpyxl only.
 """
 import argparse, difflib, hashlib, json, os, re, sys
 from datetime import datetime
-import pandas as pd
+try:
+    import pandas as pd
+except ImportError:
+    sys.exit("pandas is not installed for this Python (%s). Run: python3 -m pip install pandas openpyxl" % sys.executable)
+try:
+    import openpyxl  # noqa: F401
+    HAVE_OPENPYXL = True
+except ImportError:
+    HAVE_OPENPYXL = False
 
-KIT_VERSION = "2026-10-22"
+KIT_VERSION = "2026-10-24"
 
 
 # ---------- helpers ----------
@@ -90,6 +98,8 @@ def month_range(a, b):
 
 def read_table(path):
     if path.lower().endswith((".xlsx", ".xlsm", ".xls")):
+        if not HAVE_OPENPYXL:
+            sys.exit("%s is an Excel file and openpyxl is not installed for this Python (%s). Run: python3 -m pip install openpyxl, or save the sheet as csv." % (path, sys.executable))
         return pd.read_excel(path, dtype=str).fillna("")
     return pd.read_csv(path, dtype=str, keep_default_na=False)
 
@@ -525,6 +535,9 @@ def write_report(out, man, cmp, acc, ret, coh, match, lines_df, asof, rules):
             L.append(f"* {q}")
     L.append("")
     open(os.path.join(out, "report.md"), "w").write("\n".join(L))
+    if not HAVE_OPENPYXL:
+        print("warning: openpyxl is not installed, so pilot.xlsx was not written; every table is in the csv files. Run: python3 -m pip install openpyxl")
+        return
     with pd.ExcelWriter(os.path.join(out, "pilot.xlsx"), engine="openpyxl") as xw:
         pd.DataFrame([{"reported_arr": reported, "supported_arr": supported, "unresolved_arr": unresolved, "asof": asof}]).to_excel(xw, sheet_name="Summary", index=False)
         by_cause.reset_index().to_excel(xw, sheet_name="Exceptions by cause", index=False)
@@ -554,6 +567,16 @@ def supported_export(cmp, out, asof):
 
 
 # ---------- main ----------
+def write_receipt(args):
+    """receipt.json: sha256 of inputs, mapping, this file and every output. receipt.py sits beside pilot.py; imported, never a subprocess, so it also runs in a browser runtime. Never fatal."""
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import receipt
+        receipt.make(args)
+    except Exception as e:  # missing receipt.py, read only folder, anything else
+        print("warning: receipt.json not written (%s: %s); the run itself is complete" % (type(e).__name__, e))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--schedule", required=True); ap.add_argument("--invoices", required=True); ap.add_argument("--map", required=True)
@@ -591,6 +614,7 @@ def main():
     coh.to_csv(os.path.join(args.out, "cohorts.csv"), index=False)
     write_report(args.out, man, cmp, acc, ret, coh, match, lines_df, args.asof, rules)
     supported_export(cmp, args.out, args.asof)
+    write_receipt(args)
     print("done:", ", ".join(sorted(os.listdir(args.out))))
     for w in man["mapping_warnings"]:
         print("warning:", w)

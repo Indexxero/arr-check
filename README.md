@@ -48,6 +48,17 @@ sh run_example.sh
 | `report.md` | the findings in prose and tables |
 | `pilot.xlsx` | all of the above as sheets, for hand review |
 | `supported_export.csv` | the supported schedule, one row per account |
+| `receipt.json` | sha256 of inputs, mapping, pilot.py and every output; see The receipt |
+
+## The receipt
+
+Every run also writes `receipt.json`: the sha256 of the two inputs, the mapping, `pilot.py` itself and every output file, with the kit version and the parameters. Anyone holding the same files can recompute it:
+
+```
+python3 receipt.py verify --out out --schedule schedule.csv --invoices invoices.csv --map mapping.json
+```
+
+It prints `RECEIPT OK`, or one `MISMATCH` line per file that differs. It proves that these exact files, run by this exact code, produced these exact outputs. It does not prove that the method is right or that the inputs are true. A company can run the kit itself and send the receipt and the register to an advisor; the advisor reruns on the same files and compares. The data never has to move.
 
 ## How the numbers are made
 

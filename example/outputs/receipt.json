@@ -1,0 +1,96 @@
+{
+  "inputs": {
+    "invoices": {
+      "bytes": 49353,
+      "file": "invoices.csv",
+      "sha256": "0c50583d1cf5c1c0982022b688f098f9756f3e9a70aba9d1405e104a5ffb5b4a"
+    },
+    "mapping": {
+      "bytes": 1674,
+      "file": "mapping.json",
+      "sha256": "c41ab087dd0f4ebdb829e51695efe4cec67672cc27af9523d3d1ae1ee07967c7"
+    },
+    "schedule": {
+      "bytes": 32458,
+      "file": "schedule.csv",
+      "sha256": "65e36e4953776f101abd853a6bc3c707fe0e58834f6089ebf1ffe894f22f71d9"
+    }
+  },
+  "kit_version": "2026-10-24",
+  "made_utc": "2026-10-24 21:22:23",
+  "outputs": [
+    {
+      "bytes": 3521,
+      "file": "accounts.csv",
+      "sha256": "9d18ae05becd7d9f0dfce6d190bdedf3d8c07a0b4494c94730e716a3fe7fa4e1"
+    },
+    {
+      "bytes": 105,
+      "file": "cohorts.csv",
+      "sha256": "eac2d31715174ebfea43f394696afa5fa5aa83b31aaf90ff3d2b98f714689e74"
+    },
+    {
+      "bytes": 71410,
+      "file": "compare_customer_month.csv",
+      "sha256": "494c6ab51d47ff41634c1b8f2c7b51d8b27c2194e57cb1381c717a75c90f7485"
+    },
+    {
+      "bytes": 8586,
+      "file": "exceptions.csv",
+      "sha256": "9ad0e46242df45a54a87b42471ef94de65bbf4374bcb0ce899cb255075a15a13"
+    },
+    {
+      "bytes": 94976,
+      "file": "invoice_lines_classified.csv",
+      "sha256": "1c02fb43ae7d3b980628b79d0815996af99e1ec593428d6f118985ed7ae5d6a8"
+    },
+    {
+      "bytes": 29854,
+      "file": "invoice_mrr_monthly.csv",
+      "sha256": "75ee1a951304d690fcf39423b1ce1111c6ca9d02c02c76e154a099c5e1b58c62"
+    },
+    {
+      "bytes": 1132,
+      "file": "manifest.json",
+      "sha256": "b843a98cd7f056de61bab36a0ada4e4647fe55c415efebf2167522beb70190f6"
+    },
+    {
+      "bytes": 2640,
+      "file": "match_table.csv",
+      "sha256": "49e3f28f8b8a7d746f16c0492e81afbc295670d2fd74ce2832277d72ac4df5bc"
+    },
+    {
+      "bytes": 44014,
+      "file": "pilot.xlsx",
+      "sha256": "d1103814276b431f621eb29368b936e81046b4d68b9e42e777b36325e6bc5d18"
+    },
+    {
+      "bytes": 753,
+      "file": "profile.md",
+      "sha256": "5d35b5478beefa84175d0764dcf05725a669409eb2ed7d89ccd2aaff30ec6aa2"
+    },
+    {
+      "bytes": 4267,
+      "file": "report.md",
+      "sha256": "5bb1da492395e8723406f072f87372a595ff36f92d5b5eedf7ff4feab70b12ec"
+    },
+    {
+      "bytes": 283,
+      "file": "retention.csv",
+      "sha256": "781115a101fdeb3b7623a084c295bb2f2480d22780ebff831ba71173c3d7159c"
+    },
+    {
+      "bytes": 22702,
+      "file": "supported_export.csv",
+      "sha256": "6e60c4f137f57ee8fce48f893b6b9b937c8855658cf15a5671c0cc9e14e1c4f1"
+    }
+  ],
+  "parameters": {
+    "asof_month": "2025-10",
+    "months_for_retention": 12,
+    "ramp_months": 3,
+    "tolerance_abs": 5.0,
+    "tolerance_pct": 1.0
+  },
+  "pilot_sha256": "a93574cdf2be824ef5c737c52a9f1ffe986b81d2bf68ec369394ebc3434e2bb6"
+}

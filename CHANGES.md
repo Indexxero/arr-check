@@ -13,3 +13,5 @@
 2026-10-25: `diff_runs.py` (what changed between two runs) and `gen_next_month.py` (the Larkspur set one month later, four planted changes, expected answer stated). Nothing in `pilot.py` changed.
 
 2026-10-25: `closepack.md` written by every run (`--before` adds the month over month section, using `diff_runs.classify`). The report's journal line now reads from `journal.csv` (lines, credited to and released from deferred) instead of the old release sentence. KIT_VERSION 2026-10-25. No figure in the five key files moved.
+
+2026-10-25: the receipt records the ledger balance file (`--deferred-gl`) and the answers file (`--answers`) as inputs when a run used them; `verify` takes the same two options. Found by Claude Code: a laptop receipt could not say which ledger produced a difference. No output changed.

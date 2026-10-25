@@ -69,7 +69,7 @@ Every run also writes `receipt.json`: the sha256 of the two inputs, the mapping,
 python3 receipt.py verify --out out --schedule schedule.csv --invoices invoices.csv --map mapping.json
 ```
 
-It prints `RECEIPT OK`, or one `MISMATCH` line per file that differs. It proves that these exact files, run by this exact code, produced these exact outputs. It does not prove that the method is right or that the inputs are true. A company can run the kit itself and send the receipt and the register to an advisor; the advisor reruns on the same files and compares. The data never has to move.
+When the run used a ledger balance file or an answers file, pass the same `--deferred-gl` or `--answers` to `verify`: they change outputs, so the receipt records them as inputs. It prints `RECEIPT OK`, or one `MISMATCH` line per file that differs. It proves that these exact files, run by this exact code, produced these exact outputs. It does not prove that the method is right or that the inputs are true. A company can run the kit itself and send the receipt and the register to an advisor; the advisor reruns on the same files and compares. The data never has to move.
 
 ## The ARR bridge, three ways
 

@@ -1,5 +1,10 @@
 {
   "inputs": {
+    "answers": {
+      "bytes": 857,
+      "file": "answers.json",
+      "sha256": "2d4dc6e28763e5476ad4da1f62369cc7db41e72ab1dae0a66f2e7ac8f1bd15d7"
+    },
     "invoices": {
       "bytes": 49353,
       "file": "invoices.csv",
@@ -17,7 +22,7 @@
     }
   },
   "kit_version": "2026-10-25",
-  "made_utc": "2026-10-25 10:11:12",
+  "made_utc": "2026-10-25 14:01:36",
   "outputs": [
     {
       "bytes": 3555,
@@ -82,7 +87,7 @@
     {
       "bytes": 1261,
       "file": "manifest.json",
-      "sha256": "7c55fe422c51926698647dff9dae7ae2a0174e567022cb69a2c5b4d381ce14cf"
+      "sha256": "656ce1f613cf364e83767fc3b341c5e31f5e51cf92b6689f1b26dc4a9848ba49"
     },
     {
       "bytes": 2640,
@@ -92,12 +97,12 @@
     {
       "bytes": 59350,
       "file": "pilot.xlsx",
-      "sha256": "3df8bb0585ca59e3078c1ca490622d6bb6d13f2a4a18878efefe4bf65e11429e"
+      "sha256": "d2c8272fc78d5ed858ca0ac79d4140d48fc1d3b573fd73558b5406e04f4628ce"
     },
     {
       "bytes": 753,
       "file": "profile.md",
-      "sha256": "fdab9db1aaf30c854e7580e6e4e65723a49754257f21e6ced1ff7f3bc262c86f"
+      "sha256": "56f0cb4040335e71d677957682b3a197b3b8b861e9c9aa06013046ae40c206ce"
     },
     {
       "bytes": 8622,

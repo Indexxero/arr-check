@@ -543,6 +543,64 @@ def retention(cmp, asof, months_back):
     return pd.DataFrame(out)
 
 
+# ---------- 7b ARR bridge ----------
+BRIDGE_COLUMNS = ["start", "new", "reactivation", "expansion", "contraction", "churn", "end"]
+
+
+def bridge(cmp, asof, months_back):
+    """Monthly MRR bridge on three bases: schedule, invoices, supported. Identity asserted every month."""
+    asof_p = pd.Period(asof, freq="M")
+    months = [(asof_p - offset).strftime("%Y-%m") for offset in range(months_back - 1, -1, -1)]
+    prior_month = (pd.Period(months[0], freq="M") - 1).strftime("%Y-%m")
+    keys = sorted(cmp["key"].dropna().unique())
+    names = cmp.groupby("key")["cname"].first().to_dict()
+    bridge_rows, account_rows = [], []
+
+    for basis, column in (("schedule", "sched_mrr"), ("invoices", "inv_mrr"), ("supported", "supported_mrr")):
+        values = cmp.pivot_table(index="key", columns="month", values=column, aggfunc="sum", fill_value=0.0)
+        values = values.reindex(index=keys, columns=[prior_month] + months, fill_value=0.0).fillna(0.0)
+        seen = set()
+        for month in months:
+            prev = values[prior_month if month == months[0] else months[months.index(month) - 1]]
+            cur = values[month]
+            totals = {"start": float(prev.sum()), "new": 0.0, "reactivation": 0.0, "expansion": 0.0, "contraction": 0.0, "churn": 0.0, "end": float(cur.sum())}
+            for key in keys:
+                old, now = float(prev.loc[key]), float(cur.loc[key])
+                if old > 0:
+                    account_rows.append(dict(month=month, basis=basis, customer_key=key, customer_name=names.get(key, ""), movement="start", amount=old))
+                if now > 0:
+                    account_rows.append(dict(month=month, basis=basis, customer_key=key, customer_name=names.get(key, ""), movement="end", amount=now))
+                if old == 0 and now > 0:
+                    movement = "reactivation" if key in seen else "new"
+                    totals[movement] += now
+                    account_rows.append(dict(month=month, basis=basis, customer_key=key, customer_name=names.get(key, ""), movement=movement, amount=now))
+                elif old > 0 and now > old:
+                    amount = now - old
+                    totals["expansion"] += amount
+                    account_rows.append(dict(month=month, basis=basis, customer_key=key, customer_name=names.get(key, ""), movement="expansion", amount=amount))
+                elif old > 0 and now > 0 and now < old:
+                    amount = old - now
+                    totals["contraction"] += amount
+                    account_rows.append(dict(month=month, basis=basis, customer_key=key, customer_name=names.get(key, ""), movement="contraction", amount=amount))
+                elif old > 0 and now == 0:
+                    totals["churn"] += old
+                    account_rows.append(dict(month=month, basis=basis, customer_key=key, customer_name=names.get(key, ""), movement="churn", amount=old))
+                if now > 0:
+                    seen.add(key)
+            identity = totals["start"] + totals["new"] + totals["reactivation"] + totals["expansion"] - totals["contraction"] - totals["churn"]
+            if abs(identity - totals["end"]) >= 0.01:
+                raise AssertionError(f"ARR bridge identity failed for {basis} {month}: {identity} != {totals['end']}")
+            bridge_rows.append(dict(month=month, basis=basis, **{name: round(value, 2) for name, value in totals.items()}))
+
+    bridge_df = pd.DataFrame(bridge_rows, columns=["month", "basis"] + BRIDGE_COLUMNS)
+    schedule = bridge_df[bridge_df["basis"] == "schedule"].set_index("month")
+    supported = bridge_df[bridge_df["basis"] == "supported"].set_index("month")
+    difference = (schedule[BRIDGE_COLUMNS] - supported[BRIDGE_COLUMNS]).reset_index()
+    difference.insert(1, "basis", "difference")
+    bridge_df = pd.concat([bridge_df, difference], ignore_index=True).sort_values(["month", "basis"]).reset_index(drop=True)
+    return bridge_df, pd.DataFrame(account_rows, columns=["month", "basis", "customer_key", "customer_name", "movement", "amount"])
+
+
 def cohorts(cmp, asof):
     """Revenue retained by start quarter at age 12 months, schedule basis vs supported basis."""
     rows = []
@@ -568,7 +626,7 @@ def money(x):
     return f"{x:,.0f}"
 
 
-def write_report(out, man, cmp, acc, ret, coh, match, lines_df, asof, rules, answered=None):
+def write_report(out, man, cmp, acc, ret, coh, match, lines_df, asof, rules, answered=None, bridge_df=None):
     cur = cmp[cmp["month"] == asof]
     reported = float(cur["sched_mrr"].sum()) * 12
     supported = float(cur["supported_mrr"].sum()) * 12
@@ -593,6 +651,23 @@ def write_report(out, man, cmp, acc, ret, coh, match, lines_df, asof, rules, ans
         for _, r in coh.iterrows():
             L.append(f"| {r['cohort']} | {r['accounts']} | {r['revenue_retained_12m_schedule_pct']} | {r['revenue_retained_12m_supported_pct']} |")
         L.append("")
+    if bridge_df is not None and len(bridge_df):
+        L += ["## ARR bridge, three ways", "", "Schedule is what the company reports. Invoices is what the billing lines show on their own. Supported keeps the schedule figure where the invoices back it. Difference is schedule minus supported. Figures are ARR (MRR times 12). Every movement traces to its accounts in bridge_accounts.csv.", ""]
+        months = sorted(bridge_df["month"].unique())
+        window = bridge_df.groupby("basis", as_index=False)[BRIDGE_COLUMNS[1:-1]].sum()
+        window["start"] = window["basis"].map(bridge_df[bridge_df["month"] == months[0]].set_index("basis")["start"])
+        window["end"] = window["basis"].map(bridge_df[bridge_df["month"] == months[-1]].set_index("basis")["end"])
+        for title, table in ((f"As of {asof}", bridge_df[bridge_df["month"] == asof]), (f"Window {months[0]} to {months[-1]}, movements summed", window)):
+            L += [f"### {title}", "", "| basis | start | new | reactivation | expansion | contraction | churn | end |", "|---|---:|---:|---:|---:|---:|---:|---:|"]
+            for basis in ("schedule", "invoices", "supported", "difference"):
+                r = table[table["basis"] == basis]
+                if len(r):
+                    r = r.iloc[0]
+                    L.append("| " + basis + " | " + " | ".join(money(r[column] * 12) for column in BRIDGE_COLUMNS) + " |")
+            L.append("")
+        difference_totals = window[window["basis"] == "difference"].iloc[0]
+        movement = max(BRIDGE_COLUMNS[1:-1], key=lambda column: abs(difference_totals[column]))
+        L += [f"The largest difference between the two bases over the window is in {movement}: {money(abs(difference_totals[movement]) * 12)} ARR. The schedule and the invoices disagree most about that movement.", ""]
     L += ["## Accounts to review first", "", "| account | schedule MRR | invoice MRR | unresolved MRR | cause | months not supported |", "|---|---:|---:|---:|---|---:|"]
     for _, r in bad.head(25).iterrows():
         nm = r["customer_name"] or r["customer_id"] or r["key"]
@@ -626,6 +701,8 @@ def write_report(out, man, cmp, acc, ret, coh, match, lines_df, asof, rules, ans
         cmp.drop(columns=[c for c in ["start", "end"] if c in cmp.columns]).to_excel(xw, sheet_name="Customer month", index=False)
         if answered is not None:
             pd.DataFrame(answered).to_excel(xw, sheet_name="Answered exceptions", index=False)
+        if bridge_df is not None:
+            bridge_df.to_excel(xw, sheet_name="Bridge", index=False)
 
 
 # ---------- 9 supported export ----------
@@ -695,9 +772,12 @@ def main():
     acc.to_csv(os.path.join(args.out, "accounts.csv"), index=False)
     ret = retention(cmp, args.asof, rules["months_for_retention"])
     ret.to_csv(os.path.join(args.out, "retention.csv"), index=False)
+    bridge_df, bridge_accounts = bridge(cmp, args.asof, rules["months_for_retention"])
+    bridge_df.to_csv(os.path.join(args.out, "bridge.csv"), index=False)
+    bridge_accounts.to_csv(os.path.join(args.out, "bridge_accounts.csv"), index=False)
     coh = cohorts(cmp, args.asof)
     coh.to_csv(os.path.join(args.out, "cohorts.csv"), index=False)
-    write_report(args.out, man, cmp, acc, ret, coh, match, lines_df, args.asof, rules, answered)
+    write_report(args.out, man, cmp, acc, ret, coh, match, lines_df, args.asof, rules, answered, bridge_df)
     supported_export(cmp, args.out, args.asof)
     write_receipt(args)
     print("done:", ", ".join(sorted(os.listdir(args.out))))

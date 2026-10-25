@@ -17,12 +17,22 @@
     }
   },
   "kit_version": "2026-10-24",
-  "made_utc": "2026-10-24 21:31:53",
+  "made_utc": "2026-10-25 03:15:16",
   "outputs": [
     {
       "bytes": 3521,
       "file": "accounts.csv",
       "sha256": "9d18ae05becd7d9f0dfce6d190bdedf3d8c07a0b4494c94730e716a3fe7fa4e1"
+    },
+    {
+      "bytes": 2705,
+      "file": "bridge.csv",
+      "sha256": "b15627c9a5e37263200f72a0e0902f1c5bdce5a1674d0bc2e74697f8250c40de"
+    },
+    {
+      "bytes": 150369,
+      "file": "bridge_accounts.csv",
+      "sha256": "f85a41f487c85f03488d14adda984d2f9f9befafd8b3e420e18af055b0e35db1"
     },
     {
       "bytes": 105,
@@ -52,7 +62,7 @@
     {
       "bytes": 1132,
       "file": "manifest.json",
-      "sha256": "82db116a42f12dcd8f4e75a52ae52a9916933c04434d52ac297554f9a03d8c63"
+      "sha256": "131eefb5122a2c65301cb66cd1a820e608786a345225bf41ebb1c43b99bf4b17"
     },
     {
       "bytes": 2640,
@@ -60,19 +70,19 @@
       "sha256": "49e3f28f8b8a7d746f16c0492e81afbc295670d2fd74ce2832277d72ac4df5bc"
     },
     {
-      "bytes": 44018,
+      "bytes": 46239,
       "file": "pilot.xlsx",
-      "sha256": "2c124e8b634904fb6b20d35362b21479c079b31c099439c33ecb67e571c0d72f"
+      "sha256": "bda31da5e0bd00fdd6797a5d26942981632d8554a5b1e9831c371fa1490c1df6"
     },
     {
       "bytes": 753,
       "file": "profile.md",
-      "sha256": "9c4c8dc32b89c152958e22bdeaa1b06f815d339a93349acd42e6f4b59d663f6b"
+      "sha256": "792888634073f022d477a2924362350a5bb3ad91bbe4730e7135078f03191345"
     },
     {
-      "bytes": 4267,
+      "bytes": 5548,
       "file": "report.md",
-      "sha256": "5bb1da492395e8723406f072f87372a595ff36f92d5b5eedf7ff4feab70b12ec"
+      "sha256": "1fb47b431afce0ad05587daff1a3b0eaaac925219324c7d23e304178b47141d4"
     },
     {
       "bytes": 283,
@@ -92,5 +102,5 @@
     "tolerance_abs": 5.0,
     "tolerance_pct": 1.0
   },
-  "pilot_sha256": "99c3a3374991d0b28ab866e8b136d0acf0269b22a6ed90dc865b4d2ca03c02a2"
+  "pilot_sha256": "d372b8adfff1a25f0ded32a6b42a05e337678600346664a60678f82b87ba8833"
 }

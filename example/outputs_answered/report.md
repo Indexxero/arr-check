@@ -44,6 +44,30 @@ Schedule is what the company reports. Invoices is what the billing lines support
 |---|---:|---:|---:|
 | 2024Q4 | 41 | 85.0 | 89.0 |
 
+## ARR bridge, three ways
+
+Schedule is what the company reports. Invoices is what the billing lines show on their own. Supported keeps the schedule figure where the invoices back it. Difference is schedule minus supported. Figures are ARR (MRR times 12). Every movement traces to its accounts in bridge_accounts.csv.
+
+### As of 2025-10
+
+| basis | start | new | reactivation | expansion | contraction | churn | end |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| schedule | 868,800 | 0 | 0 | 0 | 0 | 0 | 868,800 |
+| invoices | 865,800 | 0 | 0 | 0 | 0 | 0 | 865,800 |
+| supported | 834,000 | 0 | 0 | 0 | 0 | 0 | 834,000 |
+| difference | 34,800 | 0 | 0 | 0 | 0 | 0 | 34,800 |
+
+### Window 2024-11 to 2025-10, movements summed
+
+| basis | start | new | reactivation | expansion | contraction | churn | end |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| schedule | 909,600 | 96,000 | 0 | 7,200 | 4,800 | 139,200 | 868,800 |
+| invoices | 832,800 | 105,000 | 0 | 75,600 | 25,200 | 122,400 | 865,800 |
+| supported | 829,200 | 93,600 | 0 | 55,200 | 4,800 | 139,200 | 834,000 |
+| difference | 80,400 | 2,400 | 0 | -48,000 | 0 | 0 | 34,800 |
+
+The largest difference between the two bases over the window is in expansion: 48,000 ARR. The schedule and the invoices disagree most about that movement.
+
 ## Accounts to review first
 
 | account | schedule MRR | invoice MRR | unresolved MRR | cause | months not supported |

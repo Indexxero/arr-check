@@ -56,6 +56,7 @@ sh run_example.sh
 | `report.md` | the findings in prose and tables |
 | `pilot.xlsx` | all of the above as sheets, for hand review |
 | `supported_export.csv` | the supported schedule, one row per account |
+| `bridge.csv`, `bridge_accounts.csv` | the monthly ARR bridge on three bases, and the accounts behind each movement |
 | `receipt.json` | sha256 of inputs, mapping, pilot.py and every output; see The receipt |
 
 ## The receipt
@@ -67,6 +68,10 @@ python3 receipt.py verify --out out --schedule schedule.csv --invoices invoices.
 ```
 
 It prints `RECEIPT OK`, or one `MISMATCH` line per file that differs. It proves that these exact files, run by this exact code, produced these exact outputs. It does not prove that the method is right or that the inputs are true. A company can run the kit itself and send the receipt and the register to an advisor; the advisor reruns on the same files and compares. The data never has to move.
+
+## The ARR bridge, three ways
+
+`bridge.csv` is the monthly bridge a board deck carries: start, new, reactivation, expansion, contraction, churn, end. It is computed on three bases from the same customer months: the schedule the company reports, the invoice lines on their own, and the supported figure. A `difference` row (schedule minus supported) shows where the two disagree, and `bridge_accounts.csv` names the accounts behind every movement. New means first MRR in the window; reactivation means MRR after a gap; churn means MRR last month and none this month. The identity start + new + reactivation + expansion minus contraction minus churn = end is asserted for every month, and the run stops if it fails.
 
 ## How the numbers are made
 

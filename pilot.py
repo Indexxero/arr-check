@@ -427,8 +427,14 @@ def compare(sched_m, inv_m, match, rules, asof, ramp_months, inv_names=None):
     io["inv_key"] = io["key"]; io["sched_mrr"] = 0.0; io["cid"] = ""; io["start"] = pd.NaT; io["end"] = pd.NaT; io["status"] = ""
     io["cname"] = io["key"].map(inv_names.set_index("key")["cname"]) if inv_names is not None else ""
     cmp = pd.concat([cmp, io], ignore_index=True, sort=False)
-    for c in ["inv_recurring", "inv_credit", "inv_mrr", "non_recurring_amount", "unknown_lines"]:
+    for c in ["inv_recurring", "inv_credit", "inv_mrr", "non_recurring_amount"]:
         cmp[c] = cmp[c].fillna(0.0)
+    # unknown_lines is a COUNT and is written as one. `fillna(0.0)` left it a
+    # float, and pandas 2 and pandas 3 then print the same count differently:
+    # the browser kit (pandas 2.3.1) wrote `0.0` where a laptop (pandas 3.1.0)
+    # wrote `0`, on all 404 rows of the QuickBooks shape, with every figure
+    # agreeing. One line here rather than a note in two places.
+    cmp["unknown_lines"] = cmp["unknown_lines"].fillna(0).astype(int)
     for c in ["has_credit", "has_duplicate_id", "has_no_period"]:
         cmp[c] = cmp[c].map(lambda v: bool(v) if not pd.isna(v) else False)
     cmp["diff"] = cmp["sched_mrr"] - cmp["inv_mrr"]

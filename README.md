@@ -6,6 +6,18 @@ It answers one question per customer per month: do the invoices support the recu
 
 A worked example on a fictional company, with every output file: https://measure.indexxero.com/example
 
+Or run it in a browser tab, nothing leaving the tab: https://measure.indexxero.com/run
+
+## What comes out of one run
+
+From the customer schedule and the invoice export, in about ten seconds:
+
+* `exceptions.csv` and `accounts.csv`: every account where the invoices do not support the schedule, with the amount and the likely cause (over stated, under stated, timing, credit or rebill, duplicate invoice, ramp, classification, unmatched).
+* `bridge.csv`: the ARR bridge (new, expansion, contraction, churn) on the schedule, on the invoices and on the supported figure, with the difference row.
+* `deferred_rollforward.csv` and `journal.csv`: the deferred revenue the invoices imply, month by month, and the month end entry a QuickBooks Online user posts by hand today. Works on QuickBooks exports, which carry no service period.
+* `closepack.md`: one page for the board deck or a buyer, with what changed since last month when the previous run is given.
+* `receipt.json`: the hash of every input and output, so anyone with the same files can confirm the run with `python3 receipt.py verify`.
+
 ## What it needs
 
 Two files, csv or xlsx, from any system. Column names are mapped in a small json, so the exports can come from Stripe, Chargebee, Maxio, QuickBooks, NetSuite, HubSpot, Salesforce or a spreadsheet.

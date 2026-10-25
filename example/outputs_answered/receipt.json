@@ -16,8 +16,8 @@
       "sha256": "65e36e4953776f101abd853a6bc3c707fe0e58834f6089ebf1ffe894f22f71d9"
     }
   },
-  "kit_version": "2026-10-24",
-  "made_utc": "2026-10-25 04:47:58",
+  "kit_version": "2026-10-25",
+  "made_utc": "2026-10-25 10:11:12",
   "outputs": [
     {
       "bytes": 3555,
@@ -33,6 +33,11 @@
       "bytes": 150369,
       "file": "bridge_accounts.csv",
       "sha256": "f85a41f487c85f03488d14adda984d2f9f9befafd8b3e420e18af055b0e35db1"
+    },
+    {
+      "bytes": 2431,
+      "file": "closepack.md",
+      "sha256": "75841c01c2868b42dd352cc0a84d9df09022174001328497a0ae867221a692c4"
     },
     {
       "bytes": 105,
@@ -77,7 +82,7 @@
     {
       "bytes": 1261,
       "file": "manifest.json",
-      "sha256": "3b91f32a5e9aaf7b2267bb6dfe0add699dc346d78e2caf0782ca35b1f23c2c41"
+      "sha256": "7c55fe422c51926698647dff9dae7ae2a0174e567022cb69a2c5b4d381ce14cf"
     },
     {
       "bytes": 2640,
@@ -85,19 +90,19 @@
       "sha256": "49e3f28f8b8a7d746f16c0492e81afbc295670d2fd74ce2832277d72ac4df5bc"
     },
     {
-      "bytes": 59352,
+      "bytes": 59350,
       "file": "pilot.xlsx",
-      "sha256": "c1317b91c02e3c87581a7c4e142e859b40cffdb5eaf6c00334ffc8ec78e85a4a"
+      "sha256": "3df8bb0585ca59e3078c1ca490622d6bb6d13f2a4a18878efefe4bf65e11429e"
     },
     {
       "bytes": 753,
       "file": "profile.md",
-      "sha256": "5bf4a565ddfb0516064b840d227912b83e778e3a5851af564921a436282d311b"
+      "sha256": "fdab9db1aaf30c854e7580e6e4e65723a49754257f21e6ced1ff7f3bc262c86f"
     },
     {
-      "bytes": 8583,
+      "bytes": 8622,
       "file": "report.md",
-      "sha256": "057635b779600bfb28a785da6e430cea39d2d3d858c972a67092ce1543560eb9"
+      "sha256": "bed92877171de8d1db8694288084c08485a2fc7b15c15a1b354cd027dd99a358"
     },
     {
       "bytes": 283,
@@ -117,5 +122,5 @@
     "tolerance_abs": 5.0,
     "tolerance_pct": 1.0
   },
-  "pilot_sha256": "601b563f19dd14388d3ea464898a1fbc5bba6560d6cdd9f630a7cf8c161b322e"
+  "pilot_sha256": "5809deb18667ec964636686608dcc659d9adf24e2f6759e884be3ffa058c3bbc"
 }

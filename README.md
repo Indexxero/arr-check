@@ -57,6 +57,8 @@ sh run_example.sh
 | `pilot.xlsx` | all of the above as sheets, for hand review |
 | `supported_export.csv` | the supported schedule, one row per account |
 | `bridge.csv`, `bridge_accounts.csv` | the monthly ARR bridge on three bases, and the accounts behind each movement |
+| `deferred_rollforward.csv`, `deferred_accounts.csv`, `journal.csv` | deferred revenue implied by the invoices, per month and per account, and the month end entry |
+| `closepack.md` | the one page for the board deck; see The close pack |
 | `receipt.json` | sha256 of inputs, mapping, pilot.py and every output; see The receipt |
 
 ## The receipt
@@ -90,6 +92,10 @@ QuickBooks Online invoice exports carry no service period, so an annual invoice 
 ## Month over month
 
 A fractional CFO runs the kit every month; the question after the second run is what changed. `python3 diff_runs.py --before out_oct --after out_nov --out diff_nov` compares the two `accounts.csv` files and writes `accounts_diff.csv` (one row per customer: new, changed, persisted, resolved, unchanged_supported, with the unresolved MRR and cause on both sides) and `summary.md` (counts, the movement in unresolved MRR, the largest new and resolved, every cause change). `python3 gen_next_month.py` makes the Larkspur set one month later with four planted changes and an `expected.json`; the diff reproduces it: new 1, resolved 2, changed 1.
+
+## The close pack
+
+`closepack.md` is the one page a fractional CFO attaches to the board deck or hands a buyer, written by every run from files the run already wrote: reported against supported ARR, the bridge over the window, retention three ways, cohorts, concentration, the ten largest exceptions, the deferred revenue position against the ledger when given, what changed since the previous run (pass `--before <previous out folder>`), and the hashes of the run that made it. No chart, no opinion.
 
 ## How the numbers are made
 

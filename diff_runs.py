@@ -30,12 +30,8 @@ def load(path):
     return a.set_index("key")
 
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--before", required=True); ap.add_argument("--after", required=True); ap.add_argument("--out", required=True)
-    args = ap.parse_args()
-    os.makedirs(args.out, exist_ok=True)
-    b, a = load(args.before), load(args.after)
+def classify(b, a):
+    """One row per customer in either run, with a status. b and a are load() results."""
     keys = sorted(set(b.index) | set(a.index))
     rows = []
     for k in keys:
@@ -59,7 +55,16 @@ def main():
                          months_persisted=(2 if st == "persisted" else (1 if ea else ""))))
     d = pd.DataFrame(rows)
     order = {"new": 0, "changed": 1, "persisted": 2, "resolved": 3, "unchanged_supported": 4}
-    d = d.sort_values(["status", "after_unresolved_mrr"], key=lambda s: s.map(order) if s.name == "status" else -s).reset_index(drop=True)
+    return d.sort_values(["status", "after_unresolved_mrr"], key=lambda s: s.map(order) if s.name == "status" else -s).reset_index(drop=True)
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--before", required=True); ap.add_argument("--after", required=True); ap.add_argument("--out", required=True)
+    args = ap.parse_args()
+    os.makedirs(args.out, exist_ok=True)
+    b, a = load(args.before), load(args.after)
+    d = classify(b, a)
     d.to_csv(os.path.join(args.out, "accounts_diff.csv"), index=False)
 
     counts = d["status"].value_counts().to_dict()

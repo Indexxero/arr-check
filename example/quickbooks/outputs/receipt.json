@@ -16,8 +16,8 @@
       "sha256": "4d1b25ddf0b0f89863057d85c04be6d47bd13823fef4ed0df234400e5d79e987"
     }
   },
-  "kit_version": "2026-10-24",
-  "made_utc": "2026-10-25 04:47:44",
+  "kit_version": "2026-10-25",
+  "made_utc": "2026-10-25 10:11:13",
   "outputs": [
     {
       "bytes": 920,
@@ -33,6 +33,11 @@
       "bytes": 35667,
       "file": "bridge_accounts.csv",
       "sha256": "b4818c7463cf6a1c7139e9e4ab08e67ef96b5e684fd8c8873c02a76a2da4a12c"
+    },
+    {
+      "bytes": 1943,
+      "file": "closepack.md",
+      "sha256": "46eed62c213eff25434cc3194f48aa520bd2a6750d74676a2b1be9f3685cfece"
     },
     {
       "bytes": 106,
@@ -77,7 +82,7 @@
     {
       "bytes": 1030,
       "file": "manifest.json",
-      "sha256": "6fae795995c8045d36bb3fcb2fc2457dfb1ec525a4fa60464a848051fe42bd0d"
+      "sha256": "52ec9007a6677c987067426f37a7757f24013463ea2724fc883aded46c7c61e7"
     },
     {
       "bytes": 824,
@@ -85,19 +90,19 @@
       "sha256": "7b87a9a97f006e82d07454b6f88c875462ed8da40c2a3be255672c94e885e361"
     },
     {
-      "bytes": 26810,
+      "bytes": 26812,
       "file": "pilot.xlsx",
-      "sha256": "c77c44b0e769bddc6af4ea196de38427f20b92f118f4095dcfd60b5b0ecaaf62"
+      "sha256": "f397843c2783bb0f8c2a69c178667b7117ceed50ba6c1181fc7463aa1f397482"
     },
     {
       "bytes": 754,
       "file": "profile.md",
-      "sha256": "e9502f5ac3d5a83179fc4f06e6230a15b1a7321293021730cb2c8cb862c5331f"
+      "sha256": "deaf7998308dff783f4ae949250784fdcd0a8b4aee3602643068f484d3b8bf8a"
     },
     {
-      "bytes": 6259,
+      "bytes": 6293,
       "file": "report.md",
-      "sha256": "5426634c2863fada774bbfa2f3e1ff732b464d1b9b3cd10f258c20ee4949e44e"
+      "sha256": "a819ccfaf0da3aacd170bc842d9f5e60e392b6d63b1a5a1f026fe69cc8d116c4"
     },
     {
       "bytes": 286,
@@ -117,5 +122,5 @@
     "tolerance_abs": 5.0,
     "tolerance_pct": 1.0
   },
-  "pilot_sha256": "601b563f19dd14388d3ea464898a1fbc5bba6560d6cdd9f630a7cf8c161b322e"
+  "pilot_sha256": "5809deb18667ec964636686608dcc659d9adf24e2f6759e884be3ffa058c3bbc"
 }

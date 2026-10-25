@@ -1,6 +1,6 @@
 # Pilot findings, as of 2025-10
 
-Inputs: schedule `schedule.csv` (203 rows), invoices `invoices.csv` (126 lines). Hashes in manifest.json. Kit 2026-10-24.
+Inputs: schedule `schedule.csv` (203 rows), invoices `invoices.csv` (126 lines). Hashes in manifest.json. Kit 2026-10-25.
 
 ## Totals
 
@@ -86,7 +86,7 @@ Billed is the invoice line in the month it was raised. Recognised is the share t
 
 Opening plus billings minus recognised equals closing in every month above; the kit asserts it and does not report these figures if it fails.
 
-Release for 2025-10: debit deferred revenue 49,300, credit subscription revenue 49,300.
+Journal for 2025-10: 4 lines, see journal.csv. Credited to deferred revenue 34,800, released from deferred revenue 3,500.
 
 Deferred revenue implied by the invoices at 2025-10: 49,300. Per the general ledger: not provided.
 

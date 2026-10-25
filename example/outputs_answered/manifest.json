@@ -1,6 +1,6 @@
 {
   "kit_version": "2026-10-24",
-  "generated_utc": "2026-10-25 03:15:37",
+  "generated_utc": "2026-10-25 04:47:58",
   "asof_month": "2025-10",
   "inputs": {
     "schedule": {
@@ -35,7 +35,7 @@
     },
     "mapping": {
       "file": "mapping.json",
-      "sha256": "c41ab087dd0f4ebdb829e51695efe4cec67672cc27af9523d3d1ae1ee07967c7"
+      "sha256": "fee27b591ba5f5dafe6e1b4b82c4694cc3be1d0432571475e850a6cb5b6716fe"
     }
   },
   "mapping_warnings": [

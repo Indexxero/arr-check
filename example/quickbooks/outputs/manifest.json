@@ -1,0 +1,37 @@
+{
+  "kit_version": "2026-10-24",
+  "generated_utc": "2026-10-25 04:47:44",
+  "asof_month": "2025-10",
+  "inputs": {
+    "schedule": {
+      "file": "schedule.csv",
+      "sha256": "4d1b25ddf0b0f89863057d85c04be6d47bd13823fef4ed0df234400e5d79e987",
+      "rows": 203,
+      "columns": [
+        "customer_name",
+        "snapshot_date",
+        "mrr"
+      ]
+    },
+    "invoices": {
+      "file": "invoices.csv",
+      "sha256": "04350f0bb7ceffa1bfad0f09e5bf504e33aca38b2e5e2992414b546fcccf708c",
+      "rows": 126,
+      "columns": [
+        "Date",
+        "Transaction Type",
+        "Num",
+        "Customer",
+        "Memo/Description",
+        "Amount"
+      ]
+    },
+    "mapping": {
+      "file": "mapping.json",
+      "sha256": "c92133ff89eb2b99e715014ff0fc9e20d07265e6ff501f9165a52d7024892170"
+    }
+  },
+  "mapping_warnings": [
+    "13 recurring invoice lines had no service period and were given one from the schedule (amount an exact multiple of the schedule MRR); marked period_source = inferred_from_schedule"
+  ]
+}

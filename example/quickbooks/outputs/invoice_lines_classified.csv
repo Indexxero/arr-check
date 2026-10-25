@@ -1,0 +1,127 @@
+invoice_id,customer_id,customer_name,invoice_date,service_start,service_end,amount,line_type,description,amount_v,inv_date_v,ss_v,se_v,cid,cname,key,kind,duplicate_id,no_period,period_source
+1001,,Monthly A,01/01/2024,,,500.00,Invoice,Subscription,500.0,2024-01-01,,,,Monthly A,NAME:monthly a,recurring,False,True,invoice_month
+1002,,Monthly A,02/01/2024,,,500.00,Invoice,Subscription,500.0,2024-02-01,,,,Monthly A,NAME:monthly a,recurring,False,True,invoice_month
+1003,,Monthly A,03/01/2024,,,500.00,Invoice,Subscription,500.0,2024-03-01,,,,Monthly A,NAME:monthly a,recurring,False,True,invoice_month
+1004,,Monthly A,04/01/2024,,,500.00,Invoice,Subscription,500.0,2024-04-01,,,,Monthly A,NAME:monthly a,recurring,False,True,invoice_month
+1005,,Monthly A,05/01/2024,,,500.00,Invoice,Subscription,500.0,2024-05-01,,,,Monthly A,NAME:monthly a,recurring,False,True,invoice_month
+1006,,Monthly A,06/01/2024,,,500.00,Invoice,Subscription,500.0,2024-06-01,,,,Monthly A,NAME:monthly a,recurring,False,True,invoice_month
+1007,,Monthly A,07/01/2024,,,500.00,Invoice,Subscription,500.0,2024-07-01,,,,Monthly A,NAME:monthly a,recurring,False,True,invoice_month
+1008,,Monthly A,08/01/2024,,,500.00,Invoice,Subscription,500.0,2024-08-01,,,,Monthly A,NAME:monthly a,recurring,False,True,invoice_month
+1009,,Monthly A,09/01/2024,,,500.00,Invoice,Subscription,500.0,2024-09-01,,,,Monthly A,NAME:monthly a,recurring,False,True,invoice_month
+1010,,Monthly A,10/01/2024,,,500.00,Invoice,Subscription,500.0,2024-10-01,,,,Monthly A,NAME:monthly a,recurring,False,True,invoice_month
+1011,,Monthly A,11/01/2024,,,500.00,Invoice,Subscription,500.0,2024-11-01,,,,Monthly A,NAME:monthly a,recurring,False,True,invoice_month
+1012,,Monthly A,12/01/2024,,,500.00,Invoice,Subscription,500.0,2024-12-01,,,,Monthly A,NAME:monthly a,recurring,False,True,invoice_month
+1013,,Monthly A,01/01/2025,,,500.00,Invoice,Subscription,500.0,2025-01-01,,,,Monthly A,NAME:monthly a,recurring,False,True,invoice_month
+1014,,Monthly A,02/01/2025,,,500.00,Invoice,Subscription,500.0,2025-02-01,,,,Monthly A,NAME:monthly a,recurring,False,True,invoice_month
+1015,,Monthly A,03/01/2025,,,500.00,Invoice,Subscription,500.0,2025-03-01,,,,Monthly A,NAME:monthly a,recurring,False,True,invoice_month
+1016,,Monthly A,04/01/2025,,,500.00,Invoice,Subscription,500.0,2025-04-01,,,,Monthly A,NAME:monthly a,recurring,False,True,invoice_month
+1017,,Monthly A,05/01/2025,,,500.00,Invoice,Subscription,500.0,2025-05-01,,,,Monthly A,NAME:monthly a,recurring,False,True,invoice_month
+1018,,Monthly A,06/01/2025,,,500.00,Invoice,Subscription,500.0,2025-06-01,,,,Monthly A,NAME:monthly a,recurring,False,True,invoice_month
+1019,,Monthly A,07/01/2025,,,500.00,Invoice,Subscription,500.0,2025-07-01,,,,Monthly A,NAME:monthly a,recurring,False,True,invoice_month
+1020,,Monthly A,08/01/2025,,,500.00,Invoice,Subscription,500.0,2025-08-01,,,,Monthly A,NAME:monthly a,recurring,False,True,invoice_month
+1021,,Monthly A,09/01/2025,,,500.00,Invoice,Subscription,500.0,2025-09-01,,,,Monthly A,NAME:monthly a,recurring,False,True,invoice_month
+1022,,Monthly A,10/01/2025,,,500.00,Invoice,Subscription,500.0,2025-10-01,,,,Monthly A,NAME:monthly a,recurring,False,True,invoice_month
+1023,,Monthly B,01/01/2024,,,800.00,Invoice,Subscription,800.0,2024-01-01,,,,Monthly B,NAME:monthly b,recurring,False,True,invoice_month
+1024,,Monthly B,02/01/2024,,,800.00,Invoice,Subscription,800.0,2024-02-01,,,,Monthly B,NAME:monthly b,recurring,False,True,invoice_month
+1025,,Monthly B,03/01/2024,,,800.00,Invoice,Subscription,800.0,2024-03-01,,,,Monthly B,NAME:monthly b,recurring,False,True,invoice_month
+1026,,Monthly B,04/01/2024,,,800.00,Invoice,Subscription,800.0,2024-04-01,,,,Monthly B,NAME:monthly b,recurring,False,True,invoice_month
+1027,,Monthly B,05/01/2024,,,800.00,Invoice,Subscription,800.0,2024-05-01,,,,Monthly B,NAME:monthly b,recurring,False,True,invoice_month
+1028,,Monthly B,06/01/2024,,,800.00,Invoice,Subscription,800.0,2024-06-01,,,,Monthly B,NAME:monthly b,recurring,False,True,invoice_month
+1029,,Monthly B,07/01/2024,,,800.00,Invoice,Subscription,800.0,2024-07-01,,,,Monthly B,NAME:monthly b,recurring,False,True,invoice_month
+1030,,Monthly B,08/01/2024,,,800.00,Invoice,Subscription,800.0,2024-08-01,,,,Monthly B,NAME:monthly b,recurring,False,True,invoice_month
+1031,,Monthly B,09/01/2024,,,800.00,Invoice,Subscription,800.0,2024-09-01,,,,Monthly B,NAME:monthly b,recurring,False,True,invoice_month
+1032,,Monthly B,10/01/2024,,,800.00,Invoice,Subscription,800.0,2024-10-01,,,,Monthly B,NAME:monthly b,recurring,False,True,invoice_month
+1033,,Monthly B,11/01/2024,,,800.00,Invoice,Subscription,800.0,2024-11-01,,,,Monthly B,NAME:monthly b,recurring,False,True,invoice_month
+1034,,Monthly B,12/01/2024,,,800.00,Invoice,Subscription,800.0,2024-12-01,,,,Monthly B,NAME:monthly b,recurring,False,True,invoice_month
+1035,,Monthly B,01/01/2025,,,800.00,Invoice,Subscription,800.0,2025-01-01,,,,Monthly B,NAME:monthly b,recurring,False,True,invoice_month
+1036,,Monthly B,02/01/2025,,,800.00,Invoice,Subscription,800.0,2025-02-01,,,,Monthly B,NAME:monthly b,recurring,False,True,invoice_month
+1037,,Monthly B,03/01/2025,,,800.00,Invoice,Subscription,800.0,2025-03-01,,,,Monthly B,NAME:monthly b,recurring,False,True,invoice_month
+1038,,Monthly B,04/01/2025,,,800.00,Invoice,Subscription,800.0,2025-04-01,,,,Monthly B,NAME:monthly b,recurring,False,True,invoice_month
+1039,,Monthly B,05/01/2025,,,800.00,Invoice,Subscription,800.0,2025-05-01,,,,Monthly B,NAME:monthly b,recurring,False,True,invoice_month
+1040,,Monthly B,06/01/2025,,,800.00,Invoice,Subscription,800.0,2025-06-01,,,,Monthly B,NAME:monthly b,recurring,False,True,invoice_month
+1041,,Monthly B,07/01/2025,,,800.00,Invoice,Subscription,800.0,2025-07-01,,,,Monthly B,NAME:monthly b,recurring,False,True,invoice_month
+1042,,Monthly B,08/01/2025,,,800.00,Invoice,Subscription,800.0,2025-08-01,,,,Monthly B,NAME:monthly b,recurring,False,True,invoice_month
+1043,,Monthly B,09/01/2025,,,800.00,Invoice,Subscription,800.0,2025-09-01,,,,Monthly B,NAME:monthly b,recurring,False,True,invoice_month
+1044,,Monthly B,10/01/2025,,,800.00,Invoice,Subscription,800.0,2025-10-01,,,,Monthly B,NAME:monthly b,recurring,False,True,invoice_month
+1045,,Monthly C,01/01/2024,,,"1,000.00",Invoice,Subscription,1000.0,2024-01-01,,,,Monthly C,NAME:monthly c,recurring,False,True,invoice_month
+1046,,Monthly C,02/01/2024,,,"1,000.00",Invoice,Subscription,1000.0,2024-02-01,,,,Monthly C,NAME:monthly c,recurring,False,True,invoice_month
+1047,,Monthly C,03/01/2024,,,"1,000.00",Invoice,Subscription,1000.0,2024-03-01,,,,Monthly C,NAME:monthly c,recurring,False,True,invoice_month
+1048,,Monthly C,04/01/2024,,,"1,000.00",Invoice,Subscription,1000.0,2024-04-01,,,,Monthly C,NAME:monthly c,recurring,False,True,invoice_month
+1049,,Monthly C,05/01/2024,,,"1,000.00",Invoice,Subscription,1000.0,2024-05-01,,,,Monthly C,NAME:monthly c,recurring,False,True,invoice_month
+1050,,Monthly C,06/01/2024,,,"1,000.00",Invoice,Subscription,1000.0,2024-06-01,,,,Monthly C,NAME:monthly c,recurring,False,True,invoice_month
+1051,,Monthly C,07/01/2024,,,"1,000.00",Invoice,Subscription,1000.0,2024-07-01,,,,Monthly C,NAME:monthly c,recurring,False,True,invoice_month
+1052,,Monthly C,08/01/2024,,,"1,000.00",Invoice,Subscription,1000.0,2024-08-01,,,,Monthly C,NAME:monthly c,recurring,False,True,invoice_month
+1053,,Monthly C,09/01/2024,,,"1,000.00",Invoice,Subscription,1000.0,2024-09-01,,,,Monthly C,NAME:monthly c,recurring,False,True,invoice_month
+1054,,Monthly C,10/01/2024,,,"1,000.00",Invoice,Subscription,1000.0,2024-10-01,,,,Monthly C,NAME:monthly c,recurring,False,True,invoice_month
+1055,,Monthly C,11/01/2024,,,"1,000.00",Invoice,Subscription,1000.0,2024-11-01,,,,Monthly C,NAME:monthly c,recurring,False,True,invoice_month
+1056,,Monthly C,12/01/2024,,,"1,000.00",Invoice,Subscription,1000.0,2024-12-01,,,,Monthly C,NAME:monthly c,recurring,False,True,invoice_month
+1057,,Monthly C,01/01/2025,,,"1,000.00",Invoice,Subscription,1000.0,2025-01-01,,,,Monthly C,NAME:monthly c,recurring,False,True,invoice_month
+1058,,Monthly C,02/01/2025,,,"1,000.00",Invoice,Subscription,1000.0,2025-02-01,,,,Monthly C,NAME:monthly c,recurring,False,True,invoice_month
+1059,,Monthly C,03/01/2025,,,"1,000.00",Invoice,Subscription,1000.0,2025-03-01,,,,Monthly C,NAME:monthly c,recurring,False,True,invoice_month
+1060,,Monthly C,04/01/2025,,,"1,000.00",Invoice,Subscription,1000.0,2025-04-01,,,,Monthly C,NAME:monthly c,recurring,False,True,invoice_month
+1061,,Monthly C,05/01/2025,,,"1,000.00",Invoice,Subscription,1000.0,2025-05-01,,,,Monthly C,NAME:monthly c,recurring,False,True,invoice_month
+1062,,Monthly C,06/01/2025,,,"1,000.00",Invoice,Subscription,1000.0,2025-06-01,,,,Monthly C,NAME:monthly c,recurring,False,True,invoice_month
+1063,,Monthly C,07/01/2025,,,"1,000.00",Invoice,Subscription,1000.0,2025-07-01,,,,Monthly C,NAME:monthly c,recurring,False,True,invoice_month
+1064,,Monthly C,08/01/2025,,,"1,000.00",Invoice,Subscription,1000.0,2025-08-01,,,,Monthly C,NAME:monthly c,recurring,False,True,invoice_month
+1065,,Monthly C,09/01/2025,,,"1,000.00",Invoice,Subscription,1000.0,2025-09-01,,,,Monthly C,NAME:monthly c,recurring,False,True,invoice_month
+1066,,Monthly C,10/01/2025,,,"1,000.00",Invoice,Subscription,1000.0,2025-10-01,,,,Monthly C,NAME:monthly c,recurring,False,True,invoice_month
+1067,,Monthly D,01/01/2024,,,"1,200.00",Invoice,Subscription,1200.0,2024-01-01,,,,Monthly D,NAME:monthly d,recurring,False,True,invoice_month
+1068,,Monthly D,02/01/2024,,,"1,200.00",Invoice,Subscription,1200.0,2024-02-01,,,,Monthly D,NAME:monthly d,recurring,False,True,invoice_month
+1069,,Monthly D,03/01/2024,,,"1,200.00",Invoice,Subscription,1200.0,2024-03-01,,,,Monthly D,NAME:monthly d,recurring,False,True,invoice_month
+1070,,Monthly D,04/01/2024,,,"1,200.00",Invoice,Subscription,1200.0,2024-04-01,,,,Monthly D,NAME:monthly d,recurring,False,True,invoice_month
+1071,,Monthly D,05/01/2024,,,"1,200.00",Invoice,Subscription,1200.0,2024-05-01,,,,Monthly D,NAME:monthly d,recurring,False,True,invoice_month
+1072,,Monthly D,06/01/2024,,,"1,200.00",Invoice,Subscription,1200.0,2024-06-01,,,,Monthly D,NAME:monthly d,recurring,False,True,invoice_month
+1073,,Monthly D,07/01/2024,,,"1,200.00",Invoice,Subscription,1200.0,2024-07-01,,,,Monthly D,NAME:monthly d,recurring,False,True,invoice_month
+1074,,Monthly D,08/01/2024,,,"1,200.00",Invoice,Subscription,1200.0,2024-08-01,,,,Monthly D,NAME:monthly d,recurring,False,True,invoice_month
+1075,,Monthly D,09/01/2024,,,"1,200.00",Invoice,Subscription,1200.0,2024-09-01,,,,Monthly D,NAME:monthly d,recurring,False,True,invoice_month
+1076,,Monthly D,10/01/2024,,,"1,200.00",Invoice,Subscription,1200.0,2024-10-01,,,,Monthly D,NAME:monthly d,recurring,False,True,invoice_month
+1077,,Monthly D,11/01/2024,,,"1,200.00",Invoice,Subscription,1200.0,2024-11-01,,,,Monthly D,NAME:monthly d,recurring,False,True,invoice_month
+1078,,Monthly D,12/01/2024,,,"1,200.00",Invoice,Subscription,1200.0,2024-12-01,,,,Monthly D,NAME:monthly d,recurring,False,True,invoice_month
+1079,,Monthly D,01/01/2025,,,"1,200.00",Invoice,Subscription,1200.0,2025-01-01,,,,Monthly D,NAME:monthly d,recurring,False,True,invoice_month
+1080,,Monthly D,02/01/2025,,,"1,200.00",Invoice,Subscription,1200.0,2025-02-01,,,,Monthly D,NAME:monthly d,recurring,False,True,invoice_month
+1081,,Monthly D,03/01/2025,,,"1,200.00",Invoice,Subscription,1200.0,2025-03-01,,,,Monthly D,NAME:monthly d,recurring,False,True,invoice_month
+1082,,Monthly D,04/01/2025,,,"1,200.00",Invoice,Subscription,1200.0,2025-04-01,,,,Monthly D,NAME:monthly d,recurring,False,True,invoice_month
+1083,,Monthly D,05/01/2025,,,"1,200.00",Invoice,Subscription,1200.0,2025-05-01,,,,Monthly D,NAME:monthly d,recurring,False,True,invoice_month
+1084,,Monthly D,06/01/2025,,,"1,200.00",Invoice,Subscription,1200.0,2025-06-01,,,,Monthly D,NAME:monthly d,recurring,False,True,invoice_month
+1085,,Monthly D,07/01/2025,,,"1,200.00",Invoice,Subscription,1200.0,2025-07-01,,,,Monthly D,NAME:monthly d,recurring,False,True,invoice_month
+1086,,Monthly D,08/01/2025,,,"1,200.00",Invoice,Subscription,1200.0,2025-08-01,,,,Monthly D,NAME:monthly d,recurring,False,True,invoice_month
+1087,,Monthly D,09/01/2025,,,"1,200.00",Invoice,Subscription,1200.0,2025-09-01,,,,Monthly D,NAME:monthly d,recurring,False,True,invoice_month
+1088,,Monthly D,10/01/2025,,,"1,200.00",Invoice,Subscription,1200.0,2025-10-01,,,,Monthly D,NAME:monthly d,recurring,False,True,invoice_month
+1089,,Monthly E,01/01/2024,,,600.00,Invoice,Subscription,600.0,2024-01-01,,,,Monthly E,NAME:monthly e,recurring,False,True,invoice_month
+1090,,Monthly E,02/01/2024,,,600.00,Invoice,Subscription,600.0,2024-02-01,,,,Monthly E,NAME:monthly e,recurring,False,True,invoice_month
+1091,,Monthly E,03/01/2024,,,600.00,Invoice,Subscription,600.0,2024-03-01,,,,Monthly E,NAME:monthly e,recurring,False,True,invoice_month
+1092,,Monthly E,04/01/2024,,,600.00,Invoice,Subscription,600.0,2024-04-01,,,,Monthly E,NAME:monthly e,recurring,False,True,invoice_month
+1093,,Monthly E,05/01/2024,,,600.00,Invoice,Subscription,600.0,2024-05-01,,,,Monthly E,NAME:monthly e,recurring,False,True,invoice_month
+1094,,Monthly E,06/01/2024,,,600.00,Invoice,Subscription,600.0,2024-06-01,,,,Monthly E,NAME:monthly e,recurring,False,True,invoice_month
+1095,,Monthly E,07/01/2024,,,600.00,Invoice,Subscription,600.0,2024-07-01,,,,Monthly E,NAME:monthly e,recurring,False,True,invoice_month
+1096,,Monthly E,08/01/2024,,,600.00,Invoice,Subscription,600.0,2024-08-01,,,,Monthly E,NAME:monthly e,recurring,False,True,invoice_month
+1097,,Monthly E,09/01/2024,,,600.00,Invoice,Subscription,600.0,2024-09-01,,,,Monthly E,NAME:monthly e,recurring,False,True,invoice_month
+1098,,Monthly E,10/01/2024,,,600.00,Invoice,Subscription,600.0,2024-10-01,,,,Monthly E,NAME:monthly e,recurring,False,True,invoice_month
+1099,,Monthly E,11/01/2024,,,600.00,Invoice,Subscription,600.0,2024-11-01,,,,Monthly E,NAME:monthly e,recurring,False,True,invoice_month
+1100,,Monthly E,12/01/2024,,,600.00,Invoice,Subscription,600.0,2024-12-01,,,,Monthly E,NAME:monthly e,recurring,False,True,invoice_month
+1101,,Monthly E,01/01/2025,,,600.00,Invoice,Subscription,600.0,2025-01-01,,,,Monthly E,NAME:monthly e,recurring,False,True,invoice_month
+1102,,Monthly E,02/01/2025,,,600.00,Invoice,Subscription,600.0,2025-02-01,,,,Monthly E,NAME:monthly e,recurring,False,True,invoice_month
+1103,,Monthly E,03/01/2025,,,600.00,Invoice,Subscription,600.0,2025-03-01,,,,Monthly E,NAME:monthly e,recurring,False,True,invoice_month
+1104,,Monthly E,04/01/2025,,,600.00,Invoice,Subscription,600.0,2025-04-01,,,,Monthly E,NAME:monthly e,recurring,False,True,invoice_month
+1105,,Monthly E,05/01/2025,,,600.00,Invoice,Subscription,600.0,2025-05-01,,,,Monthly E,NAME:monthly e,recurring,False,True,invoice_month
+1106,,Monthly E,06/01/2025,,,600.00,Invoice,Subscription,600.0,2025-06-01,,,,Monthly E,NAME:monthly e,recurring,False,True,invoice_month
+1107,,Monthly E,07/01/2025,,,600.00,Invoice,Subscription,600.0,2025-07-01,,,,Monthly E,NAME:monthly e,recurring,False,True,invoice_month
+1108,,Monthly E,08/01/2025,,,600.00,Invoice,Subscription,600.0,2025-08-01,,,,Monthly E,NAME:monthly e,recurring,False,True,invoice_month
+1109,,Monthly E,09/01/2025,,,600.00,Invoice,Subscription,600.0,2025-09-01,,,,Monthly E,NAME:monthly e,recurring,False,True,invoice_month
+1110,,Monthly E,10/01/2025,,,600.00,Invoice,Subscription,600.0,2025-10-01,,,,Monthly E,NAME:monthly e,recurring,False,True,invoice_month
+1111,,Annual One,01/15/2024,2024-01-01,2024-12-31,"24,000.00",Invoice,Annual subscription,24000.0,2024-01-15,2024-01-01,2024-12-31,,Annual One,NAME:annual one,recurring,False,False,inferred_from_schedule
+1112,,Annual One,01/15/2025,2025-01-01,2025-12-31,"24,000.00",Invoice,Annual subscription,24000.0,2025-01-15,2025-01-01,2025-12-31,,Annual One,NAME:annual one,recurring,False,False,inferred_from_schedule
+1113,,Annual Two,06/01/2025,2025-06-01,2026-05-31,"18,000.00",Invoice,Annual subscription,18000.0,2025-06-01,2025-06-01,2026-05-31,,Annual Two,NAME:annual two,recurring,False,False,inferred_from_schedule
+1114,,Annual Three,10/10/2023,,,"36,000.00",Invoice,Annual subscription,36000.0,2023-10-10,,,,Annual Three,NAME:annual three,recurring,False,True,invoice_month
+1115,,Annual Three,10/10/2024,2024-10-01,2025-09-30,"36,000.00",Invoice,Annual subscription,36000.0,2024-10-10,2024-10-01,2025-09-30,,Annual Three,NAME:annual three,recurring,False,False,inferred_from_schedule
+1116,,Annual Three,10/10/2025,2025-10-01,2026-09-30,"36,000.00",Invoice,Annual subscription,36000.0,2025-10-10,2025-10-01,2026-09-30,,Annual Three,NAME:annual three,recurring,False,False,inferred_from_schedule
+1117,,Quarterly One,01/01/2024,2024-01-01,2024-03-31,"2,700.00",Invoice,Quarterly subscription,2700.0,2024-01-01,2024-01-01,2024-03-31,,Quarterly One,NAME:quarterly one,recurring,False,False,inferred_from_schedule
+1118,,Quarterly One,04/01/2024,2024-04-01,2024-06-30,"2,700.00",Invoice,Quarterly subscription,2700.0,2024-04-01,2024-04-01,2024-06-30,,Quarterly One,NAME:quarterly one,recurring,False,False,inferred_from_schedule
+1119,,Quarterly One,07/01/2024,2024-07-01,2024-09-30,"2,700.00",Invoice,Quarterly subscription,2700.0,2024-07-01,2024-07-01,2024-09-30,,Quarterly One,NAME:quarterly one,recurring,False,False,inferred_from_schedule
+1120,,Quarterly One,10/01/2024,2024-10-01,2024-12-31,"2,700.00",Invoice,Quarterly subscription,2700.0,2024-10-01,2024-10-01,2024-12-31,,Quarterly One,NAME:quarterly one,recurring,False,False,inferred_from_schedule
+1121,,Quarterly One,01/01/2025,2025-01-01,2025-03-31,"2,700.00",Invoice,Quarterly subscription,2700.0,2025-01-01,2025-01-01,2025-03-31,,Quarterly One,NAME:quarterly one,recurring,False,False,inferred_from_schedule
+1122,,Quarterly One,04/01/2025,2025-04-01,2025-06-30,"2,700.00",Invoice,Quarterly subscription,2700.0,2025-04-01,2025-04-01,2025-06-30,,Quarterly One,NAME:quarterly one,recurring,False,False,inferred_from_schedule
+1123,,Quarterly One,07/01/2025,2025-07-01,2025-09-30,"2,700.00",Invoice,Quarterly subscription,2700.0,2025-07-01,2025-07-01,2025-09-30,,Quarterly One,NAME:quarterly one,recurring,False,False,inferred_from_schedule
+1124,,Quarterly One,10/01/2025,2025-10-01,2025-12-31,"2,700.00",Invoice,Quarterly subscription,2700.0,2025-10-01,2025-10-01,2025-12-31,,Quarterly One,NAME:quarterly one,recurring,False,False,inferred_from_schedule
+1125,,Discount Co,03/05/2024,,,"10,800.00",Invoice,"Annual subscription, 10 percent off",10800.0,2024-03-05,,,,Discount Co,NAME:discount,recurring,False,True,invoice_month
+1126,,Discount Co,03/05/2025,,,"10,800.00",Invoice,"Annual subscription, 10 percent off",10800.0,2025-03-05,,,,Discount Co,NAME:discount,recurring,False,True,invoice_month

@@ -1,0 +1,11 @@
+key,customer_name,closing_deferred,closing_unbilled,months_of_deferred_cover
+NAME:annual three,Annual Three,33000.0,0.0,11.0
+NAME:annual two,Annual Two,10500.0,0.0,7.0
+NAME:annual one,Annual One,4000.0,0.0,2.0
+NAME:quarterly one,Quarterly One,1800.0,0.0,2.0
+NAME:discount,Discount Co,0.0,0.0,
+NAME:monthly a,Monthly A,0.0,0.0,
+NAME:monthly b,Monthly B,0.0,0.0,
+NAME:monthly c,Monthly C,0.0,0.0,
+NAME:monthly d,Monthly D,0.0,0.0,
+NAME:monthly e,Monthly E,0.0,0.0,

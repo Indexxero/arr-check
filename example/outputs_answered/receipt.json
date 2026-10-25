@@ -6,9 +6,9 @@
       "sha256": "0c50583d1cf5c1c0982022b688f098f9756f3e9a70aba9d1405e104a5ffb5b4a"
     },
     "mapping": {
-      "bytes": 1674,
+      "bytes": 2244,
       "file": "mapping.json",
-      "sha256": "c41ab087dd0f4ebdb829e51695efe4cec67672cc27af9523d3d1ae1ee07967c7"
+      "sha256": "fee27b591ba5f5dafe6e1b4b82c4694cc3be1d0432571475e850a6cb5b6716fe"
     },
     "schedule": {
       "bytes": 32458,
@@ -17,7 +17,7 @@
     }
   },
   "kit_version": "2026-10-24",
-  "made_utc": "2026-10-25 03:15:38",
+  "made_utc": "2026-10-25 04:47:58",
   "outputs": [
     {
       "bytes": 3555,
@@ -40,19 +40,29 @@
       "sha256": "eac2d31715174ebfea43f394696afa5fa5aa83b31aaf90ff3d2b98f714689e74"
     },
     {
-      "bytes": 77298,
+      "bytes": 76232,
       "file": "compare_customer_month.csv",
-      "sha256": "a762b743826b73181b572aa83aa74855676f52465c20464b0a11a9276692630f"
+      "sha256": "726330e80766869942750d444c8e257fad69b7804d950ed621e53399025ae2dd"
     },
     {
-      "bytes": 9744,
+      "bytes": 1429,
+      "file": "deferred_accounts.csv",
+      "sha256": "0c128c805ebbf5a1af1044cf92e632d9405b1b98c254fe666d66e08ab464de76"
+    },
+    {
+      "bytes": 679,
+      "file": "deferred_rollforward.csv",
+      "sha256": "8cd8f0afe28529a11286576e46ea326da9a530a40794f2ea8af14addccde7e3b"
+    },
+    {
+      "bytes": 9624,
       "file": "exceptions.csv",
-      "sha256": "a14624ee6809a4005d49d72db1424da3fca1573e146908ceeacb2b07ae6d9b80"
+      "sha256": "940516769ab74877f359c7cbb6dca4e67678d1f63bbf6a09298291e32b8af6aa"
     },
     {
-      "bytes": 94976,
+      "bytes": 99162,
       "file": "invoice_lines_classified.csv",
-      "sha256": "1c02fb43ae7d3b980628b79d0815996af99e1ec593428d6f118985ed7ae5d6a8"
+      "sha256": "8b15e24277db7bff4086bb19da6ce167fbfaa80946f4624aa34d13f3686c6567"
     },
     {
       "bytes": 29854,
@@ -60,9 +70,14 @@
       "sha256": "75ee1a951304d690fcf39423b1ce1111c6ca9d02c02c76e154a099c5e1b58c62"
     },
     {
+      "bytes": 1334,
+      "file": "journal.csv",
+      "sha256": "1faba76cd49dd2825658430b1385d5160cbe7992a83b64b7e003e51587a124b1"
+    },
+    {
       "bytes": 1261,
       "file": "manifest.json",
-      "sha256": "3334902c561db34ceffe599da1329bd604d3699b923d5ebb2596cb92bfd977e1"
+      "sha256": "3b91f32a5e9aaf7b2267bb6dfe0add699dc346d78e2caf0782ca35b1f23c2c41"
     },
     {
       "bytes": 2640,
@@ -70,19 +85,19 @@
       "sha256": "49e3f28f8b8a7d746f16c0492e81afbc295670d2fd74ce2832277d72ac4df5bc"
     },
     {
-      "bytes": 56696,
+      "bytes": 59352,
       "file": "pilot.xlsx",
-      "sha256": "46460124f7948445998701b7100d7440ea90e528e6f8dd697e8433d31fcc714a"
+      "sha256": "c1317b91c02e3c87581a7c4e142e859b40cffdb5eaf6c00334ffc8ec78e85a4a"
     },
     {
       "bytes": 753,
       "file": "profile.md",
-      "sha256": "c13c5d9ab4fc355fc7029c892d753e5bd2c077101d458520909e4dd649ae5b3b"
+      "sha256": "5bf4a565ddfb0516064b840d227912b83e778e3a5851af564921a436282d311b"
     },
     {
-      "bytes": 6353,
+      "bytes": 8583,
       "file": "report.md",
-      "sha256": "fff3b702d1dcb6b5093b89fe5d022fd234980c3ca2511c37c21b375c0843471d"
+      "sha256": "057635b779600bfb28a785da6e430cea39d2d3d858c972a67092ce1543560eb9"
     },
     {
       "bytes": 283,
@@ -102,5 +117,5 @@
     "tolerance_abs": 5.0,
     "tolerance_pct": 1.0
   },
-  "pilot_sha256": "d372b8adfff1a25f0ded32a6b42a05e337678600346664a60678f82b87ba8833"
+  "pilot_sha256": "601b563f19dd14388d3ea464898a1fbc5bba6560d6cdd9f630a7cf8c161b322e"
 }

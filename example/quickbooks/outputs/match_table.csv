@@ -1,0 +1,11 @@
+sched_key,inv_key,method,confidence,sched_name,inv_name
+NAME:annual one,NAME:annual one,normalised_name,medium,Annual One,Annual One
+NAME:annual three,NAME:annual three,normalised_name,medium,Annual Three,Annual Three
+NAME:annual two,NAME:annual two,normalised_name,medium,Annual Two,Annual Two
+NAME:discount,NAME:discount,normalised_name,medium,Discount Co,Discount Co
+NAME:monthly a,NAME:monthly a,normalised_name,medium,Monthly A,Monthly A
+NAME:monthly b,NAME:monthly b,normalised_name,medium,Monthly B,Monthly B
+NAME:monthly c,NAME:monthly c,normalised_name,medium,Monthly C,Monthly C
+NAME:monthly d,NAME:monthly d,normalised_name,medium,Monthly D,Monthly D
+NAME:monthly e,NAME:monthly e,normalised_name,medium,Monthly E,Monthly E
+NAME:quarterly one,NAME:quarterly one,normalised_name,medium,Quarterly One,Quarterly One

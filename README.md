@@ -73,6 +73,20 @@ It prints `RECEIPT OK`, or one `MISMATCH` line per file that differs. It proves 
 
 `bridge.csv` is the monthly bridge a board deck carries: start, new, reactivation, expansion, contraction, churn, end. It is computed on three bases from the same customer months: the schedule the company reports, the invoice lines on their own, and the supported figure. A `difference` row (schedule minus supported) shows where the two disagree, and `bridge_accounts.csv` names the accounts behind every movement. New means first MRR in the window; reactivation means MRR after a gap; churn means MRR last month and none this month. The identity start + new + reactivation + expansion minus contraction minus churn = end is asserted for every month, and the run stops if it fails.
 
+## Deferred revenue implied by the invoices
+
+The kit already spreads every recurring line over its service period, so billed minus recognised is already computed; this writes it out. `deferred_rollforward.csv` gives opening, billings, recognised and closing for each month, and the identity opening plus billings minus recognised equals closing is asserted, not assumed. `deferred_accounts.csv` gives the closing position per customer at the as of month, with months of cover where there is any. `journal.csv` is a schedule a controller can post from, with the accounts named in plain words and the invoice ids in the memo.
+
+Deferred and unbilled are reported apart and never netted: a book with money on both sides would otherwise read as nil. Pass `--deferred-gl deferred_gl.csv` with columns `month,balance` to compare against the company's own balance; without it the report says the ledger was not provided rather than guessing at one. This is not a posting, not a chart of accounts and no opinion on revenue recognition policy.
+
+## QuickBooks Online, and invoices with no service period
+
+QuickBooks Online invoice exports carry no service period, so an annual invoice would otherwise land in one month and no deferred revenue would ever show. With the rule `"periodless_recurring": "whole_months_from_schedule"` in the mapping, a recurring line with no period gets one only when its amount is an exact whole multiple of that customer's schedule MRR (within tolerance), 2 to 36 months, starting in the invoice month. A discounted or odd amount is not guessed at: it stays in its invoice month and is flagged. Every line given a period this way says so in `invoice_lines_classified.csv` (`period_source = inferred_from_schedule`), and the manifest counts them.
+
+`journal.csv` is the month end entry a QuickBooks user posts by hand today: QuickBooks books an invoice to income, so the entry is one adjustment per customer that moves the deferred balance to where the invoices say it should be. A customer billed for the same month has no line. The journal ties to the roll forward in every month.
+
+`example/quickbooks/` is a fictional QuickBooks shaped pair (`python3 gen_quickbooks.py`) with monthly, quarterly and annual customers and one discounted annual. The expected deferred balance at 2025-10 is 49,300, stated in the generator, and the kit reproduces it account by account.
+
 ## How the numbers are made
 
 * Customers are matched by id first, then by normalised name, then by fuzzy name (ratio 0.88 or above, marked for review). Unmatched on either side is a finding, not an error.

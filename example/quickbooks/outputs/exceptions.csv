@@ -1,0 +1,55 @@
+key,month,cid,cname,start,end,status,sched_mrr,inv_key,inv_recurring,inv_credit,has_credit,has_duplicate_id,has_no_period,inv_mrr,non_recurring_amount,unknown_lines,diff,supported_mrr,bucket
+NAME:annual one,2025-11,,Annual One,,,,0.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,-2000.0,0.0,under_stated
+NAME:annual one,2025-12,,Annual One,,,,0.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,-2000.0,0.0,under_stated
+NAME:annual three,2023-10,,Annual Three,,,,0.0,NAME:annual three,36000.0,0.0,False,False,True,36000.0,0.0,0,-36000.0,0.0,timing
+NAME:annual three,2024-01,,Annual Three,,,,3000.0,NAME:annual three,0.0,0.0,False,False,False,0.0,0.0,0,3000.0,0.0,ramp_or_proration
+NAME:annual three,2024-02,,Annual Three,,,,3000.0,NAME:annual three,0.0,0.0,False,False,False,0.0,0.0,0,3000.0,0.0,ramp_or_proration
+NAME:annual three,2024-03,,Annual Three,,,,3000.0,NAME:annual three,0.0,0.0,False,False,False,0.0,0.0,0,3000.0,0.0,ramp_or_proration
+NAME:annual three,2024-04,,Annual Three,,,,3000.0,NAME:annual three,0.0,0.0,False,False,False,0.0,0.0,0,3000.0,0.0,over_stated
+NAME:annual three,2024-05,,Annual Three,,,,3000.0,NAME:annual three,0.0,0.0,False,False,False,0.0,0.0,0,3000.0,0.0,over_stated
+NAME:annual three,2024-06,,Annual Three,,,,3000.0,NAME:annual three,0.0,0.0,False,False,False,0.0,0.0,0,3000.0,0.0,over_stated
+NAME:annual three,2024-07,,Annual Three,,,,3000.0,NAME:annual three,0.0,0.0,False,False,False,0.0,0.0,0,3000.0,0.0,over_stated
+NAME:annual three,2024-08,,Annual Three,,,,3000.0,NAME:annual three,0.0,0.0,False,False,False,0.0,0.0,0,3000.0,0.0,over_stated
+NAME:annual three,2024-09,,Annual Three,,,,3000.0,NAME:annual three,0.0,0.0,False,False,False,0.0,0.0,0,3000.0,0.0,over_stated
+NAME:annual three,2025-11,,Annual Three,,,,0.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,-3000.0,0.0,under_stated
+NAME:annual three,2025-12,,Annual Three,,,,0.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,-3000.0,0.0,under_stated
+NAME:annual three,2026-01,,Annual Three,,,,0.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,-3000.0,0.0,under_stated
+NAME:annual three,2026-02,,Annual Three,,,,0.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,-3000.0,0.0,under_stated
+NAME:annual three,2026-03,,Annual Three,,,,0.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,-3000.0,0.0,under_stated
+NAME:annual three,2026-04,,Annual Three,,,,0.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,-3000.0,0.0,under_stated
+NAME:annual three,2026-05,,Annual Three,,,,0.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,-3000.0,0.0,under_stated
+NAME:annual three,2026-06,,Annual Three,,,,0.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,-3000.0,0.0,under_stated
+NAME:annual three,2026-07,,Annual Three,,,,0.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,-3000.0,0.0,under_stated
+NAME:annual three,2026-08,,Annual Three,,,,0.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,-3000.0,0.0,under_stated
+NAME:annual three,2026-09,,Annual Three,,,,0.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,-3000.0,0.0,under_stated
+NAME:annual two,2025-11,,Annual Two,,,,0.0,NAME:annual two,1500.0,0.0,False,False,False,1500.0,0.0,0,-1500.0,0.0,under_stated
+NAME:annual two,2025-12,,Annual Two,,,,0.0,NAME:annual two,1500.0,0.0,False,False,False,1500.0,0.0,0,-1500.0,0.0,under_stated
+NAME:annual two,2026-01,,Annual Two,,,,0.0,NAME:annual two,1500.0,0.0,False,False,False,1500.0,0.0,0,-1500.0,0.0,under_stated
+NAME:annual two,2026-02,,Annual Two,,,,0.0,NAME:annual two,1500.0,0.0,False,False,False,1500.0,0.0,0,-1500.0,0.0,under_stated
+NAME:annual two,2026-03,,Annual Two,,,,0.0,NAME:annual two,1500.0,0.0,False,False,False,1500.0,0.0,0,-1500.0,0.0,under_stated
+NAME:annual two,2026-04,,Annual Two,,,,0.0,NAME:annual two,1500.0,0.0,False,False,False,1500.0,0.0,0,-1500.0,0.0,under_stated
+NAME:annual two,2026-05,,Annual Two,,,,0.0,NAME:annual two,1500.0,0.0,False,False,False,1500.0,0.0,0,-1500.0,0.0,under_stated
+NAME:discount,2024-01,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,ramp_or_proration
+NAME:discount,2024-02,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,ramp_or_proration
+NAME:discount,2024-03,,Discount Co,,,,1000.0,NAME:discount,10800.0,0.0,False,False,True,10800.0,0.0,0,-9800.0,1000.0,timing
+NAME:discount,2024-04,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2024-05,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2024-06,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2024-07,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2024-08,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2024-09,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2024-10,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2024-11,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2024-12,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2025-01,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2025-02,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2025-03,,Discount Co,,,,1000.0,NAME:discount,10800.0,0.0,False,False,True,10800.0,0.0,0,-9800.0,1000.0,timing
+NAME:discount,2025-04,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2025-05,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2025-06,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2025-07,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2025-08,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2025-09,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2025-10,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:quarterly one,2025-11,,Quarterly One,,,,0.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,-900.0,0.0,under_stated
+NAME:quarterly one,2025-12,,Quarterly One,,,,0.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,-900.0,0.0,under_stated

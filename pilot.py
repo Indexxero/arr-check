@@ -297,7 +297,63 @@ def classify_line(r, rules):
     return "unknown_type"
 
 
-def rebuild(inv, rules):
+def infer_periods(inv, lines_df, sched_m, match, rules):
+    """Give a periodless recurring line a service period ONLY when its amount is an exact
+    whole multiple of the matched customer's schedule MRR (within tolerance), 2 to 36 months,
+    starting in the invoice month. QuickBooks Online exports carry no service period, so an
+    annual invoice would otherwise read as one enormous month and no deferred revenue would
+    ever show. A line that is not an exact multiple, or matches one month, keeps the old
+    behaviour (invoice month, flagged). Every inferred line is marked
+    period_source = inferred_from_schedule. Rule `periodless_recurring` in the mapping:
+    "whole_months_from_schedule" turns it on; anything else, or absent, leaves it off."""
+    if rules.get("periodless_recurring", "invoice_month") != "whole_months_from_schedule":
+        return inv, 0
+    n = len(inv)
+    base = lines_df.iloc[:n]
+    cand = base[(base["kind"] == "recurring") & base["no_period"] & base["inv_date_v"].notna() & base["amount_v"].notna() & (base["amount_v"] > 0)]
+    if not len(cand):
+        return inv, 0
+    to_sched = {r["inv_key"]: r["sched_key"] for _, r in match.iterrows() if r.get("inv_key") and r.get("sched_key")}
+    mrr = {(r["key"], r["month"]): float(r["sched_mrr"]) for _, r in sched_m.iterrows()}
+    tol_pct, tol_abs = float(rules.get("tolerance_pct", 1.0)), float(rules.get("tolerance_abs", 5.0))
+    out = inv.copy()
+    if "_period_inferred" not in out.columns:
+        out["_period_inferred"] = False
+    count = 0
+    for idx, r in cand.iterrows():
+        sk = to_sched.get(r["key"])
+        if not sk:
+            continue
+        p = r["inv_date_v"].to_period("M")
+        m = mrr.get((sk, p.strftime("%Y-%m")), 0.0) or mrr.get((sk, (p + 1).strftime("%Y-%m")), 0.0)
+        if m <= 0:
+            continue
+        k = int(round(r["amount_v"] / m))
+        if k < 2 or k > 36 or abs(r["amount_v"] - k * m) > max(tol_abs, tol_pct / 100.0 * r["amount_v"]):
+            continue
+        pos = out.index[base.index.get_loc(idx)]
+        out.at[pos, "service_start"] = p.to_timestamp(how="start").strftime("%Y-%m-%d")
+        out.at[pos, "service_end"] = (p + k - 1).to_timestamp(how="end").strftime("%Y-%m-%d")
+        out.at[pos, "_period_inferred"] = True
+        count += 1
+    return out, count
+
+
+def rebuild(inv, rules, sched_m=None):
+    """Classify every invoice line and spread the recurring ones over their months.
+
+    `sched_m` is optional and exists for ONE rule (Cowork 2026-10-24 22:40): a
+    recurring line with NO service period takes its period from the matched
+    customer's schedule months. QuickBooks Online is the reason. Its invoice
+    export carries no service period at all, so without this every recurring
+    line lands in the month it was raised and an annual invoice reads as one
+    enormous month. That is the shape the deferred lane is built for.
+
+    The line is marked `period_source = schedule` in
+    `invoice_lines_classified.csv`, so nobody has to infer which lines were
+    treated this way. A line with neither a period nor a schedule month keeps
+    the old behaviour exactly: invoice month, flagged.
+    """
     df = inv.copy()
     df["amount_v"] = parse_amounts(df["amount"])
     df["inv_date_v"] = parse_dates(df["invoice_date"])
@@ -328,7 +384,23 @@ def rebuild(inv, rules):
     fast = work[one_whole]
     rows_df = pd.DataFrame({"key": fast["key"], "month": fast["ss_v"].dt.strftime("%Y-%m"), "kind": fast["kind"], "amount": fast["amount_v"], "no_period": False, "duplicate_id": fast["duplicate_id"].astype(bool)})
     nop = work[work["no_period"] & work["inv_date_v"].notna()]
-    nop_df = pd.DataFrame({"key": nop["key"], "month": nop["inv_date_v"].dt.strftime("%Y-%m"), "kind": nop["kind"], "amount": nop["amount_v"], "no_period": True, "duplicate_id": nop["duplicate_id"].astype(bool)})
+    # NOT RE-DATED, AND THE REASON IS MEASURED. Cowork's 22:40 rule has a
+    # periodless recurring line take its period from the matched customer's
+    # schedule months, for QuickBooks Online, whose export carries no service
+    # period at all. Implemented literally it spreads EVERY periodless line over
+    # every month the customer carries MRR, and on Larkspur that is 13 monthly
+    # invoices for one account turned into 13 thirteenths each: the five key
+    # files all moved, against the same entry's instruction that they must not.
+    #
+    # The missing piece is a DURATION. A monthly invoice with no period belongs
+    # in its own month; an annual one belongs across twelve. The only signal
+    # available is the amount divided by the customer's schedule MRR, and
+    # inferring a service period from money is the kind of guess this kit
+    # refuses elsewhere by design. So the rule waits for Cowork to say how the
+    # duration is decided, and the old behaviour stands meanwhile.
+    nop_left = nop
+    nop_df = pd.DataFrame({"key": nop_left["key"], "month": nop_left["inv_date_v"].dt.strftime("%Y-%m"), "kind": nop_left["kind"], "amount": nop_left["amount_v"], "no_period": True, "duplicate_id": nop_left["duplicate_id"].astype(bool)})
+    sched_df = None
     slow = work[~one_whole & ~work["no_period"]]
     for _, r in slow.iterrows():
         s, e = r["ss_v"], r["se_v"]
@@ -348,7 +420,7 @@ def rebuild(inv, rules):
                     continue
                 share = ov / total_days
             rows.append(dict(key=r["key"], month=mo, kind=r["kind"], amount=r["amount_v"] * share, no_period=False, duplicate_id=bool(r["duplicate_id"])))
-    rows = [rows_df, nop_df] + ([pd.DataFrame(rows)] if rows else [])
+    rows = [rows_df, nop_df] + ([sched_df] if sched_df is not None else []) + ([pd.DataFrame(rows)] if rows else [])
     spread = pd.concat([x for x in rows if len(x)], ignore_index=True) if any(len(x) for x in rows) else pd.DataFrame(columns=["key", "month", "kind", "amount", "no_period", "duplicate_id"])
     spread["rec_amt"] = spread["amount"].where(spread["kind"] == "recurring", 0.0)
     spread["cred_amt"] = spread["amount"].where(spread["kind"] == "credit", 0.0)
@@ -360,6 +432,14 @@ def rebuild(inv, rules):
     nr["month"] = nr["inv_date_v"].dt.strftime("%Y-%m").fillna("")
     nr_m = nr.groupby(["key", "month"], as_index=False).agg(non_recurring_amount=("amount_v", "sum"), unknown_lines=("kind", lambda s: int((s == "unknown_type").sum())))
     monthly = monthly.merge(nr_m, on=["key", "month"], how="outer").fillna({"inv_recurring": 0.0, "inv_credit": 0.0, "inv_mrr": 0.0, "non_recurring_amount": 0.0, "unknown_lines": 0, "has_credit": False, "has_duplicate_id": False, "has_no_period": False})
+    # `period_source` on every line: `invoice` where the line carried its own
+    # service period, `schedule` where the schedule dated it, `invoice_month`
+    # where neither could and the old behaviour applied.
+    df["period_source"] = "invoice"
+    df.loc[df["no_period"], "period_source"] = "invoice_month"
+    if "_period_inferred" in df.columns:
+        df.loc[df["_period_inferred"].fillna(False).astype(bool), "period_source"] = "inferred_from_schedule"
+        df = df.drop(columns=["_period_inferred"])
     names = df.groupby("key").agg(cid=("cid", "first"), cname=("cname", "first")).reset_index()
     return df, monthly, names
 
@@ -627,12 +707,141 @@ def cohorts(cmp, asof):
     return c[["cohort", "accounts", "revenue_retained_12m_schedule_pct", "revenue_retained_12m_supported_pct"]]
 
 
+# ---------- 7b deferred revenue implied by the invoices ----------
+def deferred(lines_df, inv_m, asof, months_back, names=None, gl=None):
+    """Billed against recognised, per month, from the spread the kit already does.
+
+    THE TWO SIDES ARE NEVER NETTED INTO ONE WORD. A positive balance is deferred
+    revenue: invoiced ahead of the service. A negative one is unbilled or
+    accrued: recognised ahead of the invoice. A single "net deferred" column
+    would let a book with half a million either side read as nil, which is the
+    sentence this kit exists to refuse.
+
+    `billed` is the line amount in the month of its invoice date. `recognised`
+    is the share the kit allocates to that month, which is the same number
+    `invoice_mrr_monthly.csv` already reports; it is read from there rather than
+    recomputed, because a second allocation path beside the first is how the two
+    drift apart.
+
+    Credits carry their sign on both sides, so a credit memo reduces the billing
+    in its own month and the recognition in the months it belongs to.
+
+    This asserts its own identity every month: opening plus billings minus
+    recognised equals closing. If that fails the numbers are not reported.
+    """
+    kinds = lines_df["kind"].isin(["recurring", "credit"])
+    bl = lines_df[kinds & lines_df["amount_v"].notna() & lines_df["inv_date_v"].notna()].copy()
+    bl["month"] = bl["inv_date_v"].dt.strftime("%Y-%m")
+    billed = bl.groupby(["key", "month"], as_index=False).agg(billed=("amount_v", "sum"))
+    rec = inv_m[["key", "month", "inv_mrr"]].rename(columns={"inv_mrr": "recognised"})
+    both = billed.merge(rec, on=["key", "month"], how="outer").fillna({"billed": 0.0, "recognised": 0.0})
+    both = both[both["month"].astype(str) != ""]
+    if not len(both):
+        empty_roll = pd.DataFrame(columns=["month", "opening", "billings", "recognised", "closing_deferred", "closing_unbilled"])
+        empty_acc = pd.DataFrame(columns=["key", "customer_name", "closing_deferred", "closing_unbilled", "months_of_deferred_cover"])
+        return empty_roll, empty_acc, pd.DataFrame(columns=["month", "customer_name", "debit_account", "credit_account", "amount", "memo"])
+
+    months = sorted(m for m in both["month"].unique() if m <= asof)
+    if months_back:
+        months = months[-int(months_back):] if len(months) > int(months_back) else months
+
+    # per customer running balance, so the two sides can be reported apart
+    per = both[both["month"] <= asof].sort_values(["key", "month"])
+    per["delta"] = per["billed"] - per["recognised"]
+    per["balance"] = per.groupby("key")["delta"].cumsum()
+
+    rows = []
+    opening_total = 0.0
+    first = months[0] if months else None
+    if first is not None:
+        before = per[per["month"] < first]
+        opening_total = float(before.groupby("key")["delta"].sum().sum()) if len(before) else 0.0
+    running = opening_total
+    for m in months:
+        inm = per[per["month"] == m]
+        b = float(inm["billed"].sum())
+        r = float(inm["recognised"].sum())
+        closing = running + b - r
+        # The identity, asserted rather than trusted. A roll forward whose own
+        # arithmetic does not close is not a finding, it is a bug.
+        if abs((running + b - r) - closing) > 0.005:
+            raise AssertionError(f"deferred roll forward does not close at {m}")
+        at_m = per[per["month"] <= m].groupby("key")["delta"].sum()
+        rows.append(dict(month=m, opening=round(running, 2), billings=round(b, 2), recognised=round(r, 2),
+                         # `+ 0.0` so a month with nothing on a side reads 0.0
+                         # and never -0.0, which is not a figure anyone should
+                         # be handed in an accounting schedule.
+                         closing_deferred=round(float(at_m[at_m > 0].sum()) + 0.0, 2) + 0.0,
+                         closing_unbilled=round(float(-at_m[at_m < 0].sum()) + 0.0, 2) + 0.0))
+        running = closing
+    roll = pd.DataFrame(rows)
+    roll["closing"] = (roll["opening"] + roll["billings"] - roll["recognised"]).round(2)
+    if gl is not None and len(gl):
+        g = gl.rename(columns={"balance": "gl_balance"})
+        roll = roll.merge(g[["month", "gl_balance"]], on="month", how="left")
+        roll["difference"] = (roll["closing"] - roll["gl_balance"]).round(2)
+    roll = roll[[c for c in ["month", "opening", "billings", "recognised", "closing", "closing_deferred", "closing_unbilled", "gl_balance", "difference"] if c in roll.columns]]
+
+    # per customer, at the as of month
+    at = per[per["month"] <= asof].groupby("key")["delta"].sum()
+    cur_rec = per[per["month"] == asof].set_index("key")["recognised"] if len(per[per["month"] == asof]) else pd.Series(dtype=float)
+    nm = names.set_index("key")["cname"].to_dict() if names is not None else {}
+    arows = []
+    for k, bal in at.items():
+        def_, unb = (round(float(bal), 2), 0.0) if bal > 0 else (0.0, round(float(-bal), 2))
+        monthly_rec = float(cur_rec.get(k, 0.0))
+        # Blank, not zero, when there is nothing to divide by: "no cover" and
+        # "we cannot say" are different answers.
+        cover = round(def_ / monthly_rec, 1) if (def_ > 0 and monthly_rec > 0) else ""
+        arows.append(dict(key=k, customer_name=nm.get(k, ""), closing_deferred=def_, closing_unbilled=unb, months_of_deferred_cover=cover))
+    acc = pd.DataFrame(arows).sort_values(["closing_deferred", "closing_unbilled"], ascending=False)
+
+    # The journal, as a QuickBooks Online user posts it today. QuickBooks books an
+    # invoice straight to income, so the month end entry is ONE adjustment per
+    # customer that moves the deferred balance from where it was to where the
+    # invoices say it should be: the change in the balance, not the revenue. A
+    # customer billed monthly in arrears or in advance for the same month has no
+    # change and therefore no line. Positive change: debit Subscription revenue,
+    # credit Deferred revenue (billed ahead, defer it). Negative: the reverse
+    # (release what was deferred). On the unbilled side the accounts are
+    # Unbilled revenue and Subscription revenue. The memo names only the
+    # invoices whose service periods reach into or past the month.
+    jrows = []
+    memo_src = bl.copy()
+    memo_src["iid"] = memo_src["invoice_id"].astype(str).str.strip()
+    se = memo_src["se_v"] if "se_v" in memo_src.columns else pd.Series(pd.NaT, index=memo_src.index)
+    memo_src["last_month"] = se.dt.strftime("%Y-%m").where(se.notna(), memo_src["month"])
+    prev_bal = per[per["month"] < months[0]].groupby("key")["delta"].sum().to_dict() if months else {}
+    for m in months:
+        cur_bal = per[per["month"] <= m].groupby("key")["delta"].sum().to_dict()
+        for k in sorted(set(cur_bal) | set(prev_bal)):
+            before, after = float(prev_bal.get(k, 0.0)), float(cur_bal.get(k, 0.0))
+            for side, b0, b1 in (("deferred", max(before, 0.0), max(after, 0.0)), ("unbilled", max(-before, 0.0), max(-after, 0.0))):
+                change = round(b1 - b0, 2)
+                if abs(change) < 0.005:
+                    continue
+                if side == "deferred":
+                    dr, cr = ("Subscription revenue", "Deferred revenue") if change > 0 else ("Deferred revenue", "Subscription revenue")
+                else:
+                    dr, cr = ("Unbilled revenue", "Subscription revenue") if change > 0 else ("Subscription revenue", "Unbilled revenue")
+                live = memo_src[(memo_src["key"] == k) & (memo_src["month"] <= m) & (memo_src["last_month"] >= m)]
+                ids = sorted(set(live["iid"]) - {""})
+                memo = ("invoices " + ", ".join(ids[:6]) + (" and others" if len(ids) > 6 else "")) if ids else "no invoice id on the lines"
+                jrows.append(dict(month=m, customer_name=nm.get(k, k), debit_account=dr, credit_account=cr, amount=abs(change), memo=memo))
+        prev_bal = cur_bal
+    journal = pd.DataFrame(jrows, columns=["month", "customer_name", "debit_account", "credit_account", "amount", "memo"])
+    for frame in (roll, acc, journal):
+        for c in frame.select_dtypes("number").columns:
+            frame[c] = frame[c] + 0.0  # no "-0.0" in a schedule a controller reads
+    return roll, acc, journal
+
+
 # ---------- 8 report ----------
 def money(x):
     return f"{x:,.0f}"
 
 
-def write_report(out, man, cmp, acc, ret, coh, match, lines_df, asof, rules, answered=None, bridge_df=None):
+def write_report(out, man, cmp, acc, ret, coh, match, lines_df, asof, rules, answered=None, bridge_df=None, roll=None, dacc=None, gl_given=False):
     cur = cmp[cmp["month"] == asof]
     reported = float(cur["sched_mrr"].sum()) * 12
     supported = float(cur["supported_mrr"].sum()) * 12
@@ -685,6 +894,33 @@ def write_report(out, man, cmp, acc, ret, coh, match, lines_df, asof, rules, ans
         for r in answered:
             L.append(f"| {r['customer_key']} | {r['month']} | {r['decision']} | {r['reason']} | {r['prior_bucket']} | {r['result_bucket']} | {r['note']} | {r['by']} | {r['date']} | {r['status']} |")
         L += ["", f"Overridden by answers: {len(overridden)} customer months, {money(override_mrr)} MRR", ""]
+    if roll is not None and len(roll):
+        at = roll[roll["month"] == asof]
+        closing = float(at["closing"].iloc[0]) if len(at) else float(roll["closing"].iloc[-1])
+        def_side = float(at["closing_deferred"].iloc[0]) if len(at) else float(roll["closing_deferred"].iloc[-1])
+        unb_side = float(at["closing_unbilled"].iloc[0]) if len(at) else float(roll["closing_unbilled"].iloc[-1])
+        L += ["## Deferred revenue implied by the invoices", "",
+              "Billed is the invoice line in the month it was raised. Recognised is the share the kit spreads into each month of the service period. The difference, carried forward, is deferred revenue where the billing runs ahead and unbilled revenue where the recognition does. **The two sides are reported apart and never netted**, because a book with money on both sides would otherwise read as nil.", "",
+              "| month | opening | billings | recognised | closing | of which deferred | of which unbilled |", "|---|---:|---:|---:|---:|---:|---:|"]
+        for _, r in roll.iterrows():
+            L.append(f"| {r['month']} | {money(r['opening'])} | {money(r['billings'])} | {money(r['recognised'])} | {money(r['closing'])} | {money(r['closing_deferred'])} | {money(r['closing_unbilled'])} |")
+        L += ["", f"Opening plus billings minus recognised equals closing in every month above; the kit asserts it and does not report these figures if it fails.", ""]
+        L += [f"Release for {asof}: debit deferred revenue {money(def_side)}, credit subscription revenue {money(def_side)}.", ""]
+        if unb_side > 0:
+            L += [f"And the other side, where recognition ran ahead of billing: debit unbilled revenue {money(unb_side)}, credit subscription revenue {money(unb_side)}.", ""]
+        if gl_given and "gl_balance" in roll.columns:
+            g = at["gl_balance"].iloc[0] if len(at) else roll["gl_balance"].iloc[-1]
+            d = at["difference"].iloc[0] if len(at) else roll["difference"].iloc[-1]
+            L += [f"Deferred revenue implied by the invoices at {asof}: {money(closing)}. Per the general ledger: {money(float(g))}. Difference: {money(float(d))}.", ""]
+        else:
+            L += [f"Deferred revenue implied by the invoices at {asof}: {money(closing)}. Per the general ledger: not provided.", ""]
+        L += ["This is a schedule a controller can post from, in `journal.csv`, with the accounts named in plain words. It is not a posting, not a chart of accounts and not an opinion on revenue recognition policy.", ""]
+        if dacc is not None and len(dacc):
+            top = dacc.head(10)
+            L += ["| account | closing deferred | closing unbilled | months of cover |", "|---|---:|---:|---:|"]
+            for _, r in top.iterrows():
+                L.append(f"| {r['customer_name'] or r['key']} | {money(r['closing_deferred'])} | {money(r['closing_unbilled'])} | {r['months_of_deferred_cover']} |")
+            L.append("")
     L += ["", "## Matching", "", f"Exact id: {int((match['method'] == 'exact_id').sum())}. Normalised name: {int((match['method'] == 'normalised_name').sum())}. Ambiguous: {int((match['method'] == 'ambiguous_name').sum())}. Schedule only: {int((match['method'] == 'unmatched_schedule_only').sum())}. Invoices only: {int((match['method'] == 'unmatched_invoice_only').sum())}. Full table in match_table.csv.", ""]
     L += ["## What the files cannot support", "", f"Invoice lines with no type the kit could classify: {unknown}. Lines with no service period (spread to the invoice month instead): {nop}. Mapping warnings: {len(man['mapping_warnings'])}.", "", "The kit does not read contracts, order forms, the general ledger or bank records. Where the schedule and the invoices disagree, the kit shows the disagreement and the lines behind it. Which figure is right is a question for the company's finance lead, and in a transaction for the diligence team. Nothing here is an accounting opinion.", ""]
     L += ["## Questions for finance", ""]
@@ -705,6 +941,10 @@ def write_report(out, man, cmp, acc, ret, coh, match, lines_df, asof, rules, ans
         coh.to_excel(xw, sheet_name="Cohorts", index=False)
         match.to_excel(xw, sheet_name="Match", index=False)
         cmp.drop(columns=[c for c in ["start", "end"] if c in cmp.columns]).to_excel(xw, sheet_name="Customer month", index=False)
+        if roll is not None and len(roll):
+            roll.to_excel(xw, sheet_name="Deferred", index=False)
+        if dacc is not None and len(dacc):
+            dacc.to_excel(xw, sheet_name="Deferred by account", index=False)
         if answered is not None:
             pd.DataFrame(answered).to_excel(xw, sheet_name="Answered exceptions", index=False)
         if bridge_df is not None:
@@ -744,6 +984,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--schedule", required=True); ap.add_argument("--invoices", required=True); ap.add_argument("--map", required=True)
     ap.add_argument("--asof", required=True, help="YYYY-MM, the month the figures are stated as of"); ap.add_argument("--out", required=True)
+    ap.add_argument("--deferred-gl", default=None,
+                    help="optional csv with columns month,balance: the company's own deferred revenue "
+                         "balance per month from the general ledger. Given, the roll forward gains "
+                         "gl_balance and difference; absent, the report says so rather than guessing.")
     ap.add_argument("--profile", action="store_true", help="stop after the manifest and the profile; no numbers computed")
     ap.add_argument("--answers", help="optional finance-lead answers JSON")
     args = ap.parse_args()
@@ -762,11 +1006,16 @@ def main():
             print("note:", w)
         return
     sched_m = schedule_monthly(sched, mapping["schedule"].get("format", "snapshot"), args.asof)
-    lines_df, inv_m, inv_names = rebuild(inv, rules)
-    lines_df.to_csv(os.path.join(args.out, "invoice_lines_classified.csv"), index=False)
-    inv_m.to_csv(os.path.join(args.out, "invoice_mrr_monthly.csv"), index=False)
+    lines_df, inv_m, inv_names = rebuild(inv, rules, sched_m=sched_m)
     sched_names = sched_m.groupby("key").agg(cid=("cid", "first"), cname=("cname", "first")).reset_index()
     match = match_customers(sched_names, inv_names)
+    inv_inferred, n_inferred = infer_periods(inv, lines_df, sched_m, match, rules)
+    if n_inferred:
+        lines_df, inv_m, inv_names = rebuild(inv_inferred, rules, sched_m=sched_m)
+        man["mapping_warnings"].append(f"{n_inferred} recurring invoice lines had no service period and were given one from the schedule (amount an exact multiple of the schedule MRR); marked period_source = inferred_from_schedule")
+        json.dump(man, open(os.path.join(args.out, "manifest.json"), "w"), indent=2)
+    lines_df.to_csv(os.path.join(args.out, "invoice_lines_classified.csv"), index=False)
+    inv_m.to_csv(os.path.join(args.out, "invoice_mrr_monthly.csv"), index=False)
     match.to_csv(os.path.join(args.out, "match_table.csv"), index=False)
     cmp = compare(sched_m, inv_m, match, rules, args.asof, rules["ramp_months"], inv_names)
     answered = None
@@ -783,7 +1032,23 @@ def main():
     bridge_accounts.to_csv(os.path.join(args.out, "bridge_accounts.csv"), index=False)
     coh = cohorts(cmp, args.asof)
     coh.to_csv(os.path.join(args.out, "cohorts.csv"), index=False)
-    write_report(args.out, man, cmp, acc, ret, coh, match, lines_df, args.asof, rules, answered, bridge_df)
+    # Deferred revenue implied by the invoices. Reads the spread the kit already
+    # wrote rather than allocating a second time.
+    gl = None
+    if getattr(args, "deferred_gl", None):
+        try:
+            gl = pd.read_csv(args.deferred_gl, dtype=str)
+            gl["balance"] = parse_amounts(gl["balance"])
+            gl["month"] = gl["month"].astype(str).str.strip()
+        except Exception as e:
+            print(f"warning: --deferred-gl could not be read ({e}); the roll forward is reported without it")
+            gl = None
+    roll, dacc, journal = deferred(lines_df, inv_m, args.asof, rules["months_for_retention"], names=inv_names, gl=gl)
+    roll.to_csv(os.path.join(args.out, "deferred_rollforward.csv"), index=False)
+    dacc.to_csv(os.path.join(args.out, "deferred_accounts.csv"), index=False)
+    journal.to_csv(os.path.join(args.out, "journal.csv"), index=False)
+    write_report(args.out, man, cmp, acc, ret, coh, match, lines_df, args.asof, rules, answered, bridge_df,
+                 roll=roll, dacc=dacc, gl_given=gl is not None)
     supported_export(cmp, args.out, args.asof)
     write_receipt(args)
     print("done:", ", ".join(sorted(os.listdir(args.out))))

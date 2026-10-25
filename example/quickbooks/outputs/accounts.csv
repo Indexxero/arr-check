@@ -1,0 +1,11 @@
+key,customer_id,customer_name,asof_schedule_mrr,asof_invoice_mrr,asof_supported_mrr,asof_unresolved_mrr,months_in_window,months_not_supported,dominant_cause,causes,net_diff_window
+NAME:discount,,Discount Co,1000.0,0.0,0.0,1000.0,12,12,over_stated,"over_stated, timing",1200.0
+NAME:annual one,,Annual One,2000.0,2000.0,2000.0,0.0,12,0,supported,,0.0
+NAME:annual three,,Annual Three,3000.0,3000.0,3000.0,0.0,12,0,supported,,0.0
+NAME:annual two,,Annual Two,1500.0,1500.0,1500.0,0.0,5,0,supported,,0.0
+NAME:monthly a,,Monthly A,500.0,500.0,500.0,0.0,12,0,supported,,0.0
+NAME:monthly b,,Monthly B,800.0,800.0,800.0,0.0,12,0,supported,,0.0
+NAME:monthly c,,Monthly C,1000.0,1000.0,1000.0,0.0,12,0,supported,,0.0
+NAME:monthly d,,Monthly D,1200.0,1200.0,1200.0,0.0,12,0,supported,,0.0
+NAME:monthly e,,Monthly E,600.0,600.0,600.0,0.0,12,0,supported,,0.0
+NAME:quarterly one,,Quarterly One,900.0,900.0,900.0,0.0,12,0,supported,,0.0

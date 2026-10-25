@@ -1,0 +1,227 @@
+key,month,cid,cname,start,end,status,sched_mrr,inv_key,inv_recurring,inv_credit,has_credit,has_duplicate_id,has_no_period,inv_mrr,non_recurring_amount,unknown_lines,diff,supported_mrr,bucket
+NAME:annual one,2024-01,,Annual One,,,,2000.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,0.0,2000.0,supported
+NAME:annual one,2024-02,,Annual One,,,,2000.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,0.0,2000.0,supported
+NAME:annual one,2024-03,,Annual One,,,,2000.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,0.0,2000.0,supported
+NAME:annual one,2024-04,,Annual One,,,,2000.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,0.0,2000.0,supported
+NAME:annual one,2024-05,,Annual One,,,,2000.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,0.0,2000.0,supported
+NAME:annual one,2024-06,,Annual One,,,,2000.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,0.0,2000.0,supported
+NAME:annual one,2024-07,,Annual One,,,,2000.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,0.0,2000.0,supported
+NAME:annual one,2024-08,,Annual One,,,,2000.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,0.0,2000.0,supported
+NAME:annual one,2024-09,,Annual One,,,,2000.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,0.0,2000.0,supported
+NAME:annual one,2024-10,,Annual One,,,,2000.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,0.0,2000.0,supported
+NAME:annual one,2024-11,,Annual One,,,,2000.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,0.0,2000.0,supported
+NAME:annual one,2024-12,,Annual One,,,,2000.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,0.0,2000.0,supported
+NAME:annual one,2025-01,,Annual One,,,,2000.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,0.0,2000.0,supported
+NAME:annual one,2025-02,,Annual One,,,,2000.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,0.0,2000.0,supported
+NAME:annual one,2025-03,,Annual One,,,,2000.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,0.0,2000.0,supported
+NAME:annual one,2025-04,,Annual One,,,,2000.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,0.0,2000.0,supported
+NAME:annual one,2025-05,,Annual One,,,,2000.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,0.0,2000.0,supported
+NAME:annual one,2025-06,,Annual One,,,,2000.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,0.0,2000.0,supported
+NAME:annual one,2025-07,,Annual One,,,,2000.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,0.0,2000.0,supported
+NAME:annual one,2025-08,,Annual One,,,,2000.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,0.0,2000.0,supported
+NAME:annual one,2025-09,,Annual One,,,,2000.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,0.0,2000.0,supported
+NAME:annual one,2025-10,,Annual One,,,,2000.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,0.0,2000.0,supported
+NAME:annual one,2025-11,,Annual One,,,,0.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,-2000.0,0.0,under_stated
+NAME:annual one,2025-12,,Annual One,,,,0.0,NAME:annual one,2000.0,0.0,False,False,False,2000.0,0.0,0,-2000.0,0.0,under_stated
+NAME:annual three,2023-10,,Annual Three,,,,0.0,NAME:annual three,36000.0,0.0,False,False,True,36000.0,0.0,0,-36000.0,0.0,timing
+NAME:annual three,2024-01,,Annual Three,,,,3000.0,NAME:annual three,0.0,0.0,False,False,False,0.0,0.0,0,3000.0,0.0,ramp_or_proration
+NAME:annual three,2024-02,,Annual Three,,,,3000.0,NAME:annual three,0.0,0.0,False,False,False,0.0,0.0,0,3000.0,0.0,ramp_or_proration
+NAME:annual three,2024-03,,Annual Three,,,,3000.0,NAME:annual three,0.0,0.0,False,False,False,0.0,0.0,0,3000.0,0.0,ramp_or_proration
+NAME:annual three,2024-04,,Annual Three,,,,3000.0,NAME:annual three,0.0,0.0,False,False,False,0.0,0.0,0,3000.0,0.0,over_stated
+NAME:annual three,2024-05,,Annual Three,,,,3000.0,NAME:annual three,0.0,0.0,False,False,False,0.0,0.0,0,3000.0,0.0,over_stated
+NAME:annual three,2024-06,,Annual Three,,,,3000.0,NAME:annual three,0.0,0.0,False,False,False,0.0,0.0,0,3000.0,0.0,over_stated
+NAME:annual three,2024-07,,Annual Three,,,,3000.0,NAME:annual three,0.0,0.0,False,False,False,0.0,0.0,0,3000.0,0.0,over_stated
+NAME:annual three,2024-08,,Annual Three,,,,3000.0,NAME:annual three,0.0,0.0,False,False,False,0.0,0.0,0,3000.0,0.0,over_stated
+NAME:annual three,2024-09,,Annual Three,,,,3000.0,NAME:annual three,0.0,0.0,False,False,False,0.0,0.0,0,3000.0,0.0,over_stated
+NAME:annual three,2024-10,,Annual Three,,,,3000.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,0.0,3000.0,supported
+NAME:annual three,2024-11,,Annual Three,,,,3000.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,0.0,3000.0,supported
+NAME:annual three,2024-12,,Annual Three,,,,3000.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,0.0,3000.0,supported
+NAME:annual three,2025-01,,Annual Three,,,,3000.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,0.0,3000.0,supported
+NAME:annual three,2025-02,,Annual Three,,,,3000.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,0.0,3000.0,supported
+NAME:annual three,2025-03,,Annual Three,,,,3000.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,0.0,3000.0,supported
+NAME:annual three,2025-04,,Annual Three,,,,3000.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,0.0,3000.0,supported
+NAME:annual three,2025-05,,Annual Three,,,,3000.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,0.0,3000.0,supported
+NAME:annual three,2025-06,,Annual Three,,,,3000.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,0.0,3000.0,supported
+NAME:annual three,2025-07,,Annual Three,,,,3000.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,0.0,3000.0,supported
+NAME:annual three,2025-08,,Annual Three,,,,3000.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,0.0,3000.0,supported
+NAME:annual three,2025-09,,Annual Three,,,,3000.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,0.0,3000.0,supported
+NAME:annual three,2025-10,,Annual Three,,,,3000.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,0.0,3000.0,supported
+NAME:annual three,2025-11,,Annual Three,,,,0.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,-3000.0,0.0,under_stated
+NAME:annual three,2025-12,,Annual Three,,,,0.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,-3000.0,0.0,under_stated
+NAME:annual three,2026-01,,Annual Three,,,,0.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,-3000.0,0.0,under_stated
+NAME:annual three,2026-02,,Annual Three,,,,0.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,-3000.0,0.0,under_stated
+NAME:annual three,2026-03,,Annual Three,,,,0.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,-3000.0,0.0,under_stated
+NAME:annual three,2026-04,,Annual Three,,,,0.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,-3000.0,0.0,under_stated
+NAME:annual three,2026-05,,Annual Three,,,,0.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,-3000.0,0.0,under_stated
+NAME:annual three,2026-06,,Annual Three,,,,0.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,-3000.0,0.0,under_stated
+NAME:annual three,2026-07,,Annual Three,,,,0.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,-3000.0,0.0,under_stated
+NAME:annual three,2026-08,,Annual Three,,,,0.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,-3000.0,0.0,under_stated
+NAME:annual three,2026-09,,Annual Three,,,,0.0,NAME:annual three,3000.0,0.0,False,False,False,3000.0,0.0,0,-3000.0,0.0,under_stated
+NAME:annual two,2025-06,,Annual Two,,,,1500.0,NAME:annual two,1500.0,0.0,False,False,False,1500.0,0.0,0,0.0,1500.0,supported
+NAME:annual two,2025-07,,Annual Two,,,,1500.0,NAME:annual two,1500.0,0.0,False,False,False,1500.0,0.0,0,0.0,1500.0,supported
+NAME:annual two,2025-08,,Annual Two,,,,1500.0,NAME:annual two,1500.0,0.0,False,False,False,1500.0,0.0,0,0.0,1500.0,supported
+NAME:annual two,2025-09,,Annual Two,,,,1500.0,NAME:annual two,1500.0,0.0,False,False,False,1500.0,0.0,0,0.0,1500.0,supported
+NAME:annual two,2025-10,,Annual Two,,,,1500.0,NAME:annual two,1500.0,0.0,False,False,False,1500.0,0.0,0,0.0,1500.0,supported
+NAME:annual two,2025-11,,Annual Two,,,,0.0,NAME:annual two,1500.0,0.0,False,False,False,1500.0,0.0,0,-1500.0,0.0,under_stated
+NAME:annual two,2025-12,,Annual Two,,,,0.0,NAME:annual two,1500.0,0.0,False,False,False,1500.0,0.0,0,-1500.0,0.0,under_stated
+NAME:annual two,2026-01,,Annual Two,,,,0.0,NAME:annual two,1500.0,0.0,False,False,False,1500.0,0.0,0,-1500.0,0.0,under_stated
+NAME:annual two,2026-02,,Annual Two,,,,0.0,NAME:annual two,1500.0,0.0,False,False,False,1500.0,0.0,0,-1500.0,0.0,under_stated
+NAME:annual two,2026-03,,Annual Two,,,,0.0,NAME:annual two,1500.0,0.0,False,False,False,1500.0,0.0,0,-1500.0,0.0,under_stated
+NAME:annual two,2026-04,,Annual Two,,,,0.0,NAME:annual two,1500.0,0.0,False,False,False,1500.0,0.0,0,-1500.0,0.0,under_stated
+NAME:annual two,2026-05,,Annual Two,,,,0.0,NAME:annual two,1500.0,0.0,False,False,False,1500.0,0.0,0,-1500.0,0.0,under_stated
+NAME:discount,2024-01,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,ramp_or_proration
+NAME:discount,2024-02,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,ramp_or_proration
+NAME:discount,2024-03,,Discount Co,,,,1000.0,NAME:discount,10800.0,0.0,False,False,True,10800.0,0.0,0,-9800.0,1000.0,timing
+NAME:discount,2024-04,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2024-05,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2024-06,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2024-07,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2024-08,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2024-09,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2024-10,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2024-11,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2024-12,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2025-01,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2025-02,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2025-03,,Discount Co,,,,1000.0,NAME:discount,10800.0,0.0,False,False,True,10800.0,0.0,0,-9800.0,1000.0,timing
+NAME:discount,2025-04,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2025-05,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2025-06,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2025-07,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2025-08,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2025-09,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:discount,2025-10,,Discount Co,,,,1000.0,NAME:discount,0.0,0.0,False,False,False,0.0,0.0,0,1000.0,0.0,over_stated
+NAME:monthly a,2024-01,,Monthly A,,,,500.0,NAME:monthly a,500.0,0.0,False,False,True,500.0,0.0,0,0.0,500.0,supported
+NAME:monthly a,2024-02,,Monthly A,,,,500.0,NAME:monthly a,500.0,0.0,False,False,True,500.0,0.0,0,0.0,500.0,supported
+NAME:monthly a,2024-03,,Monthly A,,,,500.0,NAME:monthly a,500.0,0.0,False,False,True,500.0,0.0,0,0.0,500.0,supported
+NAME:monthly a,2024-04,,Monthly A,,,,500.0,NAME:monthly a,500.0,0.0,False,False,True,500.0,0.0,0,0.0,500.0,supported
+NAME:monthly a,2024-05,,Monthly A,,,,500.0,NAME:monthly a,500.0,0.0,False,False,True,500.0,0.0,0,0.0,500.0,supported
+NAME:monthly a,2024-06,,Monthly A,,,,500.0,NAME:monthly a,500.0,0.0,False,False,True,500.0,0.0,0,0.0,500.0,supported
+NAME:monthly a,2024-07,,Monthly A,,,,500.0,NAME:monthly a,500.0,0.0,False,False,True,500.0,0.0,0,0.0,500.0,supported
+NAME:monthly a,2024-08,,Monthly A,,,,500.0,NAME:monthly a,500.0,0.0,False,False,True,500.0,0.0,0,0.0,500.0,supported
+NAME:monthly a,2024-09,,Monthly A,,,,500.0,NAME:monthly a,500.0,0.0,False,False,True,500.0,0.0,0,0.0,500.0,supported
+NAME:monthly a,2024-10,,Monthly A,,,,500.0,NAME:monthly a,500.0,0.0,False,False,True,500.0,0.0,0,0.0,500.0,supported
+NAME:monthly a,2024-11,,Monthly A,,,,500.0,NAME:monthly a,500.0,0.0,False,False,True,500.0,0.0,0,0.0,500.0,supported
+NAME:monthly a,2024-12,,Monthly A,,,,500.0,NAME:monthly a,500.0,0.0,False,False,True,500.0,0.0,0,0.0,500.0,supported
+NAME:monthly a,2025-01,,Monthly A,,,,500.0,NAME:monthly a,500.0,0.0,False,False,True,500.0,0.0,0,0.0,500.0,supported
+NAME:monthly a,2025-02,,Monthly A,,,,500.0,NAME:monthly a,500.0,0.0,False,False,True,500.0,0.0,0,0.0,500.0,supported
+NAME:monthly a,2025-03,,Monthly A,,,,500.0,NAME:monthly a,500.0,0.0,False,False,True,500.0,0.0,0,0.0,500.0,supported
+NAME:monthly a,2025-04,,Monthly A,,,,500.0,NAME:monthly a,500.0,0.0,False,False,True,500.0,0.0,0,0.0,500.0,supported
+NAME:monthly a,2025-05,,Monthly A,,,,500.0,NAME:monthly a,500.0,0.0,False,False,True,500.0,0.0,0,0.0,500.0,supported
+NAME:monthly a,2025-06,,Monthly A,,,,500.0,NAME:monthly a,500.0,0.0,False,False,True,500.0,0.0,0,0.0,500.0,supported
+NAME:monthly a,2025-07,,Monthly A,,,,500.0,NAME:monthly a,500.0,0.0,False,False,True,500.0,0.0,0,0.0,500.0,supported
+NAME:monthly a,2025-08,,Monthly A,,,,500.0,NAME:monthly a,500.0,0.0,False,False,True,500.0,0.0,0,0.0,500.0,supported
+NAME:monthly a,2025-09,,Monthly A,,,,500.0,NAME:monthly a,500.0,0.0,False,False,True,500.0,0.0,0,0.0,500.0,supported
+NAME:monthly a,2025-10,,Monthly A,,,,500.0,NAME:monthly a,500.0,0.0,False,False,True,500.0,0.0,0,0.0,500.0,supported
+NAME:monthly b,2024-01,,Monthly B,,,,800.0,NAME:monthly b,800.0,0.0,False,False,True,800.0,0.0,0,0.0,800.0,supported
+NAME:monthly b,2024-02,,Monthly B,,,,800.0,NAME:monthly b,800.0,0.0,False,False,True,800.0,0.0,0,0.0,800.0,supported
+NAME:monthly b,2024-03,,Monthly B,,,,800.0,NAME:monthly b,800.0,0.0,False,False,True,800.0,0.0,0,0.0,800.0,supported
+NAME:monthly b,2024-04,,Monthly B,,,,800.0,NAME:monthly b,800.0,0.0,False,False,True,800.0,0.0,0,0.0,800.0,supported
+NAME:monthly b,2024-05,,Monthly B,,,,800.0,NAME:monthly b,800.0,0.0,False,False,True,800.0,0.0,0,0.0,800.0,supported
+NAME:monthly b,2024-06,,Monthly B,,,,800.0,NAME:monthly b,800.0,0.0,False,False,True,800.0,0.0,0,0.0,800.0,supported
+NAME:monthly b,2024-07,,Monthly B,,,,800.0,NAME:monthly b,800.0,0.0,False,False,True,800.0,0.0,0,0.0,800.0,supported
+NAME:monthly b,2024-08,,Monthly B,,,,800.0,NAME:monthly b,800.0,0.0,False,False,True,800.0,0.0,0,0.0,800.0,supported
+NAME:monthly b,2024-09,,Monthly B,,,,800.0,NAME:monthly b,800.0,0.0,False,False,True,800.0,0.0,0,0.0,800.0,supported
+NAME:monthly b,2024-10,,Monthly B,,,,800.0,NAME:monthly b,800.0,0.0,False,False,True,800.0,0.0,0,0.0,800.0,supported
+NAME:monthly b,2024-11,,Monthly B,,,,800.0,NAME:monthly b,800.0,0.0,False,False,True,800.0,0.0,0,0.0,800.0,supported
+NAME:monthly b,2024-12,,Monthly B,,,,800.0,NAME:monthly b,800.0,0.0,False,False,True,800.0,0.0,0,0.0,800.0,supported
+NAME:monthly b,2025-01,,Monthly B,,,,800.0,NAME:monthly b,800.0,0.0,False,False,True,800.0,0.0,0,0.0,800.0,supported
+NAME:monthly b,2025-02,,Monthly B,,,,800.0,NAME:monthly b,800.0,0.0,False,False,True,800.0,0.0,0,0.0,800.0,supported
+NAME:monthly b,2025-03,,Monthly B,,,,800.0,NAME:monthly b,800.0,0.0,False,False,True,800.0,0.0,0,0.0,800.0,supported
+NAME:monthly b,2025-04,,Monthly B,,,,800.0,NAME:monthly b,800.0,0.0,False,False,True,800.0,0.0,0,0.0,800.0,supported
+NAME:monthly b,2025-05,,Monthly B,,,,800.0,NAME:monthly b,800.0,0.0,False,False,True,800.0,0.0,0,0.0,800.0,supported
+NAME:monthly b,2025-06,,Monthly B,,,,800.0,NAME:monthly b,800.0,0.0,False,False,True,800.0,0.0,0,0.0,800.0,supported
+NAME:monthly b,2025-07,,Monthly B,,,,800.0,NAME:monthly b,800.0,0.0,False,False,True,800.0,0.0,0,0.0,800.0,supported
+NAME:monthly b,2025-08,,Monthly B,,,,800.0,NAME:monthly b,800.0,0.0,False,False,True,800.0,0.0,0,0.0,800.0,supported
+NAME:monthly b,2025-09,,Monthly B,,,,800.0,NAME:monthly b,800.0,0.0,False,False,True,800.0,0.0,0,0.0,800.0,supported
+NAME:monthly b,2025-10,,Monthly B,,,,800.0,NAME:monthly b,800.0,0.0,False,False,True,800.0,0.0,0,0.0,800.0,supported
+NAME:monthly c,2024-01,,Monthly C,,,,1000.0,NAME:monthly c,1000.0,0.0,False,False,True,1000.0,0.0,0,0.0,1000.0,supported
+NAME:monthly c,2024-02,,Monthly C,,,,1000.0,NAME:monthly c,1000.0,0.0,False,False,True,1000.0,0.0,0,0.0,1000.0,supported
+NAME:monthly c,2024-03,,Monthly C,,,,1000.0,NAME:monthly c,1000.0,0.0,False,False,True,1000.0,0.0,0,0.0,1000.0,supported
+NAME:monthly c,2024-04,,Monthly C,,,,1000.0,NAME:monthly c,1000.0,0.0,False,False,True,1000.0,0.0,0,0.0,1000.0,supported
+NAME:monthly c,2024-05,,Monthly C,,,,1000.0,NAME:monthly c,1000.0,0.0,False,False,True,1000.0,0.0,0,0.0,1000.0,supported
+NAME:monthly c,2024-06,,Monthly C,,,,1000.0,NAME:monthly c,1000.0,0.0,False,False,True,1000.0,0.0,0,0.0,1000.0,supported
+NAME:monthly c,2024-07,,Monthly C,,,,1000.0,NAME:monthly c,1000.0,0.0,False,False,True,1000.0,0.0,0,0.0,1000.0,supported
+NAME:monthly c,2024-08,,Monthly C,,,,1000.0,NAME:monthly c,1000.0,0.0,False,False,True,1000.0,0.0,0,0.0,1000.0,supported
+NAME:monthly c,2024-09,,Monthly C,,,,1000.0,NAME:monthly c,1000.0,0.0,False,False,True,1000.0,0.0,0,0.0,1000.0,supported
+NAME:monthly c,2024-10,,Monthly C,,,,1000.0,NAME:monthly c,1000.0,0.0,False,False,True,1000.0,0.0,0,0.0,1000.0,supported
+NAME:monthly c,2024-11,,Monthly C,,,,1000.0,NAME:monthly c,1000.0,0.0,False,False,True,1000.0,0.0,0,0.0,1000.0,supported
+NAME:monthly c,2024-12,,Monthly C,,,,1000.0,NAME:monthly c,1000.0,0.0,False,False,True,1000.0,0.0,0,0.0,1000.0,supported
+NAME:monthly c,2025-01,,Monthly C,,,,1000.0,NAME:monthly c,1000.0,0.0,False,False,True,1000.0,0.0,0,0.0,1000.0,supported
+NAME:monthly c,2025-02,,Monthly C,,,,1000.0,NAME:monthly c,1000.0,0.0,False,False,True,1000.0,0.0,0,0.0,1000.0,supported
+NAME:monthly c,2025-03,,Monthly C,,,,1000.0,NAME:monthly c,1000.0,0.0,False,False,True,1000.0,0.0,0,0.0,1000.0,supported
+NAME:monthly c,2025-04,,Monthly C,,,,1000.0,NAME:monthly c,1000.0,0.0,False,False,True,1000.0,0.0,0,0.0,1000.0,supported
+NAME:monthly c,2025-05,,Monthly C,,,,1000.0,NAME:monthly c,1000.0,0.0,False,False,True,1000.0,0.0,0,0.0,1000.0,supported
+NAME:monthly c,2025-06,,Monthly C,,,,1000.0,NAME:monthly c,1000.0,0.0,False,False,True,1000.0,0.0,0,0.0,1000.0,supported
+NAME:monthly c,2025-07,,Monthly C,,,,1000.0,NAME:monthly c,1000.0,0.0,False,False,True,1000.0,0.0,0,0.0,1000.0,supported
+NAME:monthly c,2025-08,,Monthly C,,,,1000.0,NAME:monthly c,1000.0,0.0,False,False,True,1000.0,0.0,0,0.0,1000.0,supported
+NAME:monthly c,2025-09,,Monthly C,,,,1000.0,NAME:monthly c,1000.0,0.0,False,False,True,1000.0,0.0,0,0.0,1000.0,supported
+NAME:monthly c,2025-10,,Monthly C,,,,1000.0,NAME:monthly c,1000.0,0.0,False,False,True,1000.0,0.0,0,0.0,1000.0,supported
+NAME:monthly d,2024-01,,Monthly D,,,,1200.0,NAME:monthly d,1200.0,0.0,False,False,True,1200.0,0.0,0,0.0,1200.0,supported
+NAME:monthly d,2024-02,,Monthly D,,,,1200.0,NAME:monthly d,1200.0,0.0,False,False,True,1200.0,0.0,0,0.0,1200.0,supported
+NAME:monthly d,2024-03,,Monthly D,,,,1200.0,NAME:monthly d,1200.0,0.0,False,False,True,1200.0,0.0,0,0.0,1200.0,supported
+NAME:monthly d,2024-04,,Monthly D,,,,1200.0,NAME:monthly d,1200.0,0.0,False,False,True,1200.0,0.0,0,0.0,1200.0,supported
+NAME:monthly d,2024-05,,Monthly D,,,,1200.0,NAME:monthly d,1200.0,0.0,False,False,True,1200.0,0.0,0,0.0,1200.0,supported
+NAME:monthly d,2024-06,,Monthly D,,,,1200.0,NAME:monthly d,1200.0,0.0,False,False,True,1200.0,0.0,0,0.0,1200.0,supported
+NAME:monthly d,2024-07,,Monthly D,,,,1200.0,NAME:monthly d,1200.0,0.0,False,False,True,1200.0,0.0,0,0.0,1200.0,supported
+NAME:monthly d,2024-08,,Monthly D,,,,1200.0,NAME:monthly d,1200.0,0.0,False,False,True,1200.0,0.0,0,0.0,1200.0,supported
+NAME:monthly d,2024-09,,Monthly D,,,,1200.0,NAME:monthly d,1200.0,0.0,False,False,True,1200.0,0.0,0,0.0,1200.0,supported
+NAME:monthly d,2024-10,,Monthly D,,,,1200.0,NAME:monthly d,1200.0,0.0,False,False,True,1200.0,0.0,0,0.0,1200.0,supported
+NAME:monthly d,2024-11,,Monthly D,,,,1200.0,NAME:monthly d,1200.0,0.0,False,False,True,1200.0,0.0,0,0.0,1200.0,supported
+NAME:monthly d,2024-12,,Monthly D,,,,1200.0,NAME:monthly d,1200.0,0.0,False,False,True,1200.0,0.0,0,0.0,1200.0,supported
+NAME:monthly d,2025-01,,Monthly D,,,,1200.0,NAME:monthly d,1200.0,0.0,False,False,True,1200.0,0.0,0,0.0,1200.0,supported
+NAME:monthly d,2025-02,,Monthly D,,,,1200.0,NAME:monthly d,1200.0,0.0,False,False,True,1200.0,0.0,0,0.0,1200.0,supported
+NAME:monthly d,2025-03,,Monthly D,,,,1200.0,NAME:monthly d,1200.0,0.0,False,False,True,1200.0,0.0,0,0.0,1200.0,supported
+NAME:monthly d,2025-04,,Monthly D,,,,1200.0,NAME:monthly d,1200.0,0.0,False,False,True,1200.0,0.0,0,0.0,1200.0,supported
+NAME:monthly d,2025-05,,Monthly D,,,,1200.0,NAME:monthly d,1200.0,0.0,False,False,True,1200.0,0.0,0,0.0,1200.0,supported
+NAME:monthly d,2025-06,,Monthly D,,,,1200.0,NAME:monthly d,1200.0,0.0,False,False,True,1200.0,0.0,0,0.0,1200.0,supported
+NAME:monthly d,2025-07,,Monthly D,,,,1200.0,NAME:monthly d,1200.0,0.0,False,False,True,1200.0,0.0,0,0.0,1200.0,supported
+NAME:monthly d,2025-08,,Monthly D,,,,1200.0,NAME:monthly d,1200.0,0.0,False,False,True,1200.0,0.0,0,0.0,1200.0,supported
+NAME:monthly d,2025-09,,Monthly D,,,,1200.0,NAME:monthly d,1200.0,0.0,False,False,True,1200.0,0.0,0,0.0,1200.0,supported
+NAME:monthly d,2025-10,,Monthly D,,,,1200.0,NAME:monthly d,1200.0,0.0,False,False,True,1200.0,0.0,0,0.0,1200.0,supported
+NAME:monthly e,2024-01,,Monthly E,,,,600.0,NAME:monthly e,600.0,0.0,False,False,True,600.0,0.0,0,0.0,600.0,supported
+NAME:monthly e,2024-02,,Monthly E,,,,600.0,NAME:monthly e,600.0,0.0,False,False,True,600.0,0.0,0,0.0,600.0,supported
+NAME:monthly e,2024-03,,Monthly E,,,,600.0,NAME:monthly e,600.0,0.0,False,False,True,600.0,0.0,0,0.0,600.0,supported
+NAME:monthly e,2024-04,,Monthly E,,,,600.0,NAME:monthly e,600.0,0.0,False,False,True,600.0,0.0,0,0.0,600.0,supported
+NAME:monthly e,2024-05,,Monthly E,,,,600.0,NAME:monthly e,600.0,0.0,False,False,True,600.0,0.0,0,0.0,600.0,supported
+NAME:monthly e,2024-06,,Monthly E,,,,600.0,NAME:monthly e,600.0,0.0,False,False,True,600.0,0.0,0,0.0,600.0,supported
+NAME:monthly e,2024-07,,Monthly E,,,,600.0,NAME:monthly e,600.0,0.0,False,False,True,600.0,0.0,0,0.0,600.0,supported
+NAME:monthly e,2024-08,,Monthly E,,,,600.0,NAME:monthly e,600.0,0.0,False,False,True,600.0,0.0,0,0.0,600.0,supported
+NAME:monthly e,2024-09,,Monthly E,,,,600.0,NAME:monthly e,600.0,0.0,False,False,True,600.0,0.0,0,0.0,600.0,supported
+NAME:monthly e,2024-10,,Monthly E,,,,600.0,NAME:monthly e,600.0,0.0,False,False,True,600.0,0.0,0,0.0,600.0,supported
+NAME:monthly e,2024-11,,Monthly E,,,,600.0,NAME:monthly e,600.0,0.0,False,False,True,600.0,0.0,0,0.0,600.0,supported
+NAME:monthly e,2024-12,,Monthly E,,,,600.0,NAME:monthly e,600.0,0.0,False,False,True,600.0,0.0,0,0.0,600.0,supported
+NAME:monthly e,2025-01,,Monthly E,,,,600.0,NAME:monthly e,600.0,0.0,False,False,True,600.0,0.0,0,0.0,600.0,supported
+NAME:monthly e,2025-02,,Monthly E,,,,600.0,NAME:monthly e,600.0,0.0,False,False,True,600.0,0.0,0,0.0,600.0,supported
+NAME:monthly e,2025-03,,Monthly E,,,,600.0,NAME:monthly e,600.0,0.0,False,False,True,600.0,0.0,0,0.0,600.0,supported
+NAME:monthly e,2025-04,,Monthly E,,,,600.0,NAME:monthly e,600.0,0.0,False,False,True,600.0,0.0,0,0.0,600.0,supported
+NAME:monthly e,2025-05,,Monthly E,,,,600.0,NAME:monthly e,600.0,0.0,False,False,True,600.0,0.0,0,0.0,600.0,supported
+NAME:monthly e,2025-06,,Monthly E,,,,600.0,NAME:monthly e,600.0,0.0,False,False,True,600.0,0.0,0,0.0,600.0,supported
+NAME:monthly e,2025-07,,Monthly E,,,,600.0,NAME:monthly e,600.0,0.0,False,False,True,600.0,0.0,0,0.0,600.0,supported
+NAME:monthly e,2025-08,,Monthly E,,,,600.0,NAME:monthly e,600.0,0.0,False,False,True,600.0,0.0,0,0.0,600.0,supported
+NAME:monthly e,2025-09,,Monthly E,,,,600.0,NAME:monthly e,600.0,0.0,False,False,True,600.0,0.0,0,0.0,600.0,supported
+NAME:monthly e,2025-10,,Monthly E,,,,600.0,NAME:monthly e,600.0,0.0,False,False,True,600.0,0.0,0,0.0,600.0,supported
+NAME:quarterly one,2024-01,,Quarterly One,,,,900.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,0.0,900.0,supported
+NAME:quarterly one,2024-02,,Quarterly One,,,,900.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,0.0,900.0,supported
+NAME:quarterly one,2024-03,,Quarterly One,,,,900.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,0.0,900.0,supported
+NAME:quarterly one,2024-04,,Quarterly One,,,,900.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,0.0,900.0,supported
+NAME:quarterly one,2024-05,,Quarterly One,,,,900.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,0.0,900.0,supported
+NAME:quarterly one,2024-06,,Quarterly One,,,,900.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,0.0,900.0,supported
+NAME:quarterly one,2024-07,,Quarterly One,,,,900.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,0.0,900.0,supported
+NAME:quarterly one,2024-08,,Quarterly One,,,,900.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,0.0,900.0,supported
+NAME:quarterly one,2024-09,,Quarterly One,,,,900.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,0.0,900.0,supported
+NAME:quarterly one,2024-10,,Quarterly One,,,,900.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,0.0,900.0,supported
+NAME:quarterly one,2024-11,,Quarterly One,,,,900.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,0.0,900.0,supported
+NAME:quarterly one,2024-12,,Quarterly One,,,,900.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,0.0,900.0,supported
+NAME:quarterly one,2025-01,,Quarterly One,,,,900.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,0.0,900.0,supported
+NAME:quarterly one,2025-02,,Quarterly One,,,,900.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,0.0,900.0,supported
+NAME:quarterly one,2025-03,,Quarterly One,,,,900.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,0.0,900.0,supported
+NAME:quarterly one,2025-04,,Quarterly One,,,,900.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,0.0,900.0,supported
+NAME:quarterly one,2025-05,,Quarterly One,,,,900.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,0.0,900.0,supported
+NAME:quarterly one,2025-06,,Quarterly One,,,,900.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,0.0,900.0,supported
+NAME:quarterly one,2025-07,,Quarterly One,,,,900.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,0.0,900.0,supported
+NAME:quarterly one,2025-08,,Quarterly One,,,,900.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,0.0,900.0,supported
+NAME:quarterly one,2025-09,,Quarterly One,,,,900.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,0.0,900.0,supported
+NAME:quarterly one,2025-10,,Quarterly One,,,,900.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,0.0,900.0,supported
+NAME:quarterly one,2025-11,,Quarterly One,,,,0.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,-900.0,0.0,under_stated
+NAME:quarterly one,2025-12,,Quarterly One,,,,0.0,NAME:quarterly one,900.0,0.0,False,False,False,900.0,0.0,0,-900.0,0.0,under_stated

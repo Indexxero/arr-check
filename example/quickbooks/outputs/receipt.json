@@ -1,0 +1,121 @@
+{
+  "inputs": {
+    "invoices": {
+      "bytes": 7458,
+      "file": "invoices.csv",
+      "sha256": "04350f0bb7ceffa1bfad0f09e5bf504e33aca38b2e5e2992414b546fcccf708c"
+    },
+    "mapping": {
+      "bytes": 826,
+      "file": "mapping.json",
+      "sha256": "c92133ff89eb2b99e715014ff0fc9e20d07265e6ff501f9165a52d7024892170"
+    },
+    "schedule": {
+      "bytes": 6260,
+      "file": "schedule.csv",
+      "sha256": "4d1b25ddf0b0f89863057d85c04be6d47bd13823fef4ed0df234400e5d79e987"
+    }
+  },
+  "kit_version": "2026-10-24",
+  "made_utc": "2026-10-25 04:47:44",
+  "outputs": [
+    {
+      "bytes": 920,
+      "file": "accounts.csv",
+      "sha256": "540de18f6030d95317bc39a76e0029f3efc66389af3ebd2d5e83c81a4a5e2ddd"
+    },
+    {
+      "bytes": 2648,
+      "file": "bridge.csv",
+      "sha256": "9abb87f5757cc1d3b584055c1ecf91cf6a2452f1b55edb5d3021a970c724c100"
+    },
+    {
+      "bytes": 35667,
+      "file": "bridge_accounts.csv",
+      "sha256": "b4818c7463cf6a1c7139e9e4ab08e67ef96b5e684fd8c8873c02a76a2da4a12c"
+    },
+    {
+      "bytes": 106,
+      "file": "cohorts.csv",
+      "sha256": "19a9fbe6019080302bdfff8f02d567f3aa1704bb31b0adaf1daa3054cd91436e"
+    },
+    {
+      "bytes": 27934,
+      "file": "compare_customer_month.csv",
+      "sha256": "50033380ed7d3a1412d70b735456da3d0a61a93c874062e14564fc95bf538458"
+    },
+    {
+      "bytes": 463,
+      "file": "deferred_accounts.csv",
+      "sha256": "a29ddac03c163380bed176e41b30b9c694d4e829b3a56f497acc56a0aeec8f31"
+    },
+    {
+      "bytes": 692,
+      "file": "deferred_rollforward.csv",
+      "sha256": "2a363de21751b18a541f20e80128ccd7be2b801fd117b61b0a5659887593c7a1"
+    },
+    {
+      "bytes": 6950,
+      "file": "exceptions.csv",
+      "sha256": "d2d0fef79bf6f9bc301de30841b4bdeeac7ddd2f2d60cd9836d2d194d1427b24"
+    },
+    {
+      "bytes": 18729,
+      "file": "invoice_lines_classified.csv",
+      "sha256": "c61b0b39f475e95143c13a005d63ac358a2e3d50f20c0e488e589c2205dedb53"
+    },
+    {
+      "bytes": 12843,
+      "file": "invoice_mrr_monthly.csv",
+      "sha256": "c2451e8b109d722f409d5c5926fed1cd56c4b49e18b5f82652fe578309f98a3b"
+    },
+    {
+      "bytes": 3314,
+      "file": "journal.csv",
+      "sha256": "04c3db14f38a4cc33cb84befef593c10b632cde86344e188a489088306d332cd"
+    },
+    {
+      "bytes": 1030,
+      "file": "manifest.json",
+      "sha256": "6fae795995c8045d36bb3fcb2fc2457dfb1ec525a4fa60464a848051fe42bd0d"
+    },
+    {
+      "bytes": 824,
+      "file": "match_table.csv",
+      "sha256": "7b87a9a97f006e82d07454b6f88c875462ed8da40c2a3be255672c94e885e361"
+    },
+    {
+      "bytes": 26810,
+      "file": "pilot.xlsx",
+      "sha256": "c77c44b0e769bddc6af4ea196de38427f20b92f118f4095dcfd60b5b0ecaaf62"
+    },
+    {
+      "bytes": 754,
+      "file": "profile.md",
+      "sha256": "e9502f5ac3d5a83179fc4f06e6230a15b1a7321293021730cb2c8cb862c5331f"
+    },
+    {
+      "bytes": 6259,
+      "file": "report.md",
+      "sha256": "5426634c2863fada774bbfa2f3e1ff732b464d1b9b3cd10f258c20ee4949e44e"
+    },
+    {
+      "bytes": 286,
+      "file": "retention.csv",
+      "sha256": "9787f2d026e80e997ee0af02f21576ef9314369c83638b3f6392143503a8190e"
+    },
+    {
+      "bytes": 9386,
+      "file": "supported_export.csv",
+      "sha256": "0a860810aabdcb217eb38032dcf49848b026b94f1f154b133a4b866e4d87ecf3"
+    }
+  ],
+  "parameters": {
+    "asof_month": "2025-10",
+    "months_for_retention": 12,
+    "ramp_months": 3,
+    "tolerance_abs": 5.0,
+    "tolerance_pct": 1.0
+  },
+  "pilot_sha256": "601b563f19dd14388d3ea464898a1fbc5bba6560d6cdd9f630a7cf8c161b322e"
+}

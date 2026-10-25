@@ -94,6 +94,46 @@ The largest difference between the two bases over the window is in expansion: 48
 
 Overridden by answers: 2 customer months, 0 MRR
 
+## Deferred revenue implied by the invoices
+
+Billed is the invoice line in the month it was raised. Recognised is the share the kit spreads into each month of the service period. The difference, carried forward, is deferred revenue where the billing runs ahead and unbilled revenue where the recognition does. **The two sides are reported apart and never netted**, because a book with money on both sides would otherwise read as nil.
+
+| month | opening | billings | recognised | closing | of which deferred | of which unbilled |
+|---|---:|---:|---:|---:|---:|---:|
+| 2024-11 | 0 | 95,200 | 73,200 | 22,000 | 22,000 | 0 |
+| 2024-12 | 22,000 | 71,200 | 73,200 | 20,000 | 20,000 | 0 |
+| 2025-01 | 20,000 | 75,200 | 77,200 | 18,000 | 18,000 | 0 |
+| 2025-02 | 18,000 | 76,150 | 78,150 | 16,000 | 16,000 | 0 |
+| 2025-03 | 16,000 | 76,150 | 78,150 | 14,000 | 14,000 | 0 |
+| 2025-04 | 14,000 | 77,850 | 79,850 | 12,000 | 12,000 | 0 |
+| 2025-05 | 12,000 | 76,150 | 78,150 | 10,000 | 10,000 | 0 |
+| 2025-06 | 10,000 | 70,250 | 75,250 | 5,000 | 8,000 | 3,000 |
+| 2025-07 | 5,000 | 73,150 | 72,150 | 6,000 | 6,000 | 0 |
+| 2025-08 | 6,000 | 70,150 | 72,150 | 4,000 | 4,000 | 0 |
+| 2025-09 | 4,000 | 70,150 | 72,150 | 2,000 | 2,000 | 0 |
+| 2025-10 | 2,000 | 70,150 | 72,150 | 0 | 0 | 0 |
+
+Opening plus billings minus recognised equals closing in every month above; the kit asserts it and does not report these figures if it fails.
+
+Release for 2025-10: debit deferred revenue 0, credit subscription revenue 0.
+
+Deferred revenue implied by the invoices at 2025-10: 0. Per the general ledger: not provided.
+
+This is a schedule a controller can post from, in `journal.csv`, with the accounts named in plain words. It is not a posting, not a chart of accounts and not an opinion on revenue recognition policy.
+
+| account | closing deferred | closing unbilled | months of cover |
+|---|---:|---:|---:|
+| Blue Harbor Analytics | 0 | 0 |  |
+| Granite Peak Software | 0 | 0 |  |
+| Cedar Loop Systems | 0 | 0 |  |
+| Northwind Dynamics | 0 | 0 |  |
+| Juniper Ridge Labs | 0 | 0 |  |
+| Maple Street Health | 0 | 0 |  |
+| Lantern Field Co | 0 | 0 |  |
+| Copperline Freight | 0 | 0 |  |
+| Harbor Light Media | 0 | 0 |  |
+| Quiet Creek Software | 0 | 0 |  |
+
 
 ## Matching
 

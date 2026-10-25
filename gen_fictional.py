@@ -143,3 +143,4 @@ with open(os.path.join(OUT, "schedule.csv"), "w", newline="") as f:
 with open(os.path.join(OUT, "invoices.csv"), "w", newline="") as f:
     w = csv.DictWriter(f, fieldnames=list(invoices[0].keys())); w.writeheader(); w.writerows(invoices)
 print(f"wrote {len(schedule)} schedule rows and {len(invoices)} invoice lines to {OUT}")
+

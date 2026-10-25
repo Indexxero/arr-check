@@ -1,0 +1,42 @@
+{
+  "kit_version": "2026-10-24",
+  "generated_utc": "2026-10-25 06:00:02",
+  "asof_month": "2025-11",
+  "inputs": {
+    "schedule": {
+      "file": "schedule.csv",
+      "sha256": "5a384b772c2431a1c0c3f32670b57fd25d5b37ed3d39aa77ca09c90b5bcc58a4",
+      "rows": 558,
+      "columns": [
+        "customer_id",
+        "customer_name",
+        "snapshot_date",
+        "mrr",
+        "start_date",
+        "end_date",
+        "status"
+      ]
+    },
+    "invoices": {
+      "file": "invoices.csv",
+      "sha256": "631ef547e0f16ed2ab4d96342610df4fda1a86d72561762a252271b7362c12ca",
+      "rows": 549,
+      "columns": [
+        "invoice_id",
+        "customer_id",
+        "customer_name",
+        "invoice_date",
+        "service_start",
+        "service_end",
+        "amount",
+        "line_type",
+        "description"
+      ]
+    },
+    "mapping": {
+      "file": "mapping.json",
+      "sha256": "fee27b591ba5f5dafe6e1b4b82c4694cc3be1d0432571475e850a6cb5b6716fe"
+    }
+  },
+  "mapping_warnings": []
+}

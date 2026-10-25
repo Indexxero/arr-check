@@ -1,0 +1,45 @@
+key,customer_id,customer_name,asof_schedule_mrr,asof_invoice_mrr,asof_supported_mrr,asof_unresolved_mrr,months_in_window,months_not_supported,dominant_cause,causes,net_diff_window
+F-007,F-007,Silent Partner Inc,2100.0,0.0,0.0,2100.0,12,12,unmatched_schedule_only,unmatched_schedule_only,25200.0
+F-012,F-012,Quiet Creek Software,1000.0,1300.0,1000.0,0.0,12,12,under_stated,under_stated,-3600.0
+F-002,F-002,Granite Peak Software,4200.0,4200.0,4200.0,0.0,12,11,over_stated,"over_stated, ramp_or_proration",8800.0
+INV-ONLY-1,,Orphan Billing LLC,0.0,950.0,0.0,0.0,10,10,unmatched_invoice_only,unmatched_invoice_only,-9500.0
+F-005,F-005,Juniper Ridge Labs,8000.0,8000.0,8000.0,0.0,11,3,ramp_or_proration,ramp_or_proration,12000.0
+F-009,F-009,Lantern Field Co,0.0,1400.0,0.0,0.0,12,3,under_stated,under_stated,-4200.0
+F-004,F-004,Northwind Dynamics,2400.0,4800.0,2400.0,0.0,12,2,timing,timing,-1800.0
+F-003,F-003,Cedar Loop Systems,3000.0,3000.0,3000.0,0.0,12,1,credit_or_rebill,credit_or_rebill,0.0
+F-099,,Nimbus Field Systems,0.0,2100.0,0.0,0.0,1,1,unmatched_invoice_only,unmatched_invoice_only,-2100.0
+F-001,F-001,Blue Harbor Analytics,2500.0,2500.0,2500.0,0.0,12,0,supported,,0.0
+F-008,F-008,Maple Street Health,2600.0,2600.0,2600.0,0.0,12,0,supported,,0.0
+F-010,F-010,Copperline Freight,2000.0,2000.0,2000.0,0.0,12,0,supported,,0.0
+F-011,F-011,Harbor Light Media,1700.0,1700.0,1700.0,0.0,12,0,supported,,0.0
+F-013,F-013,Fictional Co 13,1500.0,1500.0,1500.0,0.0,12,0,supported,,0.0
+F-014,F-014,Fictional Co 14,900.0,900.0,900.0,0.0,12,0,supported,,0.0
+F-015,F-015,Fictional Co 15,0.0,0.0,0.0,0.0,7,0,supported,,0.0
+F-016,F-016,Fictional Co 16,4000.0,4000.0,4000.0,0.0,12,0,supported,,0.0
+F-017,F-017,Fictional Co 17,500.0,500.0,500.0,0.0,12,0,supported,,0.0
+F-018,F-018,Fictional Co 18,300.0,300.0,300.0,0.0,12,0,supported,,0.0
+F-019,F-019,Fictional Co 19,3100.0,3100.0,3100.0,0.0,12,0,supported,,0.0
+F-020,F-020,Fictional Co 20,500.0,500.0,500.0,0.0,12,0,supported,,0.0
+F-021,F-021,Fictional Co 21,1500.0,1500.0,1500.0,0.0,12,0,supported,,0.0
+F-022,F-022,Fictional Co 22,0.0,0.0,0.0,0.0,6,0,supported,,0.0
+F-023,F-023,Fictional Co 23,500.0,500.0,500.0,0.0,12,0,supported,,0.0
+F-024,F-024,Fictional Co 24,3100.0,3100.0,3100.0,0.0,12,0,supported,,0.0
+F-025,F-025,Fictional Co 25,900.0,900.0,900.0,0.0,12,0,supported,,0.0
+F-026,F-026,Fictional Co 26,500.0,500.0,500.0,0.0,12,0,supported,,0.0
+F-027,F-027,Fictional Co 27,300.0,300.0,300.0,0.0,12,0,supported,,0.0
+F-028,F-028,Fictional Co 28,2200.0,2200.0,2200.0,0.0,12,0,supported,,0.0
+F-029,F-029,Fictional Co 29,2200.0,2200.0,2200.0,0.0,12,0,supported,,0.0
+F-030,F-030,Fictional Co 30,500.0,500.0,500.0,0.0,12,0,supported,,0.0
+F-031,F-031,Fictional Co 31,0.0,0.0,0.0,0.0,7,0,supported,,0.0
+F-032,F-032,Fictional Co 32,500.0,500.0,500.0,0.0,12,0,supported,,0.0
+F-033,F-033,Fictional Co 33,3100.0,3100.0,3100.0,0.0,12,0,supported,,0.0
+F-034,F-034,Fictional Co 34,2200.0,2200.0,2200.0,0.0,12,0,supported,,0.0
+F-035,F-035,Fictional Co 35,500.0,500.0,500.0,0.0,12,0,supported,,0.0
+F-036,F-036,Fictional Co 36,3100.0,3100.0,3100.0,0.0,12,0,supported,,0.0
+F-037,F-037,Fictional Co 37,500.0,500.0,500.0,0.0,12,0,supported,,0.0
+F-038,F-038,Fictional Co 38,900.0,900.0,900.0,0.0,12,0,supported,,0.0
+F-039,F-039,Fictional Co 39,4000.0,4000.0,4000.0,0.0,12,0,supported,,0.0
+F-040,F-040,Fictional Co 40,0.0,0.0,0.0,0.0,4,0,supported,,0.0
+F-041,F-041,Fictional Co 41,3100.0,3100.0,3100.0,0.0,12,0,supported,,0.0
+F-042,F-042,Fictional Co 42,500.0,500.0,500.0,0.0,12,0,supported,,0.0
+NAME:acme,,Acme Corp,1200.0,1200.0,1200.0,0.0,12,0,supported,,0.0

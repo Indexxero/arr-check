@@ -9,3 +9,5 @@
 2026-10-25: `bridge.csv` and `bridge_accounts.csv`, the monthly ARR bridge on three bases (schedule, invoices, supported) with a difference row, a "Bridge" sheet and a report section. Identity asserted every month. Started by Codex (CX-067), finished by Cowork. No existing number changed; the five key files are byte identical.
 
 2026-10-25: deferred revenue implied by the invoices (`deferred_rollforward.csv`, `deferred_accounts.csv`, `journal.csv`, optional `--deferred-gl`), built by Claude Code. Cowork added: the periodless rule for QuickBooks Online (period inferred only from an exact whole multiple of the schedule MRR, marked on the line), the journal as a QuickBooks month end true up rather than a release of every month's revenue, and `example/quickbooks/` with a stated expected answer (49,300) that the kit reproduces. `unknown_lines` is written as a count (0, not 0.0). No figure in the five key files moved on the Larkspur set.
+
+2026-10-25: `diff_runs.py` (what changed between two runs) and `gen_next_month.py` (the Larkspur set one month later, four planted changes, expected answer stated). Nothing in `pilot.py` changed.

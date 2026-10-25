@@ -87,6 +87,10 @@ QuickBooks Online invoice exports carry no service period, so an annual invoice 
 
 `example/quickbooks/` is a fictional QuickBooks shaped pair (`python3 gen_quickbooks.py`) with monthly, quarterly and annual customers and one discounted annual. The expected deferred balance at 2025-10 is 49,300, stated in the generator, and the kit reproduces it account by account.
 
+## Month over month
+
+A fractional CFO runs the kit every month; the question after the second run is what changed. `python3 diff_runs.py --before out_oct --after out_nov --out diff_nov` compares the two `accounts.csv` files and writes `accounts_diff.csv` (one row per customer: new, changed, persisted, resolved, unchanged_supported, with the unresolved MRR and cause on both sides) and `summary.md` (counts, the movement in unresolved MRR, the largest new and resolved, every cause change). `python3 gen_next_month.py` makes the Larkspur set one month later with four planted changes and an `expected.json`; the diff reproduces it: new 1, resolved 2, changed 1.
+
 ## How the numbers are made
 
 * Customers are matched by id first, then by normalised name, then by fuzzy name (ratio 0.88 or above, marked for review). Unmatched on either side is a finding, not an error.

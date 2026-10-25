@@ -1,0 +1,45 @@
+key,customer_name,status,before_unresolved_mrr,after_unresolved_mrr,before_cause,after_cause,months_persisted
+F-099,Nimbus Field Systems,new,0.0,0.0,,unmatched_invoice_only,1
+F-002,Granite Peak Software,changed,800.0,0.0,over_stated,over_stated,1
+F-007,Silent Partner Inc,persisted,2100.0,2100.0,unmatched_schedule_only,unmatched_schedule_only,2
+F-003,Cedar Loop Systems,persisted,0.0,0.0,credit_or_rebill,credit_or_rebill,2
+F-004,Northwind Dynamics,persisted,0.0,0.0,timing,timing,2
+F-005,Juniper Ridge Labs,persisted,0.0,0.0,ramp_or_proration,ramp_or_proration,2
+F-009,Lantern Field Co,persisted,0.0,0.0,under_stated,under_stated,2
+F-012,Quiet Creek Software,persisted,0.0,0.0,under_stated,under_stated,2
+INV-ONLY-1,Orphan Billing LLC,persisted,0.0,0.0,unmatched_invoice_only,unmatched_invoice_only,2
+F-008,Maple Street Health,resolved,0.0,0.0,classification,supported,
+F-011,Harbor Light Media,resolved,0.0,0.0,duplicate_invoice,supported,
+F-001,Blue Harbor Analytics,unchanged_supported,0.0,0.0,supported,supported,
+F-010,Copperline Freight,unchanged_supported,0.0,0.0,supported,supported,
+F-013,Fictional Co 13,unchanged_supported,0.0,0.0,supported,supported,
+F-014,Fictional Co 14,unchanged_supported,0.0,0.0,supported,supported,
+F-015,Fictional Co 15,unchanged_supported,0.0,0.0,supported,supported,
+F-016,Fictional Co 16,unchanged_supported,0.0,0.0,supported,supported,
+F-017,Fictional Co 17,unchanged_supported,0.0,0.0,supported,supported,
+F-018,Fictional Co 18,unchanged_supported,0.0,0.0,supported,supported,
+F-019,Fictional Co 19,unchanged_supported,0.0,0.0,supported,supported,
+F-020,Fictional Co 20,unchanged_supported,0.0,0.0,supported,supported,
+F-021,Fictional Co 21,unchanged_supported,0.0,0.0,supported,supported,
+F-022,Fictional Co 22,unchanged_supported,0.0,0.0,supported,supported,
+F-023,Fictional Co 23,unchanged_supported,0.0,0.0,supported,supported,
+F-024,Fictional Co 24,unchanged_supported,0.0,0.0,supported,supported,
+F-025,Fictional Co 25,unchanged_supported,0.0,0.0,supported,supported,
+F-026,Fictional Co 26,unchanged_supported,0.0,0.0,supported,supported,
+F-027,Fictional Co 27,unchanged_supported,0.0,0.0,supported,supported,
+F-028,Fictional Co 28,unchanged_supported,0.0,0.0,supported,supported,
+F-029,Fictional Co 29,unchanged_supported,0.0,0.0,supported,supported,
+F-030,Fictional Co 30,unchanged_supported,0.0,0.0,supported,supported,
+F-031,Fictional Co 31,unchanged_supported,0.0,0.0,supported,supported,
+F-032,Fictional Co 32,unchanged_supported,0.0,0.0,supported,supported,
+F-033,Fictional Co 33,unchanged_supported,0.0,0.0,supported,supported,
+F-034,Fictional Co 34,unchanged_supported,0.0,0.0,supported,supported,
+F-035,Fictional Co 35,unchanged_supported,0.0,0.0,supported,supported,
+F-036,Fictional Co 36,unchanged_supported,0.0,0.0,supported,supported,
+F-037,Fictional Co 37,unchanged_supported,0.0,0.0,supported,supported,
+F-038,Fictional Co 38,unchanged_supported,0.0,0.0,supported,supported,
+F-039,Fictional Co 39,unchanged_supported,0.0,0.0,supported,supported,
+F-040,Fictional Co 40,unchanged_supported,0.0,0.0,supported,supported,
+F-041,Fictional Co 41,unchanged_supported,0.0,0.0,supported,supported,
+F-042,Fictional Co 42,unchanged_supported,0.0,0.0,supported,supported,
+NAME:acme,Acme Corp,unchanged_supported,0.0,0.0,supported,supported,

@@ -1,0 +1,15 @@
+month,customer_name,debit_account,credit_account,amount,memo
+2024-12,Copperline Freight,Deferred revenue,Subscription revenue,2000.0,invoices INV-1484
+2025-01,Copperline Freight,Deferred revenue,Subscription revenue,2000.0,invoices INV-1484
+2025-02,Copperline Freight,Deferred revenue,Subscription revenue,2000.0,invoices INV-1484
+2025-03,Copperline Freight,Deferred revenue,Subscription revenue,2000.0,invoices INV-1484
+2025-04,Copperline Freight,Deferred revenue,Subscription revenue,2000.0,invoices INV-1484
+2025-05,Copperline Freight,Deferred revenue,Subscription revenue,2000.0,invoices INV-1484
+2025-06,Cedar Loop Systems,Unbilled revenue,Subscription revenue,3000.0,"invoices INV-1405, INV-1406"
+2025-06,Copperline Freight,Deferred revenue,Subscription revenue,2000.0,invoices INV-1484
+2025-07,Cedar Loop Systems,Subscription revenue,Unbilled revenue,3000.0,invoices INV-1408
+2025-07,Copperline Freight,Deferred revenue,Subscription revenue,2000.0,invoices INV-1484
+2025-08,Copperline Freight,Deferred revenue,Subscription revenue,2000.0,invoices INV-1484
+2025-09,Copperline Freight,Deferred revenue,Subscription revenue,2000.0,invoices INV-1484
+2025-10,Copperline Freight,Deferred revenue,Subscription revenue,2000.0,invoices INV-1484
+2025-11,Copperline Freight,Subscription revenue,Deferred revenue,22000.0,invoices INV-1549

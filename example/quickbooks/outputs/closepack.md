@@ -48,6 +48,22 @@ Top five accounts: 75.7 percent of supported ARR. Largest single account: Annual
 At 2025-10: deferred 49,300, unbilled 0, reported apart.
 Per the general ledger: not provided.
 
+### ARR to recognised revenue, 2025-10
+
+Monthly. Every row, with its accounts, in arr_to_revenue.csv.
+
+| step | MRR |
+|---|---:|
+| recurring revenue on the schedule | 12,500.00 |
+| less: over_stated | -1,000.00 |
+| **= supported by invoices** | **11,500.00** |
+| **= invoiced recurring, spread over service periods** | **11,500.00** |
+| **= recognised revenue, deferred_rollforward.csv** | **11,500.00** |
+| billed in the month, recurring and credit lines | 42,800.00 |
+| less: added to the net deferred balance (18,000.00 to 49,300.00) | -31,300.00 |
+| **= recognised revenue, deferred_rollforward.csv** | **11,500.00** |
+| one off lines in the month, outside ARR and outside the roll forward | 0.00 |
+
 ## 8. Since the previous run
 
 First run, no comparison. Pass `--before <previous out folder>` next month.

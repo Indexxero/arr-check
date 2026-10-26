@@ -122,7 +122,7 @@ Every step writes a file, so each figure can be traced to the rows behind it. Th
 
 ## What it does not do
 
-It does not read contracts, order forms, the general ledger, bank records or deferred revenue. It covers one leg of the usual three (schedule to invoices). It does not convert currencies; more than one currency raises a warning. It records reseller parents and children, it does not roll them up. It has been tested on synthetic exports in five shapes (`run_stress.sh`) and on no real company's data as of this version.
+It does not read contracts, order forms, bank records or general ledger detail; from the ledger it takes only the deferred revenue balance by month, and only when given with `--deferred-gl`. It covers one leg of the usual three (schedule to invoices). It does not convert currencies; more than one currency raises a warning. It records reseller parents and children, it does not roll them up. It has been tested on synthetic exports in five shapes (`run_stress.sh`) and on no real company's data as of this version.
 
 ## Data
 

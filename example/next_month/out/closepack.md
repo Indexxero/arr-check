@@ -56,6 +56,26 @@ Top five accounts: 33.5 percent of supported ARR. Largest single account: Junipe
 At 2025-11: deferred 22,000, unbilled 0, reported apart.
 Per the general ledger: not provided.
 
+### ARR to recognised revenue, 2025-11
+
+Monthly. Every row, with its accounts, in arr_to_revenue.csv.
+
+| step | MRR |
+|---|---:|
+| recurring revenue on the schedule | 71,600.00 |
+| less: unmatched_schedule_only | -2,100.00 |
+| **= supported by invoices** | **69,500.00** |
+| plus: unmatched_invoice_only | 3,050.00 |
+| plus: timing | 2,400.00 |
+| plus: under_stated, schedule shows nothing | 1,400.00 |
+| plus: under_stated, billed above the schedule | 300.00 |
+| **= invoiced recurring, spread over service periods** | **76,650.00** |
+| **= recognised revenue, deferred_rollforward.csv** | **76,650.00** |
+| billed in the month, recurring and credit lines | 98,650.00 |
+| less: added to the net deferred balance (0.00 to 22,000.00) | -22,000.00 |
+| **= recognised revenue, deferred_rollforward.csv** | **76,650.00** |
+| one off lines in the month, outside ARR and outside the roll forward | 0.00 |
+
 ## 8. Since the previous run
 
 Before: `example/outputs`. New 1, changed 1, persisted 7, resolved 2.

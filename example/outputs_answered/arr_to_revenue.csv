@@ -1,0 +1,14 @@
+month,order,section,step,bucket,amount,running,accounts
+2025-10,1,schedule_to_supported,recurring revenue on the schedule,,72400.0,72400.0,
+2025-10,2,schedule_to_supported,less: unmatched_schedule_only,unmatched_schedule_only,-2100.0,70300.0,Silent Partner Inc (F-007)
+2025-10,3,schedule_to_supported,less: over_stated_accepted,over_stated_accepted,-800.0,69500.0,Granite Peak Software (F-002)
+2025-10,4,schedule_to_supported,= supported by invoices,,69500.0,69500.0,
+2025-10,5,supported_to_invoiced,"plus: under_stated, schedule shows nothing",under_stated,1400.0,70900.0,Lantern Field Co (F-009)
+2025-10,6,supported_to_invoiced,plus: unmatched_invoice_only,unmatched_invoice_only,950.0,71850.0,Orphan Billing LLC (INV-ONLY-1)
+2025-10,7,supported_to_invoiced,"plus: under_stated, billed above the schedule",under_stated,300.0,72150.0,Quiet Creek Software (F-012)
+2025-10,8,supported_to_invoiced,"= invoiced recurring, spread over service periods",,72150.0,72150.0,
+2025-10,9,invoiced_to_recognised,"= recognised revenue, deferred_rollforward.csv",,72150.0,72150.0,
+2025-10,10,billings_to_recognised,"billed in the month, recurring and credit lines",,70150.0,70150.0,
+2025-10,11,billings_to_recognised,"plus: released from the net deferred balance (2,000.00 to 0.00)",service_period_spreading,2000.0,72150.0,
+2025-10,12,billings_to_recognised,"= recognised revenue, deferred_rollforward.csv",,72150.0,72150.0,
+2025-10,13,memo,"one off lines in the month, outside ARR and outside the roll forward",non_recurring,0.0,,

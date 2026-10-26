@@ -17,12 +17,17 @@
     }
   },
   "kit_version": "2026-10-25",
-  "made_utc": "2026-10-26 03:55:52",
+  "made_utc": "2026-10-26 07:14:57",
   "outputs": [
     {
       "bytes": 920,
       "file": "accounts.csv",
       "sha256": "540de18f6030d95317bc39a76e0029f3efc66389af3ebd2d5e83c81a4a5e2ddd"
+    },
+    {
+      "bytes": 972,
+      "file": "arr_to_revenue.csv",
+      "sha256": "0c81811d72a068103017f0b7ce1526872735b1b5c6eba398541690178c233cd7"
     },
     {
       "bytes": 2648,
@@ -35,9 +40,9 @@
       "sha256": "b4818c7463cf6a1c7139e9e4ab08e67ef96b5e684fd8c8873c02a76a2da4a12c"
     },
     {
-      "bytes": 1943,
+      "bytes": 2647,
       "file": "closepack.md",
-      "sha256": "46eed62c213eff25434cc3194f48aa520bd2a6750d74676a2b1be9f3685cfece"
+      "sha256": "023c567a1e511542f6267d3604bee50e8d321c5ba21afadebc72568353e164e8"
     },
     {
       "bytes": 106,
@@ -82,7 +87,7 @@
     {
       "bytes": 1030,
       "file": "manifest.json",
-      "sha256": "b29d283e3ac3593a431e44f9a2cdb6387361e24c97cb4be98c2d307b35f217b8"
+      "sha256": "653037a48f5cc8d776621740f50909a83c1197e7db155e33c7994ee2e3175c9e"
     },
     {
       "bytes": 824,
@@ -90,19 +95,19 @@
       "sha256": "7b87a9a97f006e82d07454b6f88c875462ed8da40c2a3be255672c94e885e361"
     },
     {
-      "bytes": 26809,
+      "bytes": 26714,
       "file": "pilot.xlsx",
-      "sha256": "989f91c3a72e163a7c2e42ace176a4d73de1233ea9c4849b3d3eb0471031de5b"
+      "sha256": "53d22b71b5051ed6fa4da6501b4899ef8056c020bdec8be7241d883c45a3aa74"
     },
     {
       "bytes": 754,
       "file": "profile.md",
-      "sha256": "bd89a703681546708f7918d1ddd27e1cb74cba6c0ad95cb6537ffb120d3d925c"
+      "sha256": "1e2970f94fc56ce500cb8aa811263efecc9501cd117020eb07c5bf85dd4b8a75"
     },
     {
-      "bytes": 6293,
+      "bytes": 7186,
       "file": "report.md",
-      "sha256": "a819ccfaf0da3aacd170bc842d9f5e60e392b6d63b1a5a1f026fe69cc8d116c4"
+      "sha256": "3a3088308f289a74bb513f2e17cca71ecbe9c5513a1d9b889c9818970d8db8dc"
     },
     {
       "bytes": 286,
@@ -122,5 +127,5 @@
     "tolerance_abs": 5.0,
     "tolerance_pct": 1.0
   },
-  "pilot_sha256": "3fed78d1ff766b563457c4804194e1b11f9791bafa7737c01a98ff7a8d25b523"
+  "pilot_sha256": "a486413ed89d060f88213d491f46002d6d27bd77d64f3b09437ca7e7df10c5e9"
 }

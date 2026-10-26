@@ -79,6 +79,26 @@ The largest difference between the two bases over the window is in new: 48,000 A
 | Northwind Dynamics | 2,400 | 4,800 | 0 | timing | 2 |
 | Cedar Loop Systems | 3,000 | 3,000 | 0 | credit_or_rebill | 1 |
 | Nimbus Field Systems | 0 | 2,100 | 0 | unmatched_invoice_only | 1 |
+## ARR to recognised revenue, 2025-11
+
+Monthly figures, read from compare_customer_month.csv and deferred_rollforward.csv, one row per bucket; every row and the accounts behind it are in arr_to_revenue.csv. A row named residual is a gap the steps do not explain, shown rather than absorbed.
+
+| step | MRR |
+|---|---:|
+| recurring revenue on the schedule | 71,600.00 |
+| less: unmatched_schedule_only | -2,100.00 |
+| **= supported by invoices** | **69,500.00** |
+| plus: unmatched_invoice_only | 3,050.00 |
+| plus: timing | 2,400.00 |
+| plus: under_stated, schedule shows nothing | 1,400.00 |
+| plus: under_stated, billed above the schedule | 300.00 |
+| **= invoiced recurring, spread over service periods** | **76,650.00** |
+| **= recognised revenue, deferred_rollforward.csv** | **76,650.00** |
+| billed in the month, recurring and credit lines | 98,650.00 |
+| less: added to the net deferred balance (0.00 to 22,000.00) | -22,000.00 |
+| **= recognised revenue, deferred_rollforward.csv** | **76,650.00** |
+| one off lines in the month, outside ARR and outside the roll forward | 0.00 |
+
 ## Deferred revenue implied by the invoices
 
 Billed is the invoice line in the month it was raised. Recognised is the share the kit spreads into each month of the service period. The difference, carried forward, is deferred revenue where the billing runs ahead and unbilled revenue where the recognition does. **The two sides are reported apart and never netted**, because a book with money on both sides would otherwise read as nil.

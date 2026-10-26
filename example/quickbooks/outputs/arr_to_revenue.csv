@@ -1,0 +1,10 @@
+month,order,section,step,bucket,amount,running,accounts
+2025-10,1,schedule_to_supported,recurring revenue on the schedule,,12500.0,12500.0,
+2025-10,2,schedule_to_supported,less: over_stated,over_stated,-1000.0,11500.0,Discount Co (NAME:discount)
+2025-10,3,schedule_to_supported,= supported by invoices,,11500.0,11500.0,
+2025-10,4,supported_to_invoiced,"= invoiced recurring, spread over service periods",,11500.0,11500.0,
+2025-10,5,invoiced_to_recognised,"= recognised revenue, deferred_rollforward.csv",,11500.0,11500.0,
+2025-10,6,billings_to_recognised,"billed in the month, recurring and credit lines",,42800.0,42800.0,
+2025-10,7,billings_to_recognised,"less: added to the net deferred balance (18,000.00 to 49,300.00)",service_period_spreading,-31300.0,11500.0,
+2025-10,8,billings_to_recognised,"= recognised revenue, deferred_rollforward.csv",,11500.0,11500.0,
+2025-10,9,memo,"one off lines in the month, outside ARR and outside the roll forward",non_recurring,0.0,,

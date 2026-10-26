@@ -65,6 +65,22 @@ The largest difference between the two bases over the window is in new: 12,000 A
 | account | schedule MRR | invoice MRR | unresolved MRR | cause | months not supported |
 |---|---:|---:|---:|---|---:|
 | Discount Co | 1,000 | 0 | 1,000 | over_stated | 12 |
+## ARR to recognised revenue, 2025-10
+
+Monthly figures, read from compare_customer_month.csv and deferred_rollforward.csv, one row per bucket; every row and the accounts behind it are in arr_to_revenue.csv. A row named residual is a gap the steps do not explain, shown rather than absorbed.
+
+| step | MRR |
+|---|---:|
+| recurring revenue on the schedule | 12,500.00 |
+| less: over_stated | -1,000.00 |
+| **= supported by invoices** | **11,500.00** |
+| **= invoiced recurring, spread over service periods** | **11,500.00** |
+| **= recognised revenue, deferred_rollforward.csv** | **11,500.00** |
+| billed in the month, recurring and credit lines | 42,800.00 |
+| less: added to the net deferred balance (18,000.00 to 49,300.00) | -31,300.00 |
+| **= recognised revenue, deferred_rollforward.csv** | **11,500.00** |
+| one off lines in the month, outside ARR and outside the roll forward | 0.00 |
+
 ## Deferred revenue implied by the invoices
 
 Billed is the invoice line in the month it was raised. Recognised is the share the kit spreads into each month of the service period. The difference, carried forward, is deferred revenue where the billing runs ahead and unbilled revenue where the recognition does. **The two sides are reported apart and never netted**, because a book with money on both sides would otherwise read as nil.

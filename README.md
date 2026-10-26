@@ -15,8 +15,13 @@ From the customer schedule and the invoice export, in about ten seconds:
 * `exceptions.csv` and `accounts.csv`: every account where the invoices do not support the schedule, with the amount and the likely cause (over stated, under stated, timing, credit or rebill, duplicate invoice, ramp, classification, unmatched).
 * `bridge.csv`: the ARR bridge (new, expansion, contraction, churn) on the schedule, on the invoices and on the supported figure, with the difference row.
 * `deferred_rollforward.csv` and `journal.csv`: the deferred revenue the invoices imply, month by month, and the month end entry a QuickBooks Online user posts by hand today. Works on QuickBooks exports, which carry no service period.
+* `arr_to_revenue.csv`: for the as of month, schedule MRR to supported MRR to invoiced recurring to the roll forward's recognised revenue, one row per bucket with the accounts behind it, and billings to recognised through the deferred movement. Read from `compare_customer_month.csv` and `deferred_rollforward.csv`, not worked a second way; any gap is a row named residual. `python3 example/check_arr_to_revenue.py` checks it in every example.
 * `closepack.md`: one page for the board deck or a buyer, with what changed since last month when the previous run is given.
 * `receipt.json`: the hash of every input and output, so anyone with the same files can confirm the run with `python3 receipt.py verify`.
+
+## A deferred revenue template
+
+`templates/deferred_revenue.xlsx` is a blank roll forward, account schedule and journal with the tie out built in as formulas; no macros, no links to other files. `python3 fill_template.py out --out filled.xlsx` fills a copy from a run. `python3 templates/check_template.py <empty folder>` (needs `pip install formulas`) recalculates every formula and checks it against the run. The committed file's bytes differ from a rebuild by `templates/build_template.py` (timestamps, and how a given openpyxl writes empty tags); the check compares every cell and formula, not the hash.
 
 ## What it needs
 

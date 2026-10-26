@@ -82,6 +82,26 @@ The largest difference between the two bases over the window is in expansion: 48
 | Northwind Dynamics | 2,400 | 2,400 | 0 | timing | 1 |
 | Maple Street Health | 2,600 | 2,600 | 0 | classification | 1 |
 | Harbor Light Media | 1,700 | 1,700 | 0 | duplicate_invoice | 1 |
+## ARR to recognised revenue, 2025-10
+
+Monthly figures, read from compare_customer_month.csv and deferred_rollforward.csv, one row per bucket; every row and the accounts behind it are in arr_to_revenue.csv. A row named residual is a gap the steps do not explain, shown rather than absorbed.
+
+| step | MRR |
+|---|---:|
+| recurring revenue on the schedule | 72,400.00 |
+| less: unmatched_schedule_only | -2,100.00 |
+| less: over_stated | -800.00 |
+| **= supported by invoices** | **69,500.00** |
+| plus: under_stated, schedule shows nothing | 1,400.00 |
+| plus: unmatched_invoice_only | 950.00 |
+| plus: under_stated, billed above the schedule | 300.00 |
+| **= invoiced recurring, spread over service periods** | **72,150.00** |
+| **= recognised revenue, deferred_rollforward.csv** | **72,150.00** |
+| billed in the month, recurring and credit lines | 70,150.00 |
+| plus: released from the net deferred balance (2,000.00 to 0.00) | 2,000.00 |
+| **= recognised revenue, deferred_rollforward.csv** | **72,150.00** |
+| one off lines in the month, outside ARR and outside the roll forward | 0.00 |
+
 ## Deferred revenue implied by the invoices
 
 Billed is the invoice line in the month it was raised. Recognised is the share the kit spreads into each month of the service period. The difference, carried forward, is deferred revenue where the billing runs ahead and unbilled revenue where the recognition does. **The two sides are reported apart and never netted**, because a book with money on both sides would otherwise read as nil.

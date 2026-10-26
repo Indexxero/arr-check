@@ -1,6 +1,6 @@
 # Revenue close pack, as of 2025-10
 
-Inputs: `schedule.csv` (521 rows), `invoices.csv` (511 lines). Kit 2026-10-25. Every figure below is in a file beside this one; nothing here is an accounting opinion.
+Inputs: `schedule.csv` (521 rows), `invoices.csv` (511 lines). Kit 2026-10-26. Every figure below is in a file beside this one; nothing here is an accounting opinion.
 
 ## 1. Reported against supported
 
@@ -83,4 +83,4 @@ First run, no comparison. Pass `--before <previous out folder>` next month.
 
 ## 9. The run that made this
 
-Kit 2026-10-25. Schedule sha256 65e36e4953776f10, invoices sha256 0c50583d1cf5c1c0. Full hashes of every input and output in receipt.json; `python3 receipt.py verify` recomputes them.
+Kit 2026-10-26. Schedule sha256 65e36e4953776f10, invoices sha256 0c50583d1cf5c1c0. Full hashes of every input and output in receipt.json; `python3 receipt.py verify` recomputes them.

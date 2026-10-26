@@ -16,8 +16,8 @@
       "sha256": "4d1b25ddf0b0f89863057d85c04be6d47bd13823fef4ed0df234400e5d79e987"
     }
   },
-  "kit_version": "2026-10-25",
-  "made_utc": "2026-10-26 07:14:57",
+  "kit_version": "2026-10-26",
+  "made_utc": "2026-10-26 10:43:05",
   "outputs": [
     {
       "bytes": 920,
@@ -42,7 +42,7 @@
     {
       "bytes": 2647,
       "file": "closepack.md",
-      "sha256": "023c567a1e511542f6267d3604bee50e8d321c5ba21afadebc72568353e164e8"
+      "sha256": "aef44e84e7a7ca0f08937caacfcdeee766a6cf2105ed78839e2a7665a0c6ddce"
     },
     {
       "bytes": 106,
@@ -87,7 +87,7 @@
     {
       "bytes": 1030,
       "file": "manifest.json",
-      "sha256": "653037a48f5cc8d776621740f50909a83c1197e7db155e33c7994ee2e3175c9e"
+      "sha256": "42421a5dbb21f3c06cb2520ed074ccc47217b16f878dbb9144d33bdaf5a1a7da"
     },
     {
       "bytes": 824,
@@ -95,19 +95,19 @@
       "sha256": "7b87a9a97f006e82d07454b6f88c875462ed8da40c2a3be255672c94e885e361"
     },
     {
-      "bytes": 26714,
+      "bytes": 26713,
       "file": "pilot.xlsx",
-      "sha256": "53d22b71b5051ed6fa4da6501b4899ef8056c020bdec8be7241d883c45a3aa74"
+      "sha256": "4e0be6caab5fc8bee5a4a74c85e42cebbbbab6966e2ff63fd63877d6364b9f6b"
     },
     {
       "bytes": 754,
       "file": "profile.md",
-      "sha256": "1e2970f94fc56ce500cb8aa811263efecc9501cd117020eb07c5bf85dd4b8a75"
+      "sha256": "a98fa304e1cb43437c6aae0d12f9db0b551ef5817594fc75c7b0336c5ab6cf16"
     },
     {
       "bytes": 7186,
       "file": "report.md",
-      "sha256": "3a3088308f289a74bb513f2e17cca71ecbe9c5513a1d9b889c9818970d8db8dc"
+      "sha256": "42520dc36a73b628814b5802d907f7f4a18d204e2fc0cd36d16df3fa86e673a8"
     },
     {
       "bytes": 286,
@@ -127,5 +127,5 @@
     "tolerance_abs": 5.0,
     "tolerance_pct": 1.0
   },
-  "pilot_sha256": "a486413ed89d060f88213d491f46002d6d27bd77d64f3b09437ca7e7df10c5e9"
+  "pilot_sha256": "f9d409a3f65eb2f0cbb9a45ed9d11ffb6bca5e2e329fa878d83d0035fdc33a5c"
 }

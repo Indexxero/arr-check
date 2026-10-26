@@ -1,6 +1,6 @@
 # Revenue close pack, as of 2025-11
 
-Inputs: `schedule.csv` (558 rows), `invoices.csv` (549 lines). Kit 2026-10-25. Every figure below is in a file beside this one; nothing here is an accounting opinion.
+Inputs: `schedule.csv` (558 rows), `invoices.csv` (549 lines). Kit 2026-10-26. Every figure below is in a file beside this one; nothing here is an accounting opinion.
 
 ## 1. Reported against supported
 
@@ -84,4 +84,4 @@ Largest resolved: Maple Street Health (0 ARR); Harbor Light Media (0 ARR).
 
 ## 9. The run that made this
 
-Kit 2026-10-25. Schedule sha256 5a384b772c2431a1, invoices sha256 631ef547e0f16ed2. Full hashes of every input and output in receipt.json; `python3 receipt.py verify` recomputes them.
+Kit 2026-10-26. Schedule sha256 5a384b772c2431a1, invoices sha256 631ef547e0f16ed2. Full hashes of every input and output in receipt.json; `python3 receipt.py verify` recomputes them.

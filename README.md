@@ -8,6 +8,12 @@ A worked example on a fictional company, with every output file: https://measure
 
 Or run it in a browser tab, nothing leaving the tab: https://measure.indexxero.com/run
 
+## New in 2026-10-26
+
+* `arr_to_revenue.csv`: the month from schedule MRR to supported MRR to the revenue recognised in the roll forward, one row per cause, with the accounts behind each step.
+* A deferred revenue template (`templates/deferred_revenue.xlsx`) that `fill_template.py` fills from a run, with the checks written as formulas.
+* `verify/verify.html`: a page that recomputes a run's receipt in the browser, so whoever receives the pack can confirm it without installing anything.
+
 ## What comes out of one run
 
 From the customer schedule and the invoice export, in about ten seconds:

@@ -1,6 +1,6 @@
 # Pilot findings, as of 2025-11
 
-Inputs: schedule `schedule.csv` (558 rows), invoices `invoices.csv` (549 lines). Hashes in manifest.json. Kit 2026-10-25.
+Inputs: schedule `schedule.csv` (558 rows), invoices `invoices.csv` (549 lines). Hashes in manifest.json. Kit 2026-10-26.
 
 ## Totals
 

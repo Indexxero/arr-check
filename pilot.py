@@ -28,7 +28,7 @@ try:
 except ImportError:
     HAVE_OPENPYXL = False
 
-KIT_VERSION = "2026-10-25"
+KIT_VERSION = "2026-10-26"
 
 
 # ---------- helpers ----------

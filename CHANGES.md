@@ -15,3 +15,5 @@
 2026-10-25: `closepack.md` written by every run (`--before` adds the month over month section, using `diff_runs.classify`). The report's journal line now reads from `journal.csv` (lines, credited to and released from deferred) instead of the old release sentence. KIT_VERSION 2026-10-25. No figure in the five key files moved.
 
 2026-10-25: the receipt records the ledger balance file (`--deferred-gl`) and the answers file (`--answers`) as inputs when a run used them; `verify` takes the same two options. Found by Claude Code: a laptop receipt could not say which ledger produced a difference. No output changed.
+
+2026-10-26: a run now stops, with one plain message and nothing computed, when a column every figure depends on has no values (invoices: amount, invoice date, customer id or name; schedule: MRR or ARR, a date, customer id or name). Before, a mapping that named columns the file did not have produced a complete report on warning lines, with every dollar of ARR called unsupported. Found by Claude Code with a grouped QuickBooks export. No figure changes on any file that maps correctly.

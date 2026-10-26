@@ -7,13 +7,15 @@ The workbook is built here rather than edited by hand so that every formula is i
 readable place and the committed file can be rebuilt. openpyxl only; no macros, no
 external links, no named ranges pointing outside the workbook.
 
-FIVE SHEETS
+SIX SHEETS
   Read me       how to fill it, in words
   Tie out       the as of month, the ending balance, and the checks that must read 0
   Roll forward  one row per month: opening, billings, recognised, closing, the split
                 into deferred and unbilled, the ledger balance and the journal tie
   Accounts      one row per account at the as of month
   Journal       the month end lines, one per account per month
+  ARR to revenue  schedule MRR to recognised revenue, the kit's steps typed, its = rows
+                recomputed and compared with the kit's own figure
 
 Yellow cells are typed in (or written by fill_template.py); every other figure is a
 formula. Only SUM, SUMIFS, COUNTIFS, COUNTA, IF, OR, ROUND, INDEX, MATCH and IFERROR are used,
@@ -28,6 +30,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "deferred_revenue.xlsx")
 
 MONTHS, ACCOUNTS, LINES = 60, 5000, 50000      # capacity; fill_template.py refuses beyond it
+STEPS = 60
+B_LAST = 1 + STEPS
 R_LAST, A_LAST, J_LAST = 1 + MONTHS, 1 + ACCOUNTS, 1 + LINES
 MONEY = '#,##0.00;-#,##0.00;0.00'
 INPUT = PatternFill("solid", fgColor="FFF2CC")
@@ -40,6 +44,7 @@ tie = wb.create_sheet("Tie out")
 roll = wb.create_sheet("Roll forward")
 acc = wb.create_sheet("Accounts")
 jnl = wb.create_sheet("Journal")
+br = wb.create_sheet("ARR to revenue")
 
 
 def header(ws, names, widths):
@@ -130,6 +135,10 @@ rows = [
     ("Journal amount", '=SUM(Journal!$E$2:$E$%d)' % J_LAST, None),
     (None, None, None),
     ("Filled from", "", "written by fill_template.py; blank when typed by hand"),
+    (None, None, None),
+    ("ARR to revenue", None, None),
+    ("Sections whose = row differs from the kit's figure", '=COUNTIFS(\'ARR to revenue\'!$J$2:$J$%d,">0.005")+COUNTIFS(\'ARR to revenue\'!$J$2:$J$%d,"<-0.005")' % (B_LAST, B_LAST), "ARR to revenue, column J; should read 0"),
+    ("Residual rows, total", "=SUMIFS('ARR to revenue'!$F$2:$F$%d,'ARR to revenue'!$D$2:$D$%d,\"residual\")" % (B_LAST, B_LAST), "a gap the kit's steps did not explain; should read 0"),
 ]
 for i, (label, value, note) in enumerate(rows, start=1):
     if label:
@@ -139,11 +148,11 @@ for i, (label, value, note) in enumerate(rows, start=1):
     if note:
         tie.cell(row=i, column=3, value=note)
 tie["A1"].font = Font(bold=True, size=14)
-tie["A14"].font = tie["A20"].font = BOLD
+tie["A14"].font = tie["A20"].font = tie["A28"].font = BOLD
 for ref in ("B3", "B5", "B6", "B26"):
     tie[ref].fill = INPUT
 tie["B3"].number_format = "@"
-for r in (8, 9, 10, 11, 12, 15, 16, 24):
+for r in (8, 9, 10, 11, 12, 15, 16, 24, 30):
     tie[f"B{r}"].number_format = MONEY
 
 # Read me --------------------------------------------------------------------------------
@@ -161,6 +170,8 @@ text = [
     "   Type billings, recognised, closing deferred, closing unbilled and, if known, the ledger balance.",
     "2. Accounts: one row per account, its closing deferred and unbilled at the as of month.",
     "3. Journal: the month end lines. Amounts are positive; the debit and credit accounts say which way.",
+    "   ARR to revenue: the steps from schedule MRR to recognised revenue, one row each, with the kit's figure",
+    "   on every = row; the Figure column adds the steps and the Difference column must read 0.",
     "4. Tie out: type the as of month. The account names for deferred and unbilled revenue must match",
     "   the names used in the Journal sheet.",
     "",
@@ -172,7 +183,7 @@ text = [
     "The accounts must sum to the roll forward at the as of month.",
     "Any check that does not read 0 names a figure to look at; the template does not say which side is right.",
     "",
-    "Capacity: %d months, %d accounts, %d journal lines." % (MONTHS, ACCOUNTS, LINES),
+    "Capacity: %d months, %d accounts, %d journal lines, %d bridge rows." % (MONTHS, ACCOUNTS, LINES, STEPS),
     "",
     "Filling it from an arr-check run",
     "python3 fill_template.py <run folder> --out deferred_revenue_filled.xlsx",
@@ -183,8 +194,27 @@ text = [
 ]
 for i, line in enumerate(text, start=1):
     readme.cell(row=i, column=1, value=line)
-for r in (1, 3, 7, 18, 26):
+for r in (1, 3, 7, 20, 28):
     readme[f"A{r}"].font = Font(bold=True, size=14 if r == 1 else 11)
+
+# ARR to revenue -------------------------------------------------------------------------
+# Typed: kind (open, step, total, memo), the amount of an open, step or memo row, and on
+# a total row the kit's own figure. A total row's Figure is a formula: the running sum
+# of the opening and steps above it. Running restarts from the kit's figure at each
+# total, so each section is checked on its own and a wrong step shows in its section only.
+header(br, ["Order", "Section", "Step", "Bucket", "Kind (open, step, total, memo)", "Amount (typed)", "Figure",
+            "Running", "Kit figure (total rows)", "Difference (figure less kit)", "Accounts"],
+       [7, 22, 58, 22, 12, 14, 14, 14, 14, 16, 50])
+for r in range(2, B_LAST + 1):
+    e, hp = f"$E{r}", ("0" if r == 2 else f"H{r - 1}")
+    for col in "ABCDEFIK":
+        br[f"{col}{r}"].fill = INPUT
+    br[f"G{r}"] = f'=IF({e}="","",IF({e}="total",{hp},F{r}))'
+    br[f"H{r}"] = (f'=IF({e}="","",IF({e}="open",F{r},IF({e}="step",{hp}+F{r},'
+                   f'IF({e}="total",IF(I{r}="",G{r},I{r}),{hp}))))')
+    br[f"J{r}"] = f'=IF({e}="total",IF(I{r}="","",ROUND(G{r}-I{r},2)),"")'
+    for col in "FGHIJ":
+        br[f"{col}{r}"].number_format = MONEY
 
 wb.active = 1                                       # opens on Tie out
 wb.calculation.fullCalcOnLoad = True                # Excel and Sheets compute on open

@@ -3,9 +3,9 @@
 
     python3 fill_template.py out --out deferred_revenue_filled.xlsx
 
-Reads deferred_rollforward.csv, deferred_accounts.csv and journal.csv from the run
-folder (and manifest.json for the as of month, when it is there) and writes them into
-the yellow cells of a COPY of templates/deferred_revenue.xlsx. The template itself is
+Reads deferred_rollforward.csv, deferred_accounts.csv, journal.csv and, when the run
+wrote it, arr_to_revenue.csv from the run folder (and manifest.json for the as of
+month, when it is there) and writes them into the yellow cells of a COPY of templates/deferred_revenue.xlsx. The template itself is
 never changed, and every figure the template derives stays a formula: the closing, the
 ledger difference, the journal tie and the tie out are computed by the spreadsheet,
 not written here, so the filled file checks the run rather than repeating it.
@@ -24,7 +24,7 @@ import argparse, csv, json, os, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 TEMPLATE = os.path.join(HERE, "templates", "deferred_revenue.xlsx")
-MONTHS, ACCOUNTS, LINES = 60, 5000, 50000
+MONTHS, ACCOUNTS, LINES, STEPS = 60, 5000, 50000, 60
 
 
 def refuse(msg):
@@ -40,6 +40,16 @@ def read(folder, name, required=True):
         return None
     with open(path, newline="", encoding="utf-8") as f:
         return list(csv.DictReader(f))
+
+
+def put(ws, ref, value):
+    """Write a cell. Text is forced to be text: openpyxl stores any string that starts
+    with "=" as a formula, so a step named "= supported by invoices", or a customer
+    name or memo in an export that starts with "=", would otherwise become a formula
+    in the filled copy."""
+    ws[ref] = value
+    if isinstance(value, str):
+        ws[ref].data_type = "s"
 
 
 def num(s):
@@ -66,7 +76,9 @@ def main():
     roll = read(a.run, "deferred_rollforward.csv")
     accts = read(a.run, "deferred_accounts.csv")
     journal = read(a.run, "journal.csv")
-    for what, rows, cap in (("months", roll, MONTHS), ("accounts", accts, ACCOUNTS), ("journal lines", journal, LINES)):
+    # arr_to_revenue.csv is newer than the other three; a run without it leaves the sheet blank.
+    bridge = read(a.run, "arr_to_revenue.csv", required=False) or []
+    for what, rows, cap in (("months", roll, MONTHS), ("accounts", accts, ACCOUNTS), ("journal lines", journal, LINES), ("bridge rows", bridge, STEPS)):
         if len(rows) > cap:
             refuse(f"{len(rows)} {what}; the template holds {cap}")
     if not roll:
@@ -86,38 +98,50 @@ def main():
     ws = wb["Roll forward"]
     gl = "gl_balance" in roll[0]
     for i, r in enumerate(roll, start=2):
-        ws[f"A{i}"] = r["month"]
+        put(ws, f"A{i}", r["month"])
         if i == 2:
-            ws["B2"] = num(r["opening"])
-        ws[f"C{i}"] = num(r["billings"])
-        ws[f"D{i}"] = num(r["recognised"])
-        ws[f"F{i}"] = num(r["closing_deferred"])
-        ws[f"G{i}"] = num(r["closing_unbilled"])
+            put(ws, "B2", num(r["opening"]))
+        put(ws, f"C{i}", num(r["billings"]))
+        put(ws, f"D{i}", num(r["recognised"]))
+        put(ws, f"F{i}", num(r["closing_deferred"]))
+        put(ws, f"G{i}", num(r["closing_unbilled"]))
         if gl:
-            ws[f"I{i}"] = num(r["gl_balance"])
+            put(ws, f"I{i}", num(r["gl_balance"]))
     ws = wb["Accounts"]
     for i, r in enumerate(accts, start=2):
-        ws[f"A{i}"] = r["key"]
-        ws[f"B{i}"] = r["customer_name"]
-        ws[f"C{i}"] = num(r["closing_deferred"])
-        ws[f"D{i}"] = num(r["closing_unbilled"])
-        ws[f"E{i}"] = num(r["months_of_deferred_cover"])
+        put(ws, f"A{i}", r["key"])
+        put(ws, f"B{i}", r["customer_name"])
+        put(ws, f"C{i}", num(r["closing_deferred"]))
+        put(ws, f"D{i}", num(r["closing_unbilled"]))
+        put(ws, f"E{i}", num(r["months_of_deferred_cover"]))
     ws = wb["Journal"]
     for i, r in enumerate(journal, start=2):
-        ws[f"A{i}"] = r["month"]
-        ws[f"B{i}"] = r["customer_name"]
-        ws[f"C{i}"] = r["debit_account"]
-        ws[f"D{i}"] = r["credit_account"]
-        ws[f"E{i}"] = num(r["amount"])
-        ws[f"F{i}"] = r["memo"]
+        put(ws, f"A{i}", r["month"])
+        put(ws, f"B{i}", r["customer_name"])
+        put(ws, f"C{i}", r["debit_account"])
+        put(ws, f"D{i}", r["credit_account"])
+        put(ws, f"E{i}", num(r["amount"]))
+        put(ws, f"F{i}", r["memo"])
+    ws = wb["ARR to revenue"]
+    for i, r in enumerate(bridge, start=2):
+        kind = ("total" if r["step"].startswith("=") else "memo" if r["section"] == "memo"
+                else "open" if not r["bucket"] else "step")
+        put(ws, f"A{i}", int(r["order"]))
+        put(ws, f"B{i}", r["section"])
+        put(ws, f"C{i}", r["step"])
+        put(ws, f"D{i}", r["bucket"])
+        put(ws, f"E{i}", kind)
+        # A total row's figure is the template's formula; the kit's figure goes beside it.
+        put(ws, f"{'I' if kind == 'total' else 'F'}{i}", num(r["amount"]))
+        put(ws, f"K{i}", r["accounts"])
     ws = wb["Tie out"]
-    ws["B3"] = asof
-    ws["B26"] = " ".join(x for x in (os.path.basename(os.path.abspath(a.run)),
-                                     f"kit {man['kit_version']}" if man.get("kit_version") else "",
-                                     f"generated {man['generated_utc']} UTC" if man.get("generated_utc") else "") if x)
+    put(ws, "B3", asof)
+    put(ws, "B26", " ".join(x for x in (os.path.basename(os.path.abspath(a.run)),
+                                        f"kit {man['kit_version']}" if man.get("kit_version") else "",
+                                        f"generated {man['generated_utc']} UTC" if man.get("generated_utc") else "") if x))
     wb.calculation.fullCalcOnLoad = True
     wb.save(a.out)
-    print(f"wrote {a.out}: as of {asof}; {len(roll)} months, {len(accts)} accounts, {len(journal)} journal lines"
+    print(f"wrote {a.out}: as of {asof}; {len(roll)} months, {len(accts)} accounts, {len(journal)} journal lines, {len(bridge)} bridge rows"
           f"{'' if gl else '; no ledger balance in this run, so Ledger balance and Difference stay blank'}")
 
 

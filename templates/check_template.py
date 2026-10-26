@@ -37,9 +37,16 @@ bad = 0
 
 RUNS = {
     "larkspur": dict(folder="example/outputs", asof="2025-10", ending=0.0, deferred=0.0, unbilled=0.0, ledger=800.0, difference=-800.0,
-                     months=12, accounts=42, lines=14),
+                     months=12, accounts=42, lines=14,
+                     # ARR-TO-GAAP-BRIDGE.md, stated before the sheet existed; = rows recomputed by the engine
+                     bridge={"recurring revenue on the schedule": 72400, "less: unmatched_schedule_only": -2100, "less: over_stated": -800,
+                             "= supported by invoices": 69500, "plus: under_stated, schedule shows nothing": 1400,
+                             "plus: under_stated, billed above the schedule": 300, "plus: unmatched_invoice_only": 950,
+                             "= invoiced recurring, spread over service periods": 72150}, recognised=72150),
     "quickbooks": dict(folder="example/quickbooks/outputs", asof="2025-10", ending=49300.0, deferred=49300.0, unbilled=0.0, ledger="", difference="",
-                       months=12, accounts=10, lines=41),
+                       months=12, accounts=10, lines=41,
+                       bridge={"recurring revenue on the schedule": 12500, "less: over_stated": -1000, "= supported by invoices": 11500,
+                               "= invoiced recurring, spread over service periods": 11500}, recognised=11500),
 }
 
 
@@ -116,6 +123,18 @@ for name, e in RUNS.items():
         if cent(R("L")) != 0:
             off.append(f"{r['month']} journal tie {R('L')!r}")
     report(f"{name}: every month's opening, closing, difference, tie", not off, "; ".join(off) or f"{len(roll)} months, to the cent")
+    steps = {}
+    for i in range(2, 62):
+        step = v.get(("ARR TO REVENUE", f"C{i}"))
+        if step:
+            steps.setdefault(step, []).append((v.get(("ARR TO REVENUE", f"G{i}")), v.get(("ARR TO REVENUE", f"J{i}"))))
+    wrong = [f"{k} {steps.get(k)} != {want}" for k, want in e["bridge"].items() if not steps.get(k) or cent(steps[k][0][0]) != want]
+    report(f"{name}: ARR to revenue, each stated figure as recalculated", not wrong, "; ".join(wrong) or f"{len(e['bridge'])} figures")
+    rec = [cent(g) for g, _ in steps.get("= recognised revenue, deferred_rollforward.csv", [])]
+    report(f"{name}: ARR to revenue, recognised both ways", rec == [e["recognised"]] * 2, rec)
+    diffs = [cent(d) for rows in steps.values() for _, d in rows if d not in ("", None)]
+    report(f"{name}: ARR to revenue, every = row's difference is 0", diffs and all(d == 0 for d in diffs), f"{len(diffs)} = rows")
+    report(f"{name}: tie out, sections off and residual are 0", (cent(T("B29")), cent(T("B30"))) == (0, 0), (T("B29"), T("B30")))
 
 # 3. The checks catch a change ----------------------------------------------------------
 if "larkspur" in filled:
@@ -128,6 +147,16 @@ if "larkspur" in filled:
     wb = openpyxl.load_workbook(src); wb["Accounts"]["C2"] = (wb["Accounts"]["C2"].value or 0) + 250; wb.save(p)
     v = recalc(p)
     report("one account deferred +250: the accounts check reads 250", cent(v.get(("TIE OUT", "B15"))) == 250.0, v.get(("TIE OUT", "B15")))
+    p = os.path.join(work, "larkspur_one_bridge_step.xlsx")
+    wb = openpyxl.load_workbook(src); ws = wb["ARR to revenue"]
+    row = next(r for r in range(2, 62) if ws[f"C{r}"].value == "less: over_stated")
+    ws[f"F{row}"] = ws[f"F{row}"].value + 100; wb.save(p)
+    v = recalc(p)
+    d = {v.get(("ARR TO REVENUE", f"B{r}")): cent(v.get(("ARR TO REVENUE", f"J{r}"))) for r in range(2, 62)
+         if v.get(("ARR TO REVENUE", f"J{r}")) not in ("", None)}
+    off = {k: x for k, x in d.items() if x != 0}
+    report("one bridge step +100: only its section's difference reads 100", off == {"schedule_to_supported": 100.0}, off)
+    report("one bridge step +100: the tie out counts 1 section off", v.get(("TIE OUT", "B29")) == 1, v.get(("TIE OUT", "B29")))
 
 # 4. Refusals ---------------------------------------------------------------------------
 empty = os.path.join(work, "empty_run"); os.makedirs(empty, exist_ok=True)
@@ -143,6 +172,18 @@ rows[3][1] = str(float(rows[3][1]) + 1)
 csv.writer(open(os.path.join(broken, "deferred_rollforward.csv"), "w", newline="")).writerows(rows)
 rc, last = fill(broken, os.path.join(work, "never_2.xlsx"))
 report("refuses: an opening that is not the prior closing", rc == 1 and last.startswith("REFUSED") and not os.path.exists(os.path.join(work, "never_2.xlsx")), last.replace(work, "<work>"))
+
+# 5. Text from a run stays text ---------------------------------------------------------
+eq = os.path.join(work, "equals_run"); os.makedirs(eq, exist_ok=True)
+for n in ("deferred_rollforward.csv", "deferred_accounts.csv", "journal.csv", "arr_to_revenue.csv"):
+    shutil.copy(os.path.join(ROOT, RUNS["larkspur"]["folder"], n), eq)
+rows = list(csv.reader(open(os.path.join(eq, "journal.csv"))))
+rows[1][1] = "=1+1"
+csv.writer(open(os.path.join(eq, "journal.csv"), "w", newline="")).writerows(rows)
+rc, last = fill(eq, os.path.join(work, "equals.xlsx"))
+c = openpyxl.load_workbook(os.path.join(work, "equals.xlsx"))["Journal"]["B2"] if rc == 0 else None
+report("a customer named =1+1 is written as text, not a formula", c is not None and c.data_type == "s" and c.value == "=1+1",
+       None if c is None else (c.data_type, c.value))
 
 print("RESULT:", "ALL AS STATED" if not bad else f"{bad} NOT AS STATED")
 sys.exit(1 if bad else 0)

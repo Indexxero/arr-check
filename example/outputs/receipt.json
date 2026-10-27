@@ -22,7 +22,7 @@
     }
   },
   "kit_version": "2026-10-26",
-  "made_utc": "2026-10-26 10:43:03",
+  "made_utc": "2026-10-27 10:15:41",
   "outputs": [
     {
       "bytes": 3521,
@@ -92,7 +92,7 @@
     {
       "bytes": 1132,
       "file": "manifest.json",
-      "sha256": "ed96f7b95a60b7f2737222acbffc9dfa09fcfd03891f69b3548ddb434ce1047a"
+      "sha256": "404112b740ab3b8cfb7b057a794ee2cc0260f669e091bd190ff247aad02616fa"
     },
     {
       "bytes": 2640,
@@ -102,12 +102,12 @@
     {
       "bytes": 48909,
       "file": "pilot.xlsx",
-      "sha256": "07b492ffa9f7820ff49ca0a8778a472ccb4de735f33e852f33bd7a6363c54734"
+      "sha256": "a5767a62de35371e6a97671e4594a111caae9e7d018f34469d074a5f60de45a5"
     },
     {
       "bytes": 753,
       "file": "profile.md",
-      "sha256": "bf9bdf00fcfaeece0595361dbfca7909c65eebdad2377bec30399da71f0bdc9f"
+      "sha256": "6306c45f4b648dd011787fe45fb910180719b913f3acddd987ec13fc70a5bea0"
     },
     {
       "bytes": 8919,
@@ -132,5 +132,5 @@
     "tolerance_abs": 5.0,
     "tolerance_pct": 1.0
   },
-  "pilot_sha256": "f9d409a3f65eb2f0cbb9a45ed9d11ffb6bca5e2e329fa878d83d0035fdc33a5c"
+  "pilot_sha256": "d491beabfd17f00ddf4d882fc55a772855d67842222d58ee77cf3ec4ab9de77f"
 }

@@ -1180,6 +1180,39 @@ def write_receipt(args):
         print("warning: receipt.json not written (%s: %s); the run itself is complete" % (type(e).__name__, e))
 
 
+def prepare_out(out, replace):
+    """The out folder before anything is written. A receipt hashes every file in the folder,
+    so a file this run did not write would be certified as if it had: a leftover from an
+    earlier run with other options, or anything put there by hand. So a folder holding any
+    file is refused. --replace removes the previous run's files, exactly those its
+    receipt.json lists, and refuses, removing nothing, when anything else is there. A folder
+    that does not exist, or is empty, is used as before."""
+    if not os.path.isdir(out):
+        return
+    present = sorted(os.listdir(out))
+    if not present:
+        return
+    shown = ", ".join(present[:5]) + (f" and {len(present) - 5} more" if len(present) > 5 else "")
+    if not replace:
+        sys.exit(f"STOPPED, nothing written: {out} already holds {len(present)} files ({shown}). receipt.json hashes every file in "
+                 "the folder, so it would list files this run did not write. Use a new or empty folder, or pass --replace to "
+                 "remove the previous run's files first.")
+    rec = os.path.join(out, "receipt.json")
+    if not os.path.isfile(rec):
+        sys.exit(f"STOPPED, nothing written: --replace removes only the files a previous run's receipt.json lists, and {out} "
+                 f"has no receipt.json. It holds {shown}; move them out first.")
+    try:
+        listed = {o["file"] for o in json.load(open(rec))["outputs"]} | {"receipt.json"}
+    except (ValueError, KeyError, TypeError) as e:
+        sys.exit(f"STOPPED, nothing written: --replace could not read {rec} ({type(e).__name__}); move the folder's files out first.")
+    other = [f for f in present if f not in listed or not os.path.isfile(os.path.join(out, f))]
+    if other:
+        sys.exit(f"STOPPED, nothing written: --replace: {out} holds {len(other)} files the previous receipt.json does not list "
+                 f"({', '.join(other[:5])}). They were not written by that run; move them out first.")
+    for f in present:
+        os.remove(os.path.join(out, f))
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--schedule", required=True); ap.add_argument("--invoices", required=True); ap.add_argument("--map", required=True)
@@ -1191,7 +1224,11 @@ def main():
     ap.add_argument("--profile", action="store_true", help="stop after the manifest and the profile; no numbers computed")
     ap.add_argument("--answers", help="optional finance-lead answers JSON")
     ap.add_argument("--before", default=None, help="optional: the previous run's out folder, for the close pack's month over month section")
+    ap.add_argument("--replace", action="store_true",
+                    help="the out folder holds a previous run: remove the files its receipt.json lists before this run writes; "
+                         "refused if anything else is in the folder")
     args = ap.parse_args()
+    prepare_out(args.out, args.replace)
     os.makedirs(args.out, exist_ok=True)
     answers = load_answers(args.answers) if args.answers else None
     mapping = json.load(open(args.map))

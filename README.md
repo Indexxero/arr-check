@@ -48,6 +48,8 @@ python3 pilot.py --schedule schedule.csv --invoices invoices.csv --map mapping.j
 
 `--asof` is the month the figures are stated as of. Add `--profile` to stop after the profile and see what the files can support before any number is computed.
 
+`--out` must be a new or empty folder, because `receipt.json` hashes every file in it and would otherwise list files this run did not write. To run again into the same folder, add `--replace`: it removes the previous run's files, exactly those its `receipt.json` lists, and refuses, removing nothing, if anything else is there. `python3 example/check_stale_outputs.py <empty folder>` checks this.
+
 ## Finance answers
 
 Add `--answers answers.json` to disclose per-customer-month finance decisions on a rerun.
